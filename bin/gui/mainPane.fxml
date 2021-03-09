@@ -18,6 +18,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <BorderPane fx:id="mainPane" prefHeight="827.0" prefWidth="1369.0" stylesheets="@Styles.css" />
+      <BorderPane fx:id="mainPane" prefHeight="827.0" prefWidth="1369.0" />
    </children>
 </VBox>
