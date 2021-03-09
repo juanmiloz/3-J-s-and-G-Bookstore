@@ -22,7 +22,7 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("prueba.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetup.fxml"));
 		fxmlLoader.setController(bookstoreGUI);
 		Parent root = fxmlLoader.load();
 		
