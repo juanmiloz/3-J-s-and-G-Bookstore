@@ -22,16 +22,15 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetup.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainPane.fxml"));
 		fxmlLoader.setController(bookstoreGUI);
 		Parent root = fxmlLoader.load();
 		
 		Scene scene = new Scene(root,1366,700);
 		
-		//bookstoreGUI.showMainScreen();
+		bookstoreGUI.showMainScreen();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Bookstore");
 		primaryStage.show(); 
 	}
-
 }

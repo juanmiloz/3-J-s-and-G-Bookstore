@@ -24,11 +24,12 @@ public class BookstoreGUI {
 	}
 	
 	public void showMainScreen() throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("prueba.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetup.fxml"));
 		fxmlLoader.setController(this);
 		
 		Parent mainScreen = fxmlLoader.load();
 		
+		mainPane.getStyleClass().addAll(mainScreen.getStylesheets());
 		mainPane.getChildren().clear();
 		mainPane.setCenter(mainScreen);
 	}
