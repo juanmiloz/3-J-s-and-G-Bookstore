@@ -109,7 +109,17 @@ public class BookstoreGUI {
     private Text txtMaxClients;
 
     
+    //Attributes ClientTable.fxml
     
+
+    @FXML
+    private JFXButton btnCatalog;
+
+    @FXML
+    private JFXButton btnPickUp;
+
+    @FXML
+    private JFXButton btnPay;
     
     
     //Generic attributes
@@ -162,6 +172,22 @@ public class BookstoreGUI {
 	
     @FXML
     void addClient(ActionEvent event) {
+
+    } 
+    
+    
+    @FXML
+    void viewCatalog(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewPay(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewPickUp(ActionEvent event) {
 
     }
 
