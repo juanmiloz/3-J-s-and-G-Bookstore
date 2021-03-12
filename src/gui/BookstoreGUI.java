@@ -35,8 +35,8 @@ public class BookstoreGUI {
 
 	@FXML
 	private JFXButton btnContinue;
-	
-	
+
+
 	//Attributes StoreInformation.fxml
 
 	@FXML
@@ -78,8 +78,44 @@ public class BookstoreGUI {
 	@FXML
 	private Text txtMaxBooks;
 
+	
+
+	
+	
+
+	//Attributes  ClientEnetering.fxml
 	@FXML
-	private JFXButton backButton;
+	private JFXTextField txtFieldClients;
+
+	@FXML
+	private JFXButton btnContinueClients;
+	
+	
+	
+	//Attributes  ClientInformation.fxml
+	@FXML
+    private JFXTextField txtFieldClientID;
+
+    @FXML
+    private JFXTextField txtFieldClientName;
+
+    @FXML
+    private JFXButton btnNextClient;
+
+    @FXML
+    private Text txtCompClients;
+
+    @FXML
+    private Text txtMaxClients;
+
+    
+    
+    
+    
+    //Generic attributes
+    @FXML
+    private JFXButton backButton;
+
 
 
 	public BookstoreGUI(Bookstore bookstore) {
@@ -96,26 +132,36 @@ public class BookstoreGUI {
 		mainPane.getChildren().clear();
 		mainPane.setCenter(mainScreen);
 	}
-	
-	
+
+
 
 	@FXML
 	void btnPressedContinue(ActionEvent event) {
 
 	}
-	
+
 	@FXML
-    void addBooks(ActionEvent event) {
+	void addBooks(ActionEvent event) {
 
-    }
+	}
 
+	@FXML
+	void addToShelve(ActionEvent event) {
+
+	}
+
+	@FXML
+	void back(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btnPressedContinueClients(ActionEvent event) {
+
+	}
+	
     @FXML
-    void addToShelve(ActionEvent event) {
-
-    }
-
-    @FXML
-    void back(ActionEvent event) {
+    void addClient(ActionEvent event) {
 
     }
 

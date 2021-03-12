@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../data/screens/Client%20Information%20–%201.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="txtFieldClientID" focusColor="BLACK" layoutX="932.0" layoutY="512.0" prefHeight="30.0" prefWidth="378.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtFieldClientName" focusColor="BLACK" layoutX="983.0" layoutY="444.0" prefHeight="30.0" prefWidth="317.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btnAddToShelve" layoutX="907.0" layoutY="586.0" onAction="#addToShelve" prefHeight="39.0" prefWidth="235.0" style="-fx-background-color: #000000;" text="Next Client" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat SemiBold" size="13.0" />
+               </font>
+            </JFXButton>
+            <Text fx:id="txtCompClients" layoutX="1219.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text layoutX="1245.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtMaxClients" layoutX="1258.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="backButton" layoutX="714.0" layoutY="50.0" onAction="#back" prefHeight="57.0" prefWidth="58.0" textFill="#ffffff00" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
