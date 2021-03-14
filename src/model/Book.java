@@ -5,15 +5,15 @@ public class Book {
 	private String title;
 	private double price;
 	private String author;
-	private int year;
 	private String sumary;
+	private int quantity;
 	
-	public Book(String title, double price, String author, int year, String sumary) {
+	public Book(String title, double price, String author, String sumary, int quantity) {
 		this.setTitle(title);
 		this.setPrice(price);
 		this.setAuthor(author);
-		this.setYear(year);
 		this.setSumary(sumary);
+		this.setQuantity(quantity);
 	}
 
 	public String getTitle() {
@@ -40,20 +40,20 @@ public class Book {
 		this.author = author;
 	}
 
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
 	public String getSumary() {
 		return sumary;
 	}
 
 	public void setSumary(String sumary) {
 		this.sumary = sumary;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 }

@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import model.Book;
+import model.Bookshelve;
 import model.Bookstore;
 
 public class BookstoreGUI {
@@ -174,8 +176,6 @@ public class BookstoreGUI {
 		mainPane.getStyleClass().addAll(mainScreen.getStylesheets());
 		mainPane.getChildren().clear();
 		mainPane.setCenter(mainScreen);
-		
-		
 	}
 
 	//methods StoreSetup
@@ -188,7 +188,7 @@ public class BookstoreGUI {
 				bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
 				loadStoreInformation();
 			}
-		}catch(NumberFormatException nfe) {
+		} catch(NumberFormatException nfe) {
 			alertTypeDataIncorrect();
 			txtFieldCashiers.setText("");
 			txtFieldShelves.setText("");
@@ -205,6 +205,13 @@ public class BookstoreGUI {
     	mainPane.getChildren().clear();
     	mainPane.setCenter(storeInformation);
     	txtMaxShelves.setText(txtFieldShelves.getText());
+    	
+    	btnAddToShelve.setDisable(true);
+    	txtFieldBookTitle.setDisable(true);
+    	txtFieldAuthor.setDisable(true);
+    	txtFieldISBN.setDisable(true);
+    	txtFieldStock.setDisable(true);
+    	txtFieldPrice.setDisable(true);
 	}
 
 	//methods storeInformation
@@ -215,6 +222,12 @@ public class BookstoreGUI {
 		}else {
 			txtMaxBooks.setText(txtFieldNumBooks.getText());
 			btnAddBooks.setDisable(true);
+			txtFieldBookTitle.setDisable(false);
+	    	txtFieldAuthor.setDisable(false);
+	    	txtFieldISBN.setDisable(false);
+	    	txtFieldStock.setDisable(false);
+	    	txtFieldPrice.setDisable(false);
+	    	btnAddToShelve.setDisable(false);
 		}
 		txtFieldShelveName.setText("");
 		txtFieldNumBooks.setText("");
@@ -224,6 +237,29 @@ public class BookstoreGUI {
 	void addToShelve(ActionEvent event) {
 		if(txtFieldBookTitle.getText().equals("") || txtFieldAuthor.getText().equals("") || txtFieldISBN.getText().equals("") || txtFieldStock.getText().equals("") || txtFieldPrice.getText().equals("")) {
 			alertEmptyField();
+		} else {
+			String title = txtFieldBookTitle.getText();
+			double price = Double.parseDouble(txtFieldPrice.getText());
+			String author = txtFieldAuthor.getText();
+			String ISBN = txtFieldISBN.getText();
+			int quantity = Integer.parseInt(txtFieldStock.getText());
+			String sumary = "";
+			Book tempBook = new Book(title, price, author, sumary, quantity);
+			if(bookstore.addBook(ISBN, tempBook, Integer.parseInt(txtCompShelves.getText()) - 1)) {
+				int newComp = Integer.parseInt(txtCompBooks.getText()) + 1;
+				txtCompBooks.setText( String.valueOf(newComp) );
+				if(Integer.parseInt(txtCompBooks.getText()) == Integer.parseInt(txtMaxBooks.getText())) {
+					btnAddBooks.setDisable(false);
+					txtFieldBookTitle.setDisable(true);
+			    	txtFieldAuthor.setDisable(true);
+			    	txtFieldISBN.setDisable(true);
+			    	txtFieldStock.setDisable(true);
+			    	txtFieldPrice.setDisable(true);
+			    	btnAddToShelve.setDisable(true);
+				}
+			} else {
+				//Alerta por si el libro no se pudo añadir porque ya existe ese código ISBN
+			}
 		}
 		txtFieldBookTitle.setText("");
 		txtFieldAuthor.setText("");

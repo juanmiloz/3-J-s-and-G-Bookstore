@@ -1,28 +1,33 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class Bookstore {
 	
 	private int numberOfCashiers;
 	private Bookshelve[] bookshelves;
-	private List<HashMap<String, Book>> stands;
 	
 	public Bookstore() {
 		
 	}
 	
-	public boolean addBook() {
-		//Book bookToAdd = new Book();
-		return false;
+	public boolean addBook(String ISBN, Book book, int posShelve) {
+		boolean canAdded = true;
+		for(int c = 0; c < bookshelves.length; c++) {
+			if(bookshelves[c].getBooksMap().containsKey(ISBN) == true) {
+				canAdded = false;
+			};
+		}
+		if(canAdded) {
+			bookshelves[posShelve].addBook(ISBN, book);
+		}
+		return canAdded;
 	}
 	
 	public void initializeStore(int cashiers, int shelves) {
 		numberOfCashiers=cashiers;
-		bookshelves= new Bookshelve[shelves];
-		setStands(new ArrayList<HashMap<String, Book>>());
+		bookshelves = new Bookshelve[shelves];
+		for(int c = 0; c < bookshelves.length; c++) {
+			bookshelves[c] = new Bookshelve();
+		}
 	}
 
 
@@ -45,13 +50,4 @@ public class Bookstore {
 		this.bookshelves = bookshelves;
 	}
 
-
-	public List<HashMap<String, Book>> getStands() {
-		return stands;
-	}
-
-
-	public void setStands(ArrayList<HashMap<String, Book>> arrayList) {
-		this.stands = arrayList;
-	}
 }
