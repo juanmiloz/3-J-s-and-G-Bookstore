@@ -34,8 +34,4 @@ public class Bookstore {
 	public void setBookshelves(Bookshelve[] bookshelves) {
 		this.bookshelves = bookshelves;
 	}
-	
-	
-	
-
 }

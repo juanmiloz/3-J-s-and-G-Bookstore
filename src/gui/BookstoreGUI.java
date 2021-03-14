@@ -182,7 +182,7 @@ public class BookstoreGUI {
 
 	@FXML
 	void btnPressedContinue(ActionEvent event) throws IOException  {
-		if(txtFieldCashiers.getText().equals("") || txtFieldShelveName.getText().equals("")) {
+		if(txtFieldCashiers.getText().equals("") || txtFieldShelves.getText().equals("")) {
 			alertEmptyField();
 		}else {
 			bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
