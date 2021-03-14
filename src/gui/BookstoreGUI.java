@@ -168,7 +168,7 @@ public class BookstoreGUI {
 	}
 
 	public void showMainScreen() throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetupV1.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetup.fxml"));
 		fxmlLoader.setController(this);
 
 		Parent mainScreen = fxmlLoader.load();
@@ -182,12 +182,16 @@ public class BookstoreGUI {
 
 	@FXML
 	void btnPressedContinue(ActionEvent event) throws IOException  {
-		bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
-		loadStoreInformation();
+		if(txtFieldCashiers.getText().equals("") || txtFieldShelveName.getText().equals("")) {
+			alertEmptyField();
+		}else {
+			bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
+			loadStoreInformation();
+		}
 	}
 	
 	public void loadStoreInformation() throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformationV1.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformation.fxml"));
     	
     	fxmlLoader.setController(this);
 
@@ -268,6 +272,17 @@ public class BookstoreGUI {
     void endProgram(ActionEvent event) {
 
     }
+    
+    //mainPane methods
+    
+    @FXML
+    void showAbout(ActionEvent event) {
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Credits");
+		alert.setContentText("Juan Pablo Sanin\nJuan Camilo Zorrilla \nGiovanni Mosquera\nJuan Sebastian Rodriguez\nData Structures");
+		
+		alert.showAndWait();
+    }
 
 	//Alerts
 
@@ -276,6 +291,14 @@ public class BookstoreGUI {
 
 		alert.setHeaderText("Imposible load the program");
 		alert.setContentText("Its imposible load the program, please contact your supplier");
+		alert.show();
+	}
+	
+	public void alertEmptyField() {
+		Alert alert = new Alert(AlertType.ERROR);
+		
+		alert.setHeaderText("There are empty fields");
+		alert.setContentText("There are empty fields that do not allow you to continue, please fill in all the fields");
 		alert.show();
 	}
 
