@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../data/screens/Store%20Information%20–%202.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="txtFieldShelveName" focusColor="BLACK" layoutX="300.0" layoutY="317.0" prefHeight="31.0" prefWidth="347.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtFieldNumBooks" focusColor="BLACK" layoutX="350.0" layoutY="378.0" prefHeight="31.0" prefWidth="297.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btnAddBooks" layoutX="264.0" layoutY="437.0" onAction="#addBooks" prefHeight="32.0" prefWidth="173.0" style="-fx-background-color: #000000;" text="Add Books" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat SemiBold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="txtFieldBookTitle" focusColor="BLACK" layoutX="215.0" layoutY="528.0" prefHeight="31.0" prefWidth="433.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtFieldAuthor" focusColor="BLACK" layoutX="173.0" layoutY="581.0" prefHeight="31.0" prefWidth="479.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtFieldISBN" focusColor="BLACK" layoutX="142.0" layoutY="630.0" prefHeight="31.0" prefWidth="81.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtFieldStock" focusColor="BLACK" layoutX="343.0" layoutY="630.0" prefHeight="31.0" prefWidth="89.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtFieldPrice" focusColor="BLACK" layoutX="539.0" layoutY="630.0" prefHeight="31.0" prefWidth="116.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btnAddToShelve" layoutX="264.0" layoutY="693.0" onAction="#addToShelve" prefHeight="32.0" prefWidth="173.0" style="-fx-background-color: #000000;" text="Add to Shelve" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat SemiBold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Text fx:id="txtCompShelves" layoutX="533.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text layoutX="559.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtMaxShelves" layoutX="572.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtCompBooks" layoutX="539.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text layoutX="565.0" layoutY="506.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtMaxBooks" layoutX="578.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="26.13671875">
+               <font>
+                  <Font name="Montserrat Regular" size="30.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="backButton" layoutX="24.0" layoutY="51.0" onAction="#back" prefHeight="57.0" prefWidth="58.0" textFill="#ffffff00" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

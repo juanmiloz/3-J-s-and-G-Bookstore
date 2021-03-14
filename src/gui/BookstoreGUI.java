@@ -122,6 +122,22 @@ public class BookstoreGUI {
     private JFXButton btnPay;
     
     
+    //Attributes Catalog.fxml
+    
+    @FXML
+    private JFXButton btnAddToBasket;
+
+    @FXML
+    private JFXButton btnFinishCatalog;
+
+    @FXML
+    private JFXButton prevShelve;
+
+    @FXML
+    private JFXButton nextShelve;
+
+    
+    
     //Generic attributes
     @FXML
     private JFXButton backButton;
@@ -133,7 +149,7 @@ public class BookstoreGUI {
 	}
 
 	public void showMainScreen() throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetup.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetupV1.fxml"));
 		fxmlLoader.setController(this);
 
 		Parent mainScreen = fxmlLoader.load();
@@ -178,6 +194,27 @@ public class BookstoreGUI {
     
     @FXML
     void viewCatalog(ActionEvent event) {
+
+    }
+    
+    
+    @FXML
+    void addToBasket(ActionEvent event) {
+
+    }
+
+    @FXML
+    void finishCatalog(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showNextShelve(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showPreviousShelve(ActionEvent event) {
 
     }
 
