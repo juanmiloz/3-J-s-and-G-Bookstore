@@ -205,7 +205,6 @@ public class BookstoreGUI {
     	mainPane.getChildren().clear();
     	mainPane.setCenter(storeInformation);
     	txtMaxShelves.setText(txtFieldShelves.getText());
-    	txtMaxBooks.setText(txtFieldCashiers.getText());
 	}
 
 	//methods storeInformation
