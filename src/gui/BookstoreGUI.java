@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -137,6 +138,24 @@ public class BookstoreGUI {
     private JFXButton nextShelve;
 
     
+    //Attributes PickUp.fxml
+    
+    @FXML
+    private JFXButton btnContinuePickUp;
+
+    @FXML
+    private JFXToggleButton tglSort2;
+
+    @FXML
+    private JFXToggleButton tglSort1;
+
+    @FXML
+    private JFXToggleButton tglSort3;
+    
+    //Summary Attributes
+    @FXML
+    private JFXButton endButton;
+
     
     //Generic attributes
     @FXML
@@ -219,12 +238,22 @@ public class BookstoreGUI {
     }
 
     @FXML
+    void viewPickUp(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void continuePickUp(ActionEvent event) {
+
+    }
+    
+    @FXML
     void viewPay(ActionEvent event) {
 
     }
 
     @FXML
-    void viewPickUp(ActionEvent event) {
+    void endProgram(ActionEvent event) {
 
     }
 
