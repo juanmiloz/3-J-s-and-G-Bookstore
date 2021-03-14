@@ -183,7 +183,11 @@ public class BookstoreGUI {
 	@FXML
 	void btnPressedContinue(ActionEvent event) throws IOException  {
 		if(txtFieldCashiers.getText().equals("") || txtFieldShelves.getText().equals("")) {
+<<<<<<< HEAD
 			alertEmptyField();
+=======
+			alertEmptyField(); 
+>>>>>>> d3df087df197f375f01b03277f437022cc60408a
 		}else {
 			bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
 			loadStoreInformation();
@@ -199,6 +203,8 @@ public class BookstoreGUI {
     	
     	mainPane.getChildren().clear();
     	mainPane.setCenter(storeInformation);
+    	txtMaxShelves.setText(txtFieldShelves.getText());
+    	txtMaxBooks.setText(txtFieldCashiers.getText());
 	}
 
 	@FXML
