@@ -212,6 +212,9 @@ public class BookstoreGUI {
 	void addBooks(ActionEvent event) {
 		if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
 			alertEmptyField();
+		}else {
+			txtMaxBooks.setText(txtFieldNumBooks.getText());
+			btnAddBooks.setDisable(true);
 		}
 		txtFieldShelveName.setText("");
 		txtFieldNumBooks.setText("");
