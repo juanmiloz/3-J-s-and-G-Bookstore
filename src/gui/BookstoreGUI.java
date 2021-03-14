@@ -210,11 +210,16 @@ public class BookstoreGUI {
 	//methods storeInformation
 	@FXML
 	void addBooks(ActionEvent event) {
-		if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
-			alertEmptyField();
-		}else {
-			txtMaxBooks.setText(txtFieldNumBooks.getText());
-			btnAddBooks.setDisable(true);
+		try {
+			if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
+				alertEmptyField();
+			}else {
+				Integer.parseInt(txtFieldNumBooks.getText());
+				txtMaxBooks.setText(txtFieldNumBooks.getText());
+				btnAddBooks.setDisable(true);
+			}
+		}catch(NumberFormatException nfe) {
+			alertTypeDataIncorrect();
 		}
 		txtFieldShelveName.setText("");
 		txtFieldNumBooks.setText("");
