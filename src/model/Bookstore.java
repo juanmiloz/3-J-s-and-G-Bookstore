@@ -44,8 +44,6 @@ public class Bookstore {
 	public void setBookshelves(Bookshelve[] bookshelves) {
 		this.bookshelves = bookshelves;
 	}
-<<<<<<< HEAD
-=======
 
 
 	public List<HashMap<String, Book>> getStands() {
@@ -56,6 +54,4 @@ public class Bookstore {
 	public void setStands(ArrayList<HashMap<String, Book>> arrayList) {
 		this.stands = arrayList;
 	}
-	
->>>>>>> d3df087df197f375f01b03277f437022cc60408a
 }

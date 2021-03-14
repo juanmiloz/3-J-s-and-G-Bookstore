@@ -8,12 +8,10 @@ import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import model.Bookstore;
 
@@ -180,17 +178,20 @@ public class BookstoreGUI {
 		
 	}
 
+	//methods StoreSetup
 	@FXML
 	void btnPressedContinue(ActionEvent event) throws IOException  {
-		if(txtFieldCashiers.getText().equals("") || txtFieldShelves.getText().equals("")) {
-<<<<<<< HEAD
-			alertEmptyField();
-=======
-			alertEmptyField(); 
->>>>>>> d3df087df197f375f01b03277f437022cc60408a
-		}else {
-			bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
-			loadStoreInformation();
+		try {
+			if(txtFieldCashiers.getText().equals("") || txtFieldShelves.getText().equals("")) {
+				alertEmptyField(); 
+			}else {
+				bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
+				loadStoreInformation();
+			}
+		}catch(NumberFormatException nfe) {
+			alertTypeDataIncorrect();
+			txtFieldCashiers.setText("");
+			txtFieldShelves.setText("");
 		}
 	}
 	
@@ -207,21 +208,34 @@ public class BookstoreGUI {
     	txtMaxBooks.setText(txtFieldCashiers.getText());
 	}
 
+	//methods storeInformation
 	@FXML
 	void addBooks(ActionEvent event) {
-
+		if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
+			alertEmptyField();
+		}
+		txtFieldShelveName.setText("");
+		txtFieldNumBooks.setText("");
 	}
 
 	@FXML
 	void addToShelve(ActionEvent event) {
-
+		if(txtFieldBookTitle.getText().equals("") || txtFieldAuthor.getText().equals("") || txtFieldISBN.getText().equals("") || txtFieldStock.getText().equals("") || txtFieldPrice.getText().equals("")) {
+			alertEmptyField();
+		}
+		txtFieldBookTitle.setText("");
+		txtFieldAuthor.setText("");
+		txtFieldISBN.setText("");
+		txtFieldStock.setText("");
+		txtFieldPrice.setText("");
 	}
 
 	@FXML
-	void back(ActionEvent event) {
-
+	public void backToStoreSetup(ActionEvent event) throws IOException {
+		showMainScreen();
 	}
 
+	//methods .....
 	@FXML
 	void btnPressedContinueClients(ActionEvent event) {
 
@@ -305,6 +319,14 @@ public class BookstoreGUI {
 		
 		alert.setHeaderText("There are empty fields");
 		alert.setContentText("There are empty fields that do not allow you to continue, please fill in all the fields");
+		alert.show();
+	}
+	
+	public void alertTypeDataIncorrect() {
+		Alert alert = new Alert(AlertType.ERROR);
+		
+		alert.setHeaderText("type of data entered invalid");
+		alert.setContentText("Enter a type of data that is not valid, please check all the fields");
 		alert.show();
 	}
 
