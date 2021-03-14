@@ -176,13 +176,25 @@ public class BookstoreGUI {
 		mainPane.getStyleClass().addAll(mainScreen.getStylesheets());
 		mainPane.getChildren().clear();
 		mainPane.setCenter(mainScreen);
+		
+		
 	}
 
-
-
 	@FXML
-	void btnPressedContinue(ActionEvent event) {
+	void btnPressedContinue(ActionEvent event) throws IOException  {
+		bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
+		loadStoreInformation();
+	}
+	
+	public void loadStoreInformation() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformationV1.fxml"));
+    	
+    	fxmlLoader.setController(this);
 
+    	Parent storeInformation = fxmlLoader.load();
+    	
+    	mainPane.getChildren().clear();
+    	mainPane.setCenter(storeInformation);
 	}
 
 	@FXML
