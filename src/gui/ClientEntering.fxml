@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="300.0" prefWidth="1368.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="768.0" fitWidth="1368.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../data/screens/Client%20entering%20–%201.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="txtFieldClients" focusColor="BLACK" layoutX="609.0" layoutY="468.0" prefHeight="28.0" prefWidth="150.0" promptText="Clients">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btnContinueClients" layoutX="590.0" layoutY="524.0" onAction="#btnPressedContinueClients" prefHeight="27.0" prefWidth="188.0" style="-fx-background-color: #000000;" text="Continue" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat SemiBold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
