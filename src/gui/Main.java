@@ -10,7 +10,7 @@ public class Main extends Application{
 
 	private BookstoreGUI bookstoreGUI;
 	private Bookstore bookstore;
-	
+
 	public Main() {
 		bookstore = new Bookstore();
 		bookstoreGUI = new BookstoreGUI(bookstore);
@@ -25,12 +25,14 @@ public class Main extends Application{
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainPane.fxml"));
 		fxmlLoader.setController(bookstoreGUI);
 		Parent root = fxmlLoader.load();
-		
+
 		Scene scene = new Scene(root,1366,700);
-		
 		bookstoreGUI.showMainScreen();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Bookstore");
+		
 		primaryStage.show(); 
+		//hola como vamos
+
 	}
 }
