@@ -18,14 +18,14 @@
                   <Image url="@../../data/screens/Store%20Information%20–%202.png" />
                </image>
             </ImageView>
-            <JFXTextField fx:id="txtFieldShelveName" focusColor="BLACK" layoutX="300.0" layoutY="317.0" prefHeight="31.0" prefWidth="347.0">
+            <JFXTextField fx:id="txtFieldShelveName" focusColor="BLACK" layoutX="277.0" layoutY="311.0" prefHeight="44.0" prefWidth="375.0">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtFieldNumBooks" focusColor="BLACK" layoutX="350.0" layoutY="378.0" prefHeight="31.0" prefWidth="297.0">
+            <JFXTextField fx:id="txtFieldNumBooks" focusColor="BLACK" layoutX="343.0" layoutY="372.0" prefHeight="31.0" prefWidth="297.0">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font size="20.0" />
                </font>
             </JFXTextField>
             <JFXButton fx:id="btnAddBooks" layoutX="264.0" layoutY="437.0" onAction="#addBooks" prefHeight="32.0" prefWidth="173.0" style="-fx-background-color: #000000;" text="Add Books" textFill="WHITE">
@@ -33,29 +33,29 @@
                   <Font name="Montserrat SemiBold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="txtFieldBookTitle" focusColor="BLACK" layoutX="215.0" layoutY="528.0" prefHeight="31.0" prefWidth="433.0">
+            <JFXTextField fx:id="txtFieldBookTitle" focusColor="BLACK" layoutX="218.0" layoutY="521.0" prefHeight="31.0" prefWidth="433.0">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtFieldAuthor" focusColor="BLACK" layoutX="173.0" layoutY="581.0" prefHeight="31.0" prefWidth="479.0">
+            <JFXTextField fx:id="txtFieldAuthor" focusColor="BLACK" layoutX="184.0" layoutY="573.0" prefHeight="44.0" prefWidth="471.0">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtFieldISBN" focusColor="BLACK" layoutX="142.0" layoutY="630.0" prefHeight="31.0" prefWidth="81.0">
+            <JFXTextField fx:id="txtFieldISBN" focusColor="BLACK" layoutX="144.0" layoutY="623.0" prefHeight="31.0" prefWidth="81.0">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtFieldStock" focusColor="BLACK" layoutX="343.0" layoutY="630.0" prefHeight="31.0" prefWidth="89.0">
+            <JFXTextField fx:id="txtFieldStock" focusColor="BLACK" layoutX="335.0" layoutY="623.0" prefHeight="31.0" prefWidth="89.0">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtFieldPrice" focusColor="BLACK" layoutX="539.0" layoutY="630.0" prefHeight="31.0" prefWidth="116.0">
+            <JFXTextField fx:id="txtFieldPrice" focusColor="BLACK" layoutX="541.0" layoutY="623.0" prefHeight="31.0" prefWidth="116.0">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font size="20.0" />
                </font>
             </JFXTextField>
             <JFXButton fx:id="btnAddToShelve" layoutX="264.0" layoutY="478.0" onAction="#addToShelve" prefHeight="32.0" prefWidth="173.0" style="-fx-background-color: #000000;" text="Add to Shelve" textFill="WHITE">

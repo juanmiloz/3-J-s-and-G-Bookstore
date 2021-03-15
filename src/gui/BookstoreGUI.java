@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
+import exceptions.InvalidValueException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -184,15 +185,19 @@ public class BookstoreGUI {
 		try {
 			if(txtFieldCashiers.getText().equals("") || txtFieldShelves.getText().equals("")) {
 				alertEmptyField(); 
+			}else if(Integer.parseInt(txtFieldCashiers.getText())<=0 || Integer.parseInt(txtFieldShelves.getText())<=0){
+				throw new InvalidValueException();
 			}else {
 				bookstore.initializeStore(Integer.parseInt(txtFieldCashiers.getText()), Integer.parseInt(txtFieldShelves.getText()));
 				loadStoreInformation();
 			}
-		} catch(NumberFormatException nfe) {
+		}catch(NumberFormatException nfe) {
 			alertTypeDataIncorrect();
-			txtFieldCashiers.setText("");
-			txtFieldShelves.setText("");
+		}catch(InvalidValueException ive) {
+			alertInvalidValueException();
 		}
+		txtFieldCashiers.setText("");
+		txtFieldShelves.setText("");
 	}
 	
 	public void loadStoreInformation() throws IOException {
@@ -248,7 +253,7 @@ public class BookstoreGUI {
 	}
 
 	@FXML
-	void addToShelve(ActionEvent event) {
+	void addToShelve(ActionEvent event) throws IOException {
 		if(txtFieldBookTitle.getText().equals("") || txtFieldAuthor.getText().equals("") || txtFieldISBN.getText().equals("") || txtFieldStock.getText().equals("") || txtFieldPrice.getText().equals("")) {
 			alertEmptyField();
 		} else {
@@ -260,19 +265,26 @@ public class BookstoreGUI {
 			String sumary = "";
 			Book tempBook = new Book(title, price, author, sumary, quantity);
 			if(bookstore.addBook(ISBN, tempBook, Integer.parseInt(txtCompShelves.getText()) - 1)) {
-				int newComp = Integer.parseInt(txtCompBooks.getText()) + 1;
-				txtCompBooks.setText( String.valueOf(newComp) );
 				if(Integer.parseInt(txtCompBooks.getText()) == Integer.parseInt(txtMaxBooks.getText())) {
 					btnAddBooks.setDisable(false);
+					txtFieldShelveName.setDisable(false);
+					txtFieldNumBooks.setDisable(false);
 					txtFieldBookTitle.setDisable(true);
 			    	txtFieldAuthor.setDisable(true);
 			    	txtFieldISBN.setDisable(true);
 			    	txtFieldStock.setDisable(true);
 			    	txtFieldPrice.setDisable(true);
 			    	btnAddToShelve.setDisable(true);
+			    	if(txtCompShelves.getText().equalsIgnoreCase(txtMaxShelves.getText())) {
+			    		loadClientEntering();
+			    	}
+			    	txtCompShelves.setText(String.valueOf(Integer.parseInt(txtCompShelves.getText())+1));
+				}else {
+					int newComp = Integer.parseInt(txtCompBooks.getText()) + 1;
+					txtCompBooks.setText( String.valueOf(newComp) );
 				}
 			} else {
-				//Alerta por si el libro no se pudo añadir porque ya existe ese código ISBN
+				alertCantAddTheBook();
 			}
 		}
 		txtFieldBookTitle.setText("");
@@ -285,6 +297,16 @@ public class BookstoreGUI {
 	@FXML
 	public void backToStoreSetup(ActionEvent event) throws IOException {
 		showMainScreen();
+	}
+	
+	public void loadClientEntering() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientEntering.fxml"));
+		fxmlLoader.setController(this);
+		
+		Parent clientEntering = fxmlLoader.load();
+		
+		mainPane.getChildren().clear();
+		mainPane.setCenter(clientEntering);
 	}
 
 	//methods .....
@@ -379,6 +401,22 @@ public class BookstoreGUI {
 		
 		alert.setHeaderText("type of data entered invalid");
 		alert.setContentText("Enter a type of data that is not valid, please check all the fields");
+		alert.show();
+	}
+	
+	public void alertCantAddTheBook() {
+		Alert alert = new Alert(AlertType.ERROR);
+		
+		alert.setHeaderText("The book can't be entered");
+		alert.setContentText("There is a book with the same ISBN");
+		alert.show();
+	}
+	
+	public void alertInvalidValueException() {
+		Alert alert = new Alert(AlertType.ERROR);
+		
+		alert.setHeaderText("The value entered is not valid");
+		alert.setContentText("The value that was entered is not valid, please verify your values");
 		alert.show();
 	}
 
