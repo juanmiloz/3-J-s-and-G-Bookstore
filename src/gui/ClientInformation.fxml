@@ -18,17 +18,17 @@
                   <Image url="@../../data/screens/Client%20Information%20–%201.png" />
                </image>
             </ImageView>
-            <JFXTextField fx:id="txtFieldClientID" focusColor="BLACK" layoutX="932.0" layoutY="512.0" prefHeight="30.0" prefWidth="378.0">
-               <font>
-                  <Font name="Montserrat Regular" size="12.0" />
-               </font>
-            </JFXTextField>
             <JFXTextField fx:id="txtFieldClientName" focusColor="BLACK" layoutX="983.0" layoutY="444.0" prefHeight="30.0" prefWidth="317.0">
                <font>
                   <Font name="Montserrat Regular" size="12.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="btnAddToShelve" layoutX="907.0" layoutY="586.0" onAction="#addToShelve" prefHeight="39.0" prefWidth="235.0" style="-fx-background-color: #000000;" text="Next Client" textFill="WHITE">
+            <JFXTextField fx:id="txtFieldClientID" focusColor="BLACK" layoutX="932.0" layoutY="512.0" prefHeight="30.0" prefWidth="378.0">
+               <font>
+                  <Font name="Montserrat Regular" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btnNextClient" layoutX="907.0" layoutY="586.0" onAction="#addClient" prefHeight="39.0" prefWidth="235.0" style="-fx-background-color: #000000;" text="Next Client" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="13.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Font name="Montserrat Regular" size="30.0" />
                </font>
             </Text>
-            <JFXButton fx:id="backButton" layoutX="714.0" layoutY="50.0" onAction="#back" prefHeight="57.0" prefWidth="58.0" textFill="#ffffff00" />
+            <JFXButton fx:id="backButton" layoutX="714.0" layoutY="50.0" onAction="#backToClientEntering" prefHeight="57.0" prefWidth="58.0" textFill="#ffffff00" />
          </children>
       </AnchorPane>
    </center>

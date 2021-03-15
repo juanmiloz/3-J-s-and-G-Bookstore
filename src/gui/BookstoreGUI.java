@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import model.Book;
 import model.Bookshelve;
 import model.Bookstore;
+import model.Client;
 
 public class BookstoreGUI {
 
@@ -309,21 +310,71 @@ public class BookstoreGUI {
 		mainPane.setCenter(clientEntering);
 	}
 
-	//methods .....
-	@FXML
-	void btnPressedContinueClients(ActionEvent event) {
-
+	//methods ClientInformation
+	
+	public void loadClientInformation() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientInformation.fxml"));
+		fxmlLoader.setController(this);
+		
+		Parent clientInformation = fxmlLoader.load();
+		
+		txtMaxClients.setText(txtFieldClients.getText());
+		txtCompClients.setText("1");
+		mainPane.getChildren().clear();
+		mainPane.setCenter(clientInformation);
 	}
 	
+	@FXML
+	void btnPressedContinueClients(ActionEvent event) throws IOException {
+		try {
+			if(Integer.parseInt(txtFieldClients.getText())<1) {
+				throw new InvalidValueException();
+			}else {
+				loadClientInformation();
+			}
+		}catch(InvalidValueException ive) {
+			alertInvalidValueException();
+		}catch(NumberFormatException nfe) {
+			alertTypeDataIncorrect();
+		}
+		txtFieldClients.setText("");
+	}
+	
+	//methods ClientInformation
+	
     @FXML
-    void addClient(ActionEvent event) {
-
+    void addClient(ActionEvent event) throws IOException {
+    	String name = txtFieldClientName.getText();
+    	String id = txtFieldClientID.getText();
+    	Client newClient = new Client(name, id);
+    	bookstore.addClients(newClient);
+    	if(txtCompClients.getText().equalsIgnoreCase(txtMaxClients.getText())) {
+    		loadClientTable();
+    	}
+    	txtCompClients.setText(String.valueOf(Integer.parseInt(txtCompClients.getText())+1));
+    	txtFieldClientName.setText("");
+    	txtFieldClientID.setText("");
     } 
     
+    @FXML
+    void backToClientEntering(ActionEvent event) throws IOException {
+    	loadClientEntering();
+    }
+    
+    public void loadClientTable() throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientTable.fxml"));
+    	fxmlLoader.setController(this);
+    	
+    	Parent clientTable = fxmlLoader.load();
+    	
+    	mainPane.getChildren().clear();
+    	mainPane.setCenter(clientTable);
+    }
+    //method viewCatalog to ClientTable
     
     @FXML
     void viewCatalog(ActionEvent event) {
-
+    	
     }
     
     

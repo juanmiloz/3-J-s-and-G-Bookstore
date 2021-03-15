@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Bookstore {
 	
 	private int numberOfCashiers;
 	private Bookshelve[] bookshelves;
+	private ArrayList<Client> clients;
 	
 	public Bookstore() {
-		
+		clients = new ArrayList<>();
 	}
 	
 	public boolean addBook(String ISBN, Book book, int posShelve) {
@@ -30,6 +33,13 @@ public class Bookstore {
 		}
 	}
 
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
+
+	public void addClients(Client newClient) {
+		clients.add(newClient);
+	}
 
 	public int getNumberOfCashiers() {
 		return numberOfCashiers;
