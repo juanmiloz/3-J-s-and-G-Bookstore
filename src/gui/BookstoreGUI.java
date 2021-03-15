@@ -217,33 +217,34 @@ public class BookstoreGUI {
 	//methods storeInformation
 	@FXML
 	void addBooks(ActionEvent event) {
-<<<<<<< HEAD
+
 		if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
 			alertEmptyField();
 		}else {
-			txtMaxBooks.setText(txtFieldNumBooks.getText());
-			btnAddBooks.setDisable(true);
-			txtFieldBookTitle.setDisable(false);
-	    	txtFieldAuthor.setDisable(false);
-	    	txtFieldISBN.setDisable(false);
-	    	txtFieldStock.setDisable(false);
-	    	txtFieldPrice.setDisable(false);
-	    	btnAddToShelve.setDisable(false);
-=======
-		try {
-			if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
-				alertEmptyField();
-			}else {
-				Integer.parseInt(txtFieldNumBooks.getText());
-				txtMaxBooks.setText(txtFieldNumBooks.getText());
-				btnAddBooks.setDisable(true);
+			try {
+				if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
+					alertEmptyField();
+				}else {
+					Integer.parseInt(txtFieldNumBooks.getText());
+					txtMaxBooks.setText(txtFieldNumBooks.getText());
+					btnAddBooks.setDisable(true);
+					txtMaxBooks.setText(txtFieldNumBooks.getText());
+					btnAddBooks.setDisable(true);
+					txtFieldBookTitle.setDisable(false);
+			    	txtFieldAuthor.setDisable(false);
+			    	txtFieldISBN.setDisable(false);
+			    	txtFieldStock.setDisable(false);
+			    	txtFieldPrice.setDisable(false);
+			    	btnAddToShelve.setDisable(false);
+			    	txtFieldShelveName.setDisable(true);
+					txtFieldNumBooks.setDisable(true);
+				}
+			}catch(NumberFormatException nfe) {
+				alertTypeDataIncorrect();
 			}
-		}catch(NumberFormatException nfe) {
-			alertTypeDataIncorrect();
->>>>>>> 7abf1bbaa5b0364b21102901e93d7800475602a5
+			txtFieldShelveName.setText("");
+			txtFieldNumBooks.setText("");
 		}
-		txtFieldShelveName.setText("");
-		txtFieldNumBooks.setText("");
 	}
 
 	@FXML
