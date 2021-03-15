@@ -13,7 +13,7 @@ public class Main extends Application{
 
 	private BookstoreGUI bookstoreGUI;
 	private Bookstore bookstore;
-	
+
 	public Main() {
 		bookstore = new Bookstore();
 		bookstoreGUI = new BookstoreGUI(bookstore);
@@ -29,12 +29,14 @@ public class Main extends Application{
 		fxmlLoader.setController(bookstoreGUI);
 		primaryStage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
 		Parent root = fxmlLoader.load();
-		
+
 		Scene scene = new Scene(root,1366,700);
-		
 		bookstoreGUI.showMainScreen();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Bookstore");
+		
 		primaryStage.show(); 
+		//hola como vamos
+
 	}
 }
