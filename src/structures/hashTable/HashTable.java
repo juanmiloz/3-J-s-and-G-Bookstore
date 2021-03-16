@@ -1,6 +1,6 @@
 package structures.hashTable;
 
-public class HashTable<K,V>{
+public class HashTable<K,V> implements hashTableInterface<K,V>{
 	
 	private Node<K,V> [] hashTable; // = (Node<K,V>[])(new Node[2]);
 	private int lengthHash;
@@ -10,6 +10,7 @@ public class HashTable<K,V>{
 		this.lengthHash = length;
 	}
 	
+	@Override
 	public void put(K key, V value) {
 		int position = key.hashCode()%lengthHash;
 		if(hashTable[position]==null) {
@@ -19,6 +20,7 @@ public class HashTable<K,V>{
 		}
 	}
 	
+	@Override
 	public void setLatestNode(Node<K,V> current, K key, V value) {
 		if(current.getNext() == null) {
 			current.setNext(new Node<K,V>(key,value));
@@ -28,6 +30,7 @@ public class HashTable<K,V>{
 		}
 	}
 	
+	@Override
 	public V getValue(K key) {
 		int position = key.hashCode()%lengthHash;
 		if(hashTable[position].getKey().equals(key)) {
@@ -48,6 +51,7 @@ public class HashTable<K,V>{
 		}
 	}
 	
+	@Override
 	public boolean existKey(K key) {
 		boolean exist = false;
 		
