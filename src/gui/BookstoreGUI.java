@@ -6,16 +6,20 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
 import exceptions.InvalidValueException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.Book;
-import model.Bookshelve;
 import model.Bookstore;
 import model.Client;
 
@@ -162,6 +166,18 @@ public class BookstoreGUI {
     //Generic attributes
     @FXML
     private JFXButton backButton;
+    
+    @FXML
+    private TableView<Client> tvClients;
+    
+    @FXML
+    private TableColumn<Client, String> tcClientName;
+    
+    @FXML
+    private TableColumn<Client, String> tcClientIdentification;
+    
+    @FXML
+    private TableColumn<Client, String> tcClientStatus;
 
 
 
@@ -369,7 +385,18 @@ public class BookstoreGUI {
     	
     	mainPane.getChildren().clear();
     	mainPane.setCenter(clientTable);
+    	initializateClientsTable();
     }
+    
+    private void initializateClientsTable() {
+    	ObservableList<Client> observableList;
+    	observableList = FXCollections.observableList(bookstore.getClients());
+    	tvClients.setItems(observableList);
+    	tcClientName.setCellValueFactory(new PropertyValueFactory<Client, String>("Client name"));
+    	tcClientIdentification.setCellValueFactory(new PropertyValueFactory<Client, String>("Client identification"));
+    	tcClientStatus.setCellValueFactory(new PropertyValueFactory<Client, String>("Client status"));
+    }
+    
     //method viewCatalog to ClientTable
     
     @FXML

@@ -7,6 +7,6 @@
 			<accessrule kind="accessible" pattern="jfenix/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/jfoenix-8.0.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Giova/eclipse-workspace/3-J-s-and-G-Bookstore/lib/jfoenix-8.0.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
