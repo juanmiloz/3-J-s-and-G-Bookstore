@@ -385,6 +385,8 @@ public class BookstoreGUI {
     	
     	mainPane.getChildren().clear();
     	mainPane.setCenter(clientTable);
+    	btnPickUp.setDisable(true);
+    	btnPay.setDisable(true);
     	initializateClientsTable();
     }
     
@@ -392,9 +394,9 @@ public class BookstoreGUI {
     	ObservableList<Client> observableList;
     	observableList = FXCollections.observableList(bookstore.getClients());
     	tvClients.setItems(observableList);
-    	tcClientName.setCellValueFactory(new PropertyValueFactory<Client, String>("Client name"));
-    	tcClientIdentification.setCellValueFactory(new PropertyValueFactory<Client, String>("Client identification"));
-    	tcClientStatus.setCellValueFactory(new PropertyValueFactory<Client, String>("Client status"));
+    	tcClientName.setCellValueFactory(new PropertyValueFactory<Client, String>("name"));
+    	tcClientIdentification.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
+    	tcClientStatus.setCellValueFactory(new PropertyValueFactory<Client, String>("status"));
     }
     
     //method viewCatalog to ClientTable
