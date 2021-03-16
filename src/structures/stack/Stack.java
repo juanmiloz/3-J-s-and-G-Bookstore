@@ -1,4 +1,4 @@
-package Estructures;
+package structures.stack;
 
 public class Stack<T> implements StackInterface<T>{
 

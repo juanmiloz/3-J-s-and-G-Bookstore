@@ -1,4 +1,4 @@
-package model;
+package structures.queue;
 
 public interface QueueInterface<T>{
 	public void enqueue(T newItem);

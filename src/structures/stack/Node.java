@@ -1,4 +1,4 @@
-package Estructures;
+package structures.stack;
 
 public class Node<T> {
 

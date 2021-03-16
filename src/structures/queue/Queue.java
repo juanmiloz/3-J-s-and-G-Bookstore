@@ -1,4 +1,4 @@
-package model;
+package structures.queue;
 
 public class Queue<T> implements QueueInterface<T>{
 

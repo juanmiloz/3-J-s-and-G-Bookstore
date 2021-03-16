@@ -1,4 +1,4 @@
-package Estructures;
+package structures.stack;
 
 public interface StackInterface<T> { 
 	public void push(T newItem);
