@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,18 +20,36 @@
                </image>
             </ImageView>
             <JFXButton fx:id="backButton" layoutX="27.0" layoutY="28.0" onAction="#back" prefHeight="57.0" prefWidth="58.0" textFill="#ffffff00" />
-            <JFXButton fx:id="btnAddToBasket" layoutX="338.0" layoutY="572.0" onAction="#addToBasket" prefHeight="32.0" prefWidth="328.0" style="-fx-background-color: #000000;" text="Add to Basket" textFill="WHITE">
+            <JFXButton fx:id="btnAddToBasket" layoutX="338.0" layoutY="572.0" onAction="#addToBasket" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Add to Basket" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="13.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnFinishCatalog" layoutX="700.0" layoutY="572.0" onAction="#finishCatalog" prefHeight="32.0" prefWidth="328.0" style="-fx-background-color: #000000;" text="Finish" textFill="WHITE">
+            <JFXButton fx:id="btnFinishCatalog" layoutX="828.0" layoutY="572.0" onAction="#finishCatalog" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Finish" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="13.0" />
                </font>
             </JFXButton>
             <JFXButton fx:id="prevShelve" layoutX="250.0" layoutY="389.0" onAction="#showPreviousShelve" prefHeight="47.0" prefWidth="47.0" textFill="#ffffff00" />
             <JFXButton fx:id="nextShelve" layoutX="1068.0" layoutY="389.0" onAction="#showNextShelve" prefHeight="47.0" prefWidth="47.0" textFill="#ffffff00" />
+            <TableView fx:id="tvCatalog" layoutX="338.0" layoutY="252.0" prefHeight="296.0" prefWidth="691.0">
+              <columns>
+                <TableColumn fx:id="tcBookTitle" prefWidth="294.0" text="Title" />
+                <TableColumn fx:id="tcBookPrice" prefWidth="124.0" text="Price" />
+                  <TableColumn fx:id="tcBookAuthor" prefWidth="214.0" text="Author" />
+                  <TableColumn fx:id="tcBookQuantity" prefWidth="58.0" text="Quantity" />
+              </columns>
+            </TableView>
+            <JFXButton fx:id="btnViewSumary" layoutX="583.0" layoutY="572.0" onAction="#viewSumary" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="View sumary" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat SemiBold" size="13.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="lblCurrentShelve" layoutX="916.0" layoutY="219.0" text="...">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

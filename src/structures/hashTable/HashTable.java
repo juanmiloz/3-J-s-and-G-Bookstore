@@ -5,6 +5,7 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 	private Node<K,V> [] hashTable; // = (Node<K,V>[])(new Node[2]);
 	private int lengthHash;
 	
+	@SuppressWarnings("unchecked")
 	public HashTable(int length) {
 		hashTable = (Node<K,V>[])(new Node[length]);
 		this.lengthHash = length;

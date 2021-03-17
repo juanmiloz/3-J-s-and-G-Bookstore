@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Stack;
 import structures.stack.*;
 
 public class Client {
@@ -17,13 +16,8 @@ public class Client {
 		setStatus("Incomplete");
 	}
 	
-	public boolean addBookCode(String ISBN) {
-		if(!booksCodes.contains(ISBN)) {
-			if(booksCodes.add(ISBN)) {
-				return true;
-			}
-		}
-		return false;
+	public void addBookCode(String ISBN) {
+		booksCodes.push(ISBN);
 	}
 	
 	public String getName() {

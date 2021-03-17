@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -178,11 +179,35 @@ public class BookstoreGUI {
     
     @FXML
     private TableColumn<Client, String> tcClientStatus;
+    
+    private Client currentClientFillCatalog;
+    private int currentCatalogPosition;
+    
+    @FXML
+    private TableView<Book> tvCatalog;
 
+    @FXML
+    private TableColumn<Book, String> tcBookTitle;
 
+    @FXML
+    private TableColumn<Book, Double> tcBookPrice;
+
+    @FXML
+    private TableColumn<Book, String> tcBookAuthor;
+
+    @FXML
+    private TableColumn<Book, Integer> tcBookQuantity;
+
+    @FXML
+    private JFXButton btnViewSumary;
+
+    @FXML
+    private Label lblCurrentShelve;
 
 	public BookstoreGUI(Bookstore bookstore) {
 		this.bookstore = bookstore;
+		setCurrentClientFillCatalog(null);
+		setCurrentCatalogPosition(0);
 	}
 
 	public void showMainScreen() throws IOException {
@@ -260,6 +285,7 @@ public class BookstoreGUI {
 			    	btnAddToShelve.setDisable(false);
 			    	txtFieldShelveName.setDisable(true);
 					txtFieldNumBooks.setDisable(true);
+					bookstore.initializateBookshelves(Integer.parseInt(txtCompShelves.getText()) - 1, Integer.parseInt(txtFieldNumBooks.getText()), txtFieldShelveName.getText());
 				}
 			}catch(NumberFormatException nfe) {
 				alertTypeDataIncorrect();
@@ -295,6 +321,7 @@ public class BookstoreGUI {
 			    	if(txtCompShelves.getText().equalsIgnoreCase(txtMaxShelves.getText())) {
 			    		loadClientEntering();
 			    	}
+			    	txtCompBooks.setText("1");
 			    	txtCompShelves.setText(String.valueOf(Integer.parseInt(txtCompShelves.getText())+1));
 				}else {
 					int newComp = Integer.parseInt(txtCompBooks.getText()) + 1;
@@ -324,6 +351,7 @@ public class BookstoreGUI {
 		
 		mainPane.getChildren().clear();
 		mainPane.setCenter(clientEntering);
+		
 	}
 
 	//methods ClientInformation
@@ -402,8 +430,49 @@ public class BookstoreGUI {
     //method viewCatalog to ClientTable
     
     @FXML
-    void viewCatalog(ActionEvent event) {
+    void viewCatalog(ActionEvent event) throws IOException {
+    	if(!tvClients.getSelectionModel().isEmpty()) {
+    		setCurrentClientFillCatalog(tvClients.getSelectionModel().getSelectedItem());
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Catalog.fxml"));
+        	fxmlLoader.setController(this);
+        	
+        	Parent clientTable = fxmlLoader.load();
+        	
+        	mainPane.getChildren().clear();
+        	mainPane.setCenter(clientTable);
+        	setCurrentCatalogPosition(0);
+        	loadCatalog();
+    	} else {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setHeaderText("Error");
+    		alert.setContentText("You must select one client from the table");
+    		alert.showAndWait();
+    	}
     	
+    }
+    
+    private void loadCatalog() {
+    	ObservableList<Book> observableList;
+    	observableList = FXCollections.observableList(bookstore.getSpecificShelve(getCurrentCatalogPosition()));
+    	tvCatalog.setItems(observableList);
+    	tcBookTitle.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
+    	tcBookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+    	tcBookAuthor.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
+    	tcBookQuantity.setCellValueFactory(new PropertyValueFactory<Book, Integer>("quantity"));
+    	lblCurrentShelve.setText("Bookshelve name: " + bookstore.getBookshelveName(getCurrentCatalogPosition()));
+    }
+    
+    @FXML
+    void showNextShelve(ActionEvent event) {
+    	int currentPosition = getCurrentCatalogPosition() + 1;
+    	setCurrentCatalogPosition(currentPosition);
+    	System.out.println("Nueva position siguiente " + getCurrentCatalogPosition());
+    	System.out.println(bookstore.getBookshelves().length);
+    	if(getCurrentCatalogPosition() >= bookstore.getBookshelves().length) {
+    		setCurrentCatalogPosition(0);
+    		System.out.println("Reinicio de posición " + getCurrentCatalogPosition());
+    	}
+    	loadCatalog();
     }
     
     
@@ -418,12 +487,21 @@ public class BookstoreGUI {
     }
 
     @FXML
-    void showNextShelve(ActionEvent event) {
+    void showPreviousShelve(ActionEvent event) {
+    	int currentPosition = getCurrentCatalogPosition() - 1;
+    	if(currentPosition < 0) {
+    		setCurrentCatalogPosition(bookstore.getBookshelves().length - 1);
+    	}
+    	loadCatalog();
+    }
+    
+    @FXML
+    void viewSumary(ActionEvent event) {
 
     }
-
+    
     @FXML
-    void showPreviousShelve(ActionEvent event) {
+    void back(ActionEvent event) {
 
     }
 
@@ -498,6 +576,22 @@ public class BookstoreGUI {
 		alert.setHeaderText("The value entered is not valid");
 		alert.setContentText("The value that was entered is not valid, please verify your values");
 		alert.show();
+	}
+
+	public Client getCurrentClientFillCatalog() {
+		return currentClientFillCatalog;
+	}
+
+	public void setCurrentClientFillCatalog(Client currentClientFillCatalog) {
+		this.currentClientFillCatalog = currentClientFillCatalog;
+	}
+
+	public int getCurrentCatalogPosition() {
+		return currentCatalogPosition;
+	}
+
+	public void setCurrentCatalogPosition(int currentCatalogPosition) {
+		this.currentCatalogPosition = currentCatalogPosition;
 	}
 
 }

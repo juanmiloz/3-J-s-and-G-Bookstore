@@ -12,12 +12,19 @@ public class Bookstore {
 		clients = new ArrayList<>();
 	}
 	
+	public void initializateBookshelves(int position, int booksQuantity, String name) {
+		bookshelves[position] = new Bookshelve(booksQuantity);
+		bookshelves[position].setName(name);
+	}
+	
 	public boolean addBook(String ISBN, Book book, int posShelve) {
 		boolean canAdded = true;
 		for(int c = 0; c < bookshelves.length; c++) {
-			if(bookshelves[c].getBooksMap().containsKey(ISBN) == true) {
-				canAdded = false;
-			};
+			if(bookshelves[c] != null) {
+				if(bookshelves[c].getBooksMap().existKey(ISBN) == true) {
+					canAdded = false;
+				};
+			}
 		}
 		if(canAdded) {
 			bookshelves[posShelve].addBook(ISBN, book);
@@ -28,9 +35,6 @@ public class Bookstore {
 	public void initializeStore(int cashiers, int shelves) {
 		numberOfCashiers=cashiers;
 		bookshelves = new Bookshelve[shelves];
-		for(int c = 0; c < bookshelves.length; c++) {
-			bookshelves[c] = new Bookshelve();
-		}
 	}
 
 	public ArrayList<Client> getClients() {
@@ -50,11 +54,20 @@ public class Bookstore {
 		this.numberOfCashiers = numberOfCashiers;
 	}
 
-
+	public ArrayList<Book> getSpecificShelve(int position) {
+		ArrayList<Book> observableList = new ArrayList<Book>();
+		//Falta código para obtener los libros de una estantería y retornarlos
+		
+		return observableList;
+	}
+	
+	public String getBookshelveName(int position) {
+		return bookshelves[position].getName();
+	}
+	
 	public Bookshelve[] getBookshelves() {
 		return bookshelves;
 	}
-
 
 	public void setBookshelves(Bookshelve[] bookshelves) {
 		this.bookshelves = bookshelves;
