@@ -306,7 +306,7 @@ public class BookstoreGUI {
 			String ISBN = txtFieldISBN.getText();
 			int quantity = Integer.parseInt(txtFieldStock.getText());
 			String sumary = "";
-			Book tempBook = new Book(title, price, author, sumary, quantity);
+			Book tempBook = new Book(title, price, author, sumary, quantity, ISBN);
 			if(bookstore.addBook(ISBN, tempBook, Integer.parseInt(txtCompShelves.getText()) - 1)) {
 				if(Integer.parseInt(txtCompBooks.getText()) == Integer.parseInt(txtMaxBooks.getText())) {
 					btnAddBooks.setDisable(false);
@@ -419,6 +419,21 @@ public class BookstoreGUI {
     }
     
     private void initializateClientsTable() {
+    	if(bookstore.isClientsCatalog()) {
+    		btnCatalog.setDisable(false);
+    		btnPickUp.setDisable(true);
+    		btnPay.setDisable(true);
+    	} else {
+    		if(bookstore.isClientsPickUp()) {
+    			btnCatalog.setDisable(true);
+    			btnPickUp.setDisable(false);
+    			btnPay.setDisable(true);
+    		} else {
+    			btnPay.setDisable(false);
+    			btnPickUp.setDisable(true);
+    			btnCatalog.setDisable(true);
+    		}
+    	}
     	ObservableList<Client> observableList;
     	observableList = FXCollections.observableList(bookstore.getClients());
     	tvClients.setItems(observableList);
@@ -466,11 +481,9 @@ public class BookstoreGUI {
     void showNextShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() + 1;
     	setCurrentCatalogPosition(currentPosition);
-    	System.out.println("Nueva position siguiente " + getCurrentCatalogPosition());
     	System.out.println(bookstore.getBookshelves().length);
     	if(getCurrentCatalogPosition() >= bookstore.getBookshelves().length) {
     		setCurrentCatalogPosition(0);
-    		System.out.println("Reinicio de posición " + getCurrentCatalogPosition());
     	}
     	loadCatalog();
     }
@@ -478,12 +491,34 @@ public class BookstoreGUI {
     
     @FXML
     void addToBasket(ActionEvent event) {
-
+    	if(!tvCatalog.getSelectionModel().isEmpty()) {
+    		if(tvCatalog.getSelectionModel().getSelectedItem().getQuantity() > 0) {
+    			Book bookToAdd = tvCatalog.getSelectionModel().getSelectedItem();
+    			getCurrentClientFillCatalog().addBookCode(bookToAdd.getISBN());
+    			bookToAdd.decreaseQuantity();
+    			getCurrentClientFillCatalog().setStatus("Pick-Up");
+    			Alert alert = new Alert(AlertType.CONFIRMATION);
+        		alert.setHeaderText("Success");
+        		alert.setContentText("ISBN Code: " + bookToAdd.getISBN() + " has been added successfully");
+        		alert.showAndWait();
+    		} else {
+    			Alert alert = new Alert(AlertType.WARNING);
+        		alert.setHeaderText("Error");
+        		alert.setContentText("No remaining books of this, select another");
+        		alert.showAndWait();
+    		}
+    	} else {
+    		Alert alert = new Alert(AlertType.WARNING);
+    		alert.setHeaderText("Error");
+    		alert.setContentText("You must select one book from the table");
+    		alert.showAndWait();
+    	}
     }
 
     @FXML
-    void finishCatalog(ActionEvent event) {
-
+    void finishCatalog(ActionEvent event) throws IOException {
+    	setCurrentClientFillCatalog(null);
+    	loadClientTable();
     }
 
     @FXML

@@ -13,7 +13,7 @@ public class Client {
 		this.name = name;
 		this.id = id;
 		setBooksCodes(new Stack<String>());
-		setStatus("Incomplete");
+		setStatus("Catalog");
 	}
 	
 	public void addBookCode(String ISBN) {

@@ -5,6 +5,10 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 	private Node<K,V> [] hashTable; // = (Node<K,V>[])(new Node[2]);
 	private int lengthHash;
 	
+	public Node<K,V>[] getHashTable() {
+		return hashTable;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public HashTable(int length) {
 		hashTable = (Node<K,V>[])(new Node[length]);
@@ -71,4 +75,7 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 		}
 		return exist;
 	}
+	
+	
+	
 }

@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import structures.hashTable.Node;
+
 public class Bookstore {
 	
 	private int numberOfCashiers;
@@ -53,11 +55,39 @@ public class Bookstore {
 	public void setNumberOfCashiers(int numberOfCashiers) {
 		this.numberOfCashiers = numberOfCashiers;
 	}
+	
+	public boolean isClientsCatalog() {
+		int incomplete = 0;
+		for(int c = 0; c < getClients().size(); c++) {
+			if(getClients().get(c).getStatus().equals("Catalog")) {
+				incomplete++;
+			}
+		}
+		if(incomplete > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isClientsPickUp() {
+		int catalog = 0;
+		for(int c = 0; c < getClients().size(); c++) {
+			if(getClients().get(c).getStatus().equals("Pick-Up")) {
+				catalog++;
+			}
+		}
+		if(catalog > 0) {
+			return true;
+		}
+		return false;
+	}
 
 	public ArrayList<Book> getSpecificShelve(int position) {
 		ArrayList<Book> observableList = new ArrayList<Book>();
-		//Falta código para obtener los libros de una estantería y retornarlos
-		
+		Node<String, Book>[] bookshelve = bookshelves[position].getBooksMap().getHashTable();
+		for(Node<String, Book> book : bookshelve) {
+			observableList.add(book.getValue());
+		}
 		return observableList;
 	}
 	
