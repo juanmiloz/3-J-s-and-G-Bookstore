@@ -181,6 +181,7 @@ public class BookstoreGUI {
     private TableColumn<Client, String> tcClientStatus;
     
     private Client currentClientFillCatalog;
+    
     private int currentCatalogPosition;
     
     @FXML
@@ -428,6 +429,7 @@ public class BookstoreGUI {
     			btnCatalog.setDisable(true);
     			btnPickUp.setDisable(false);
     			btnPay.setDisable(true);
+    			setCurrentClientFillCatalog(null);
     		} else {
     			btnPay.setDisable(false);
     			btnPickUp.setDisable(true);
@@ -458,10 +460,7 @@ public class BookstoreGUI {
         	setCurrentCatalogPosition(0);
         	loadCatalog();
     	} else {
-    		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setHeaderText("Error");
-    		alert.setContentText("You must select one client from the table");
-    		alert.showAndWait();
+    		alertSelectetClient();
     	}
     	
     }
@@ -497,10 +496,11 @@ public class BookstoreGUI {
     			getCurrentClientFillCatalog().addBookCode(bookToAdd.getISBN());
     			bookToAdd.decreaseQuantity();
     			getCurrentClientFillCatalog().setStatus("Pick-Up");
-    			Alert alert = new Alert(AlertType.CONFIRMATION);
+    			Alert alert = new Alert(AlertType.INFORMATION);
         		alert.setHeaderText("Success");
         		alert.setContentText("ISBN Code: " + bookToAdd.getISBN() + " has been added successfully");
         		alert.showAndWait();
+        		tvCatalog.refresh();
     		} else {
     			Alert alert = new Alert(AlertType.WARNING);
         		alert.setHeaderText("Error");
@@ -531,18 +531,28 @@ public class BookstoreGUI {
     }
     
     @FXML
-    void viewSumary(ActionEvent event) {
+    void back(ActionEvent event) {
+    	
+    }
 
+    @FXML
+    void viewPickUp(ActionEvent event) throws IOException {
+    	if(!tvClients.getSelectionModel().isEmpty()) {
+    		setCurrentClientFillCatalog(tvClients.getSelectionModel().getSelectedItem());
+    		loadPickUp();
+    	}else {
+    		alertSelectetClient();
+    	}
     }
     
-    @FXML
-    void back(ActionEvent event) {
-
-    }
-
-    @FXML
-    void viewPickUp(ActionEvent event) {
-
+    public void loadPickUp() throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PickUp.fxml"));
+    	fxmlLoader.setController(this);
+    	
+    	Parent pickUp = fxmlLoader.load();
+    	
+    	mainPane.getChildren().clear();
+    	mainPane.setCenter(pickUp);
     }
     
     @FXML
@@ -611,6 +621,13 @@ public class BookstoreGUI {
 		alert.setHeaderText("The value entered is not valid");
 		alert.setContentText("The value that was entered is not valid, please verify your values");
 		alert.show();
+	}
+	
+	public void alertSelectetClient() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setHeaderText("Error");
+		alert.setContentText("You must select one client from the table");
+		alert.showAndWait();
 	}
 
 	public Client getCurrentClientFillCatalog() {
