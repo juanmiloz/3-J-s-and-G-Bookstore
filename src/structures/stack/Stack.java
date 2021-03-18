@@ -7,12 +7,20 @@ public class Stack<T> implements StackInterface<T>{
 	public Stack() {
 		top = null;
 	}
-
+/**
+	 * Name: push
+	 * Method to create a new node. <br>
+	 * @param newItem - newItem = T
+ */
 	@Override
 	public void push(T newItem) {
 		top = new Node<T>(newItem, top);
 	}
-
+	/**
+	 * Name: inEmpty
+	 * Method to confirm if is empty  <br>
+	 * @return a boolean if is empty
+	 */
 	@Override
 	public boolean isEmpty() {
 		boolean isEmpty;
@@ -24,12 +32,19 @@ public class Stack<T> implements StackInterface<T>{
 		
 		return isEmpty;
 	}
-
+	/**
+	 * Name: top
+	 * Method to get node element  <br>
+	 * @return a T representing the element
+	 */
 	@Override
 	public T top() {
 		return top.getElement();
 	}
-
+	/**
+	 * Name: pop
+	 * Method to update node <br>
+	 */
 	@Override
 	public void pop() {
 		top = top.getPrevItem();
