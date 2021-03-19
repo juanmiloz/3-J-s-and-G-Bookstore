@@ -84,6 +84,15 @@ public class Client {
 	public void setSortedBookBasket(Stack<String> sortedBookBasket) {
 		this.sortedBookBasket = sortedBookBasket;
 	}
+	
+	
+	
+	public ArrayList<String> getBooksCodes() {
+		return booksCodes;
+	}
+	public void setBooksCodes(ArrayList<String> booksCodes) {
+		this.booksCodes = booksCodes;
+	}
 	/**
 	 * Name: getStatus
 	 * Method used to get client status. <br>

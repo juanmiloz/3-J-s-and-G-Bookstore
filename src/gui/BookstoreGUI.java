@@ -1,5 +1,7 @@
 package gui;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -182,6 +184,8 @@ public class BookstoreGUI {
     
     private Client currentClientFillCatalog;
     
+    private Client currentClienttoSort;
+    
     private int currentCatalogPosition;
     
     @FXML
@@ -228,6 +232,7 @@ public class BookstoreGUI {
 		mainPane.getStyleClass().addAll(mainScreen.getStylesheets());
 		mainPane.getChildren().clear();
 		mainPane.setCenter(mainScreen);
+		
 	}
 
 	//methods StoreSetup
@@ -564,7 +569,7 @@ public class BookstoreGUI {
     @FXML
     void viewPickUp(ActionEvent event) throws IOException {
     	if(!tvClients.getSelectionModel().isEmpty()) {
-    		setCurrentClientFillCatalog(tvClients.getSelectionModel().getSelectedItem());
+    		setCurrentClienttoSort(tvClients.getSelectionModel().getSelectedItem());
     		loadPickUp();
     	}else {
     		alertSelectetClient();
@@ -587,7 +592,16 @@ public class BookstoreGUI {
     
     @FXML
     void continuePickUp(ActionEvent event) {
-
+    	
+    }
+    
+    //Special Method *****
+    public void generateBooksToSort() {
+    	ArrayList<String> codes=currentClienttoSort.getBooksCodes();
+    	HashMap<String,String> hashMap= new HashMap<>();
+    	
+    	
+    	
     }
     
     @FXML
@@ -674,6 +688,13 @@ public class BookstoreGUI {
 
 	public void setCurrentCatalogPosition(int currentCatalogPosition) {
 		this.currentCatalogPosition = currentCatalogPosition;
+	}
+	
+	public Client getCurrentClienttoSort() {
+		return currentClienttoSort;
+	}
+	public void setCurrentClienttoSort(Client currentClienttoSort) {
+		this.currentClienttoSort = currentClienttoSort;
 	}
 
 }
