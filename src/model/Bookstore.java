@@ -36,6 +36,7 @@ public class Bookstore {
 	 * @return a boolean informing if the book was added 
 	 */
 	public boolean addBook(String ISBN, Book book, int posShelve) {
+		System.out.println("Entro Agregado");
 		boolean canAdded = true;
 		for(int c = 0; c < bookshelves.length; c++) {
 			if(bookshelves[c] != null) {
@@ -46,6 +47,7 @@ public class Bookstore {
 		}
 		if(canAdded) {
 			bookshelves[posShelve].addBook(ISBN, book);
+			System.out.println("Agregado enserio");
 		}
 		return canAdded;
 	}
@@ -125,13 +127,15 @@ public class Bookstore {
 	 * @return a ArrayList<Book> with selected shelf 
 	 */
 	public ArrayList<Book> getSpecificShelve(int position) {
-		ArrayList<Book> observableList = new ArrayList<Book>();
+		ArrayList<Book> observableList = new ArrayList<>();
 		Node<String, Book>[] bookshelve = bookshelves[position].getBooksMap().getHashTable();
 		System.out.println(bookshelve);
-		for(Node<String, Book> book : bookshelve) {
-			observableList.add(book.getValue());
-
+		System.out.println(bookshelve.length);
+		for (int i = 0; i < bookshelve.length; i++) {
+			System.out.println(bookshelve[i].getValue().getISBN());
+			observableList.add(bookshelve[i].getValue());
 		}
+		
 		return observableList;
 	}
 	/**
