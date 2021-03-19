@@ -480,7 +480,7 @@ public class BookstoreGUI {
     void showNextShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() + 1;
     	setCurrentCatalogPosition(currentPosition);
-    	System.out.println(bookstore.getBookshelves().length);
+    	//System.out.println(bookstore.getBookshelves().length);
     	if(getCurrentCatalogPosition() >= bookstore.getBookshelves().length) {
     		setCurrentCatalogPosition(0);
     	}
