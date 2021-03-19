@@ -555,6 +555,10 @@ public class BookstoreGUI {
     	mainPane.setCenter(pickUp);
     }
     
+    public void backToClientTable(ActionEvent event) throws IOException {
+    	loadClientTable();
+    }
+    
     @FXML
     void continuePickUp(ActionEvent event) {
 
