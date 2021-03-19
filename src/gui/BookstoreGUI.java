@@ -1,21 +1,5 @@
 package gui;
 import java.io.IOException;
-
-import java.util.Iterator;
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.HashMap;
-
-
-
-
-import java.util.Iterator;
-=======
->>>>>>> d2241eb550de43a1dbf00a04d7188537e3e4f582
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
@@ -36,7 +20,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.Book;
-import model.Bookshelve;
 import model.Bookstore;
 import model.Client;
 
