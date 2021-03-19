@@ -1,18 +1,16 @@
 package gui;
 import java.io.IOException;
-<<<<<<< HEAD
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.HashMap;
-=======
 
 import java.util.Iterator;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
->>>>>>> 5a9fb855f6cbfedadefe2a415d9cda786bcea89a
+import java.util.Iterator;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
@@ -267,12 +265,7 @@ public class BookstoreGUI {
 	 * Method to load information of store <br>
 	 * @throws IOException
 	 */
-<<<<<<< HEAD
-=======
 
-	
-
->>>>>>> 5a9fb855f6cbfedadefe2a415d9cda786bcea89a
 	public void loadStoreInformation() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformation.fxml"));
     	
@@ -683,22 +676,7 @@ public class BookstoreGUI {
     
     @FXML
     void continuePickUp(ActionEvent event) {
-<<<<<<< HEAD
 
-    	
-    }
-    
-    //Special Method *****
-    public void generateBooksToSort() {
-    	ArrayList<String> codes=currentClienttoSort.getBooksCodes();
-    	HashMap<String,String> hashMap= new HashMap<>();
-    	
-    	
-    	
-
-=======
-    	generateBooksToSort();
->>>>>>> 5a9fb855f6cbfedadefe2a415d9cda786bcea89a
     	int sort = 0;
     	if(sortSelection.getSelectedToggle() != null) {
     		sort = numberSort();
@@ -721,6 +699,8 @@ public class BookstoreGUI {
     	}
     	
     }
+    
+ 
     
     //Special Method *****
     public void generateBooksToSort() {
