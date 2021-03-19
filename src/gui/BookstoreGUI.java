@@ -579,7 +579,7 @@ public class BookstoreGUI {
     
     @FXML
     void continuePickUp(ActionEvent event) {
-<<<<<<< HEAD
+
     	
     }
     
@@ -590,7 +590,7 @@ public class BookstoreGUI {
     	
     	
     	
-=======
+
     	int sort = 0;
     	if(sortSelection.getSelectedToggle() != null) {
     		sort = numberSort();
@@ -631,7 +631,7 @@ public class BookstoreGUI {
     		sort = 3;
     	}
     	return sort;
->>>>>>> f9af64ce6ccc10c43f2331f9573915f011fddd5f
+
     }
     
     @FXML
