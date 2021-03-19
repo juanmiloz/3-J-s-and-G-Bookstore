@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -161,6 +162,9 @@ public class BookstoreGUI {
     @FXML
     private JFXToggleButton tglSort3;
     
+    @FXML
+    private ToggleGroup sortSelection;
+    
     //Summary Attributes
     @FXML
     private JFXButton endButton;
@@ -208,21 +212,13 @@ public class BookstoreGUI {
 
     @FXML
     private Label lblCurrentShelve;
-    /**
-	 * Name: BookstoreGUI
-	 * Method constructor bookstoreGUI  <br>
-	 * @param bookstore - bookstore != null
-	 */
+
 	public BookstoreGUI(Bookstore bookstore) {
 		this.bookstore = bookstore;
 		setCurrentClientFillCatalog(null);
 		setCurrentCatalogPosition(0);
 	}
-	/**
-	 * Name: showMainScreen
-	 * Method to show main screen   <br>
-	 * @throws IOException
-	 */
+
 	public void showMainScreen() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetup.fxml"));
 		fxmlLoader.setController(this);
@@ -236,12 +232,6 @@ public class BookstoreGUI {
 	}
 
 	//methods StoreSetup
-	/**
-	 * Name: btnPressedContinue
-	 * Method to move screen continue  <br>
-	 * @param event - event = ActionEvent
-	 * @throws IOException
-	 */
 	@FXML
 	void btnPressedContinue(ActionEvent event) throws IOException  {
 		try {
@@ -261,11 +251,7 @@ public class BookstoreGUI {
 		txtFieldCashiers.setText("");
 		txtFieldShelves.setText("");
 	}
-	/**
-	 * Name: btnPressedContinue
-	 * Method to move screen continue  <br>
-	 * @throws IOException
-	 */
+	
 	public void loadStoreInformation() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformation.fxml"));
     	
@@ -512,7 +498,7 @@ public class BookstoreGUI {
     void showNextShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() + 1;
     	setCurrentCatalogPosition(currentPosition);
-    	//System.out.println(bookstore.getBookshelves().length);
+    	System.out.println(bookstore.getBookshelves().length);
     	if(getCurrentCatalogPosition() >= bookstore.getBookshelves().length) {
     		setCurrentCatalogPosition(0);
     	}
@@ -586,12 +572,14 @@ public class BookstoreGUI {
     	mainPane.setCenter(pickUp);
     }
     
+    @FXML
     public void backToClientTable(ActionEvent event) throws IOException {
     	loadClientTable();
     }
     
     @FXML
     void continuePickUp(ActionEvent event) {
+<<<<<<< HEAD
     	
     }
     
@@ -602,6 +590,48 @@ public class BookstoreGUI {
     	
     	
     	
+=======
+    	int sort = 0;
+    	if(sortSelection.getSelectedToggle() != null) {
+    		sort = numberSort();
+    	}else {
+    		alertSelectetToggle();
+    	}
+    	
+    	switch(sort){
+    		case 1:
+    		
+    		break;
+    		
+    		case 2:
+    		
+    		break;
+    		
+    		case 3:
+    			
+    		break;
+    	}
+    }
+    
+    public void bubbleSort() {
+    	
+    }
+    
+    public void countingSort() {
+    	
+    }
+    
+    public int numberSort() {
+    	int sort = 0;
+    	if(sortSelection.getSelectedToggle().equals(tglSort1)) {
+    		sort = 1; 
+    	}else if(sortSelection.getSelectedToggle().equals(tglSort2)) {
+    		sort = 2;
+    	}else if(sortSelection.getSelectedToggle().equals(tglSort3)) {
+    		sort = 3;
+    	}
+    	return sort;
+>>>>>>> f9af64ce6ccc10c43f2331f9573915f011fddd5f
     }
     
     @FXML
@@ -671,6 +701,13 @@ public class BookstoreGUI {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one client from the table");
+		alert.showAndWait();
+	}
+	
+	public void alertSelectetToggle() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setHeaderText("Error");
+		alert.setContentText("You must select one toggle");
 		alert.showAndWait();
 	}
 
