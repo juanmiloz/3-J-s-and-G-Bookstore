@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -158,6 +159,9 @@ public class BookstoreGUI {
 
     @FXML
     private JFXToggleButton tglSort3;
+    
+    @FXML
+    private ToggleGroup sortSelection;
     
     //Summary Attributes
     @FXML
@@ -563,13 +567,53 @@ public class BookstoreGUI {
     	mainPane.setCenter(pickUp);
     }
     
+    @FXML
     public void backToClientTable(ActionEvent event) throws IOException {
     	loadClientTable();
     }
     
     @FXML
     void continuePickUp(ActionEvent event) {
+    	int sort = 0;
+    	if(sortSelection.getSelectedToggle() != null) {
+    		sort = numberSort();
+    	}else {
+    		alertSelectetToggle();
+    	}
     	
+    	switch(sort){
+    		case 1:
+    		
+    		break;
+    		
+    		case 2:
+    		
+    		break;
+    		
+    		case 3:
+    			
+    		break;
+    	}
+    }
+    
+    public void bubbleSort() {
+    	
+    }
+    
+    public void countingSort() {
+    	
+    }
+    
+    public int numberSort() {
+    	int sort = 0;
+    	if(sortSelection.getSelectedToggle().equals(tglSort1)) {
+    		sort = 1; 
+    	}else if(sortSelection.getSelectedToggle().equals(tglSort2)) {
+    		sort = 2;
+    	}else if(sortSelection.getSelectedToggle().equals(tglSort3)) {
+    		sort = 3;
+    	}
+    	return sort;
     }
     
     @FXML
@@ -639,6 +683,13 @@ public class BookstoreGUI {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one client from the table");
+		alert.showAndWait();
+	}
+	
+	public void alertSelectetToggle() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setHeaderText("Error");
+		alert.setContentText("You must select one toggle");
 		alert.showAndWait();
 	}
 
