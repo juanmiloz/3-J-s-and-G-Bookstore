@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.HashMap;
+<<<<<<< HEAD
+=======
 
+>>>>>>> c326148f1d552a2f80991d8231d4dfb6b0e237c5
 
 import java.util.Iterator;
 
@@ -629,7 +632,8 @@ public class BookstoreGUI {
     @FXML
     void showPreviousShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() - 1;
-    	if(currentPosition < 0) {
+    	setCurrentCatalogPosition(currentPosition);
+    	if(getCurrentCatalogPosition() < 0) {
     		setCurrentCatalogPosition(bookstore.getBookshelves().length - 1);
     	}
     	loadCatalog();
