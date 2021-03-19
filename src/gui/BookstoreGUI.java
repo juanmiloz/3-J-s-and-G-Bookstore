@@ -1,7 +1,11 @@
 package gui;
 import java.io.IOException;
+
+import java.util.Iterator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -251,7 +255,15 @@ public class BookstoreGUI {
 		txtFieldCashiers.setText("");
 		txtFieldShelves.setText("");
 	}
+
+	/**
+	 * Name: loadStoreInformation
+	 * Method to load information of store <br>
+	 * @throws IOException
+	 */
+
 	
+
 	public void loadStoreInformation() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformation.fxml"));
     	
@@ -271,7 +283,11 @@ public class BookstoreGUI {
     	txtFieldPrice.setDisable(true);
 	}
 
-	//methods storeInformation
+	/**
+	 * Name: loadStoreInformation
+	 * Method to load information of store <br>
+	 * @param event - event = ActionEvent
+	 */
 	@FXML
 	void addBooks(ActionEvent event) {
 
@@ -304,7 +320,12 @@ public class BookstoreGUI {
 			txtFieldNumBooks.setText("");
 		}
 	}
-
+	/**
+	 * Name: addToShelve
+	 * Method to show screen of add shelve <br>
+	 * @param event - event = Action event
+	 * @throws IOException
+	 */
 	@FXML
 	void addToShelve(ActionEvent event) throws IOException {
 		if(txtFieldBookTitle.getText().equals("") || txtFieldAuthor.getText().equals("") || txtFieldISBN.getText().equals("") || txtFieldStock.getText().equals("") || txtFieldPrice.getText().equals("")) {
@@ -347,12 +368,21 @@ public class BookstoreGUI {
 		txtFieldStock.setText("");
 		txtFieldPrice.setText("");
 	}
-
+	/**
+	 * Name: backToStoreSetup
+	 * Method to show screen store set up<br>
+	 * @param event - event = ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void backToStoreSetup(ActionEvent event) throws IOException {
 		showMainScreen();
 	}
-	
+	/**
+	 * Name: loadClientEntering
+	 * Method to load client .<br>
+	 * @throws IOException
+	 */
 	public void loadClientEntering() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientEntering.fxml"));
 		fxmlLoader.setController(this);
@@ -365,7 +395,11 @@ public class BookstoreGUI {
 	}
 
 	//methods ClientInformation
-	
+	/**
+	 * Name: loadClientInformation
+	 * Method to load client information .<br>
+	 * @throws IOException
+	 */
 	public void loadClientInformation() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientInformation.fxml"));
 		fxmlLoader.setController(this);
@@ -377,7 +411,12 @@ public class BookstoreGUI {
 		mainPane.getChildren().clear();
 		mainPane.setCenter(clientInformation);
 	}
-	
+	/**
+	 * Name: btnPressedContinueClients
+	 * Method to pass next screen for get client information .<br>
+	 * @param event - event = ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	void btnPressedContinueClients(ActionEvent event) throws IOException {
 		try {
@@ -395,7 +434,12 @@ public class BookstoreGUI {
 	}
 	
 	//methods ClientInformation
-	
+	/**
+	 * Name: addClient
+	 * Method to add client information .<br>
+	 * @param event - event = ActionEvent
+	 * @throws IOException
+	 */
     @FXML
     void addClient(ActionEvent event) throws IOException {
     	String name = txtFieldClientName.getText();
@@ -418,12 +462,21 @@ public class BookstoreGUI {
     	txtFieldClientName.setText("");
     	txtFieldClientID.setText("");
     } 
-    
+    /**
+	 * Name: backToClientEntering
+	 * Method to back entering client.<br>
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void backToClientEntering(ActionEvent event) throws IOException {
     	loadClientEntering();
     }
-    
+    /**
+	 * Name: loadClientTable
+	 * Method to load client table.<br>
+     * @throws IOException
+     */
     public void loadClientTable() throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientTable.fxml"));
     	fxmlLoader.setController(this);
@@ -436,7 +489,10 @@ public class BookstoreGUI {
     	btnPay.setDisable(true);
     	initializateClientsTable();
     }
-    
+    /**
+	 * Name: initializateClientsTable
+	 * Method to initialize client table.<br>
+     */
     private void initializateClientsTable() {
     	if(bookstore.isClientsCatalog()) {
     		btnCatalog.setDisable(false);
