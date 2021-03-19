@@ -204,21 +204,13 @@ public class BookstoreGUI {
 
     @FXML
     private Label lblCurrentShelve;
-    /**
-	 * Name: BookstoreGUI
-	 * Method constructor bookstoreGUI  <br>
-	 * @param bookstore - bookstore != null
-	 */
+
 	public BookstoreGUI(Bookstore bookstore) {
 		this.bookstore = bookstore;
 		setCurrentClientFillCatalog(null);
 		setCurrentCatalogPosition(0);
 	}
-	/**
-	 * Name: showMainScreen
-	 * Method to show main screen   <br>
-	 * @throws IOException
-	 */
+
 	public void showMainScreen() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreSetup.fxml"));
 		fxmlLoader.setController(this);
@@ -231,12 +223,6 @@ public class BookstoreGUI {
 	}
 
 	//methods StoreSetup
-	/**
-	 * Name: btnPressedContinue
-	 * Method to move screen continue  <br>
-	 * @param event - event = ActionEvent
-	 * @throws IOException
-	 */
 	@FXML
 	void btnPressedContinue(ActionEvent event) throws IOException  {
 		try {
@@ -256,11 +242,7 @@ public class BookstoreGUI {
 		txtFieldCashiers.setText("");
 		txtFieldShelves.setText("");
 	}
-	/**
-	 * Name: btnPressedContinue
-	 * Method to move screen continue  <br>
-	 * @throws IOException
-	 */
+	
 	public void loadStoreInformation() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformation.fxml"));
     	
@@ -498,7 +480,7 @@ public class BookstoreGUI {
     void showNextShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() + 1;
     	setCurrentCatalogPosition(currentPosition);
-    	//System.out.println(bookstore.getBookshelves().length);
+    	System.out.println(bookstore.getBookshelves().length);
     	if(getCurrentCatalogPosition() >= bookstore.getBookshelves().length) {
     		setCurrentCatalogPosition(0);
     	}
@@ -579,7 +561,7 @@ public class BookstoreGUI {
     
     @FXML
     void continuePickUp(ActionEvent event) {
-
+    	
     }
     
     @FXML
