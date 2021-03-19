@@ -1,16 +1,11 @@
 package gui;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.util.Iterator;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> edc320d4da91c8d009a46000d87d7d33a99cb5d1
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
-
 import exceptions.InvalidValueException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -255,15 +250,12 @@ public class BookstoreGUI {
 		txtFieldCashiers.setText("");
 		txtFieldShelves.setText("");
 	}
-<<<<<<< HEAD
+
 	/**
 	 * Name: loadStoreInformation
 	 * Method to load information of store <br>
 	 * @throws IOException
 	 */
-=======
-	
->>>>>>> edc320d4da91c8d009a46000d87d7d33a99cb5d1
 	public void loadStoreInformation() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformation.fxml"));
     	
@@ -465,7 +457,7 @@ public class BookstoreGUI {
     /**
 	 * Name: backToClientEntering
 	 * Method to back entering client.<br>
-     * @param event
+	 * @param event - event = ActionEvent
      * @throws IOException
      */
     @FXML
@@ -519,7 +511,12 @@ public class BookstoreGUI {
     }
     
     //method viewCatalog to ClientTable
-    
+    /**
+	 * Name: viewCatalog
+	 * Method to show catalog .<br>
+	 * @param event - event = ActionEvent
+     * @throws IOException
+     */
     @FXML
     void viewCatalog(ActionEvent event) throws IOException {
     	if(!tvClients.getSelectionModel().isEmpty()) {
@@ -538,7 +535,10 @@ public class BookstoreGUI {
     	}
     	
     }
-    
+    /**
+	 * Name: loadCatalog
+	 * Method to load catalog .<br>
+     */
     private void loadCatalog() {
     	ObservableList<Book> observableList;
     	observableList = FXCollections.observableList(bookstore.getSpecificShelve(getCurrentCatalogPosition()));
@@ -549,7 +549,11 @@ public class BookstoreGUI {
     	tcBookQuantity.setCellValueFactory(new PropertyValueFactory<Book, Integer>("quantity"));
     	lblCurrentShelve.setText("Bookshelve name: " + bookstore.getBookshelveName(getCurrentCatalogPosition()));
     }
-    
+    /**
+	 * Name: showNextShelve
+	 * Method to show next shelve .<br>
+     * @param event - event = ActionEvent
+     */
     @FXML
     void showNextShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() + 1;
@@ -561,7 +565,10 @@ public class BookstoreGUI {
     	loadCatalog();
     }
     
-    
+    /**
+	 * Name: addToWishlist
+	 * Method to show screen wishlist .<br>
+     */
     @FXML
     void addToWishlist(ActionEvent event) {
     	if(!tvCatalog.getSelectionModel().isEmpty()) {
@@ -587,13 +594,22 @@ public class BookstoreGUI {
     		alert.showAndWait();
     	}
     }
-
+    /**
+	 * Name: finishCatalog
+	 * Method to show finish catalog<br>
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void finishCatalog(ActionEvent event) throws IOException {
     	setCurrentClientFillCatalog(null);
     	loadClientTable();
     }
-
+    /**
+	 * Name: showPreviousShelve
+	 * Method to show previous shelf<br>
+     * @param event
+     */
     @FXML
     void showPreviousShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() - 1;
@@ -602,12 +618,21 @@ public class BookstoreGUI {
     	}
     	loadCatalog();
     }
-    
+    /**
+	 * Name: back
+	 * Method to go back<br>
+     * @param event
+     */
     @FXML
     void back(ActionEvent event) {
     	
     }
-
+    /**
+	 * Name: viewPickUp
+	 * Method to showpick up<br>
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void viewPickUp(ActionEvent event) throws IOException {
     	if(!tvClients.getSelectionModel().isEmpty()) {
@@ -635,7 +660,7 @@ public class BookstoreGUI {
     
     @FXML
     void continuePickUp(ActionEvent event) {
-<<<<<<< HEAD
+
     	
     }
     
@@ -646,7 +671,7 @@ public class BookstoreGUI {
     	
     	
     	
-=======
+
     	int sort = 0;
     	if(sortSelection.getSelectedToggle() != null) {
     		sort = numberSort();
@@ -687,7 +712,7 @@ public class BookstoreGUI {
     		sort = 3;
     	}
     	return sort;
->>>>>>> f9af64ce6ccc10c43f2331f9573915f011fddd5f
+
     }
     
     @FXML
