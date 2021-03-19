@@ -133,7 +133,7 @@ public class BookstoreGUI {
     //Attributes Catalog.fxml
     
     @FXML
-    private JFXButton btnAddToBasket;
+    private JFXButton btnAddToWishlist;
 
     @FXML
     private JFXButton btnFinishCatalog;
@@ -391,11 +391,20 @@ public class BookstoreGUI {
     void addClient(ActionEvent event) throws IOException {
     	String name = txtFieldClientName.getText();
     	String id = txtFieldClientID.getText();
-    	Client newClient = new Client(name, id);
+    	int time; 
+    	if(bookstore.getClients().isEmpty()) {
+    		time=1;	
+    	}else {
+    		time= bookstore.getClients().size()+1;
+    	}
+    	
+    	Client newClient = new Client(name, id, time);
     	bookstore.addClients(newClient);
     	if(txtCompClients.getText().equalsIgnoreCase(txtMaxClients.getText())) {
     		loadClientTable();
     	}
+    	
+    	//System.out.println(newClient.getTime());
     	txtCompClients.setText(String.valueOf(Integer.parseInt(txtCompClients.getText())+1));
     	txtFieldClientName.setText("");
     	txtFieldClientID.setText("");
@@ -489,12 +498,11 @@ public class BookstoreGUI {
     
     
     @FXML
-    void addToBasket(ActionEvent event) {
+    void addToWishlist(ActionEvent event) {
     	if(!tvCatalog.getSelectionModel().isEmpty()) {
     		if(tvCatalog.getSelectionModel().getSelectedItem().getQuantity() > 0) {
     			Book bookToAdd = tvCatalog.getSelectionModel().getSelectedItem();
     			getCurrentClientFillCatalog().addBookCode(bookToAdd.getISBN());
-    			bookToAdd.decreaseQuantity();
     			getCurrentClientFillCatalog().setStatus("Pick-Up");
     			Alert alert = new Alert(AlertType.INFORMATION);
         		alert.setHeaderText("Success");
