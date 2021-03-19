@@ -5,6 +5,18 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 	private Node<K,V> [] hashTable; // = (Node<K,V>[])(new Node[2]);
 	private int lengthHash;
 	
+	
+	/**
+	 * Name: HashTable
+	 * Method constructor of hash table  <br>
+	 * @param length - length = int 
+	 */
+
+	@SuppressWarnings("unchecked")
+	public HashTable(int length) {
+		hashTable = (Node<K,V>[])(new Node[length]);
+		this.lengthHash = length;
+	}
 	/**
 	 * Name: getHashTable
 	 * Method used to get hash table <br>
@@ -13,16 +25,7 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 	public Node<K,V>[] getHashTable() {
 		return hashTable;
 	}
-	/**
-	 * Name: HashTable
-	 * Method constructor of hash table  <br>
-	 * @param length - length = int 
-	 */
-	@SuppressWarnings("unchecked")
-	public HashTable(int length) {
-		hashTable = (Node<K,V>[])(new Node[length]);
-		this.lengthHash = length;
-	}
+	
 	/**
 	 * Name: put
 	 * Method to put a node in the hash table. <br>
@@ -62,7 +65,22 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 	 */
 	@Override
 	public V getValue(K key) {
-		int position = key.hashCode()%lengthHash;
+		
+		V value = null;
+        int pos = key.hashCode()%lengthHash;
+        Node<K, V> node = hashTable[pos];
+        while (node != null){
+            if(node.getKey().equals(key)) {
+                value = node.getValue();
+                break;
+            }
+            node = node.getNext();
+        }
+            
+            return value;
+        }
+		
+		/*int position = key.hashCode()%lengthHash;
 		if(hashTable[position].getKey().equals(key)) {
 			return hashTable[position].getValue();
 		}else {
@@ -78,8 +96,8 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 				}
 			}
 			return search;
-		}
-	}
+		}*/
+	
 	/**
 	 * Name: existKey
 	 * Method uset to confirm node key. <br>
