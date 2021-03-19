@@ -22,16 +22,15 @@ public class Book {
 	 * @param shelve - shelve of the book - shelve = int, shelve!=null
 	 * @param posInShelve - shelve the book is in - posInShelve = int, posInShelve!=null
 	 */
-	public Book(String title, double price, String author, int quantity, String ISBN, int shelve,
-			int posInShelve) {
+	public Book(String title, double price, String author, int quantity, String ISBN, int shelve,int posInShelve) {
 		
 		this.title = title;
 		this.price = price;
 		this.author = author;
 		this.quantity = quantity;
 		this.ISBN = ISBN;
-		this.setShelve(shelve);
-		this.setPosInShelve(posInShelve);
+		this.shelve = shelve;
+		this.posInShelve = posInShelve;
 	}
 	
 	
