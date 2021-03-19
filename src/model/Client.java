@@ -8,14 +8,23 @@ public class Client {
 	private String id;
 	private Stack<String> booksCodes;
 	private String status;
-
+	/**
+	 * Name: client
+	 * Method constructor of client <br>
+	 * @param name - client name - name = String, name != null, name != ""
+	 * @param id - client id - id = String, id != null, id != ""
+	 */
 	public Client(String name, String id) {
 		this.name = name;
 		this.id = id;
 		setBooksCodes(new Stack<String>());
 		setStatus("Catalog");
 	}
-	
+	/**
+	 * Name: addBookCode
+	 * Method to add a new book code <br>
+	 * @param ISBN - book ISBN - ISBN = String, ISBN != null, ISBN != ""
+	 */
 	public void addBookCode(String ISBN) {
 		booksCodes.push(ISBN);
 	}
