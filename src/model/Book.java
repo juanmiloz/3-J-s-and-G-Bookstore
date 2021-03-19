@@ -5,9 +5,10 @@ public class Book {
 	private String title;
 	private double price;
 	private String author;
-	private String sumary;
 	private int quantity;
 	private String ISBN;
+	private int shelve;
+	private int posInShelve;
 	
 	/**
 	 * Name: book
@@ -18,15 +19,22 @@ public class Book {
 	 * @param sumary - sumary of the book - sumary = String, title != null, title != ""
 	 * @param quantity - quantity of books - quantity = int
 	 * @param ISBN - ISBN of the book - ISBN = String, title != null, title != ""
+	 * @param shelve - shelve of the book - shelve = int, shelve!=null
+	 * @param posInShelve - shelve the book is in - posInShelve = int, posInShelve!=null
 	 */
-	public Book(String title, double price, String author, String sumary, int quantity, String ISBN) {
-		this.setTitle(title);
-		this.setPrice(price);
-		this.setAuthor(author);
-		this.setSumary(sumary);
-		this.setQuantity(quantity);
-		this.setISBN(ISBN);
+	public Book(String title, double price, String author, int quantity, String ISBN, int shelve,
+			int posInShelve) {
+		
+		this.title = title;
+		this.price = price;
+		this.author = author;
+		this.quantity = quantity;
+		this.ISBN = ISBN;
+		this.setShelve(shelve);
+		this.setPosInShelve(posInShelve);
 	}
+	
+	
 	/**
 	 * Name: getTitle
 	 * Method used to get the title of the book. <br>
@@ -35,6 +43,7 @@ public class Book {
 	public String getTitle() {
 		return title;
 	}
+
 	/**
 	 * Name: setTitle
 	 * Method used to update the title of the book.  <br>
@@ -75,22 +84,7 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	/**
-	 * Name: getSumary
-	 * Method used to get the sumary of the book <br>
-	 * @return A String representing the sumary of the book.
-	*/
-	public String getSumary() {
-		return sumary;
-	}
-	/**
-	 * Name: setSumary
-	 * Method used to update the sumary of the book.  <br>
-	 * @param sumary - sumary of the book - sumary = String, sumary != null, sumary != ""
-	*/
-	public void setSumary(String sumary) {
-		this.sumary = sumary;
-	}
+	
 	/**
 	 * Name: getQuantity
 	 * Method used to get the quantity of books. <br>
@@ -129,6 +123,26 @@ public class Book {
 	*/
 	public void decreaseQuantity() {
 		setQuantity(getQuantity() - 1);
+	}
+
+
+	public int getPosInShelve() {
+		return posInShelve;
+	}
+
+
+	public void setPosInShelve(int posInShelve) {
+		this.posInShelve = posInShelve;
+	}
+
+
+	public int getShelve() {
+		return shelve;
+	}
+
+
+	public void setShelve(int shelve) {
+		this.shelve = shelve;
 	}
 	
 }

@@ -8,7 +8,7 @@ public class Client {
 
 	private String name;
 	private String id;
-	private ArrayList<String> booksCodes;
+	private ArrayList<Book> booksCodes;
 	private Stack<String> sortedBookBasket;
 	private int time;
 	private String status;
@@ -28,12 +28,12 @@ public class Client {
 		setStatus("Catalog");
 	}
 	/**
-	 * Name: addBookCode
-	 * Method to add a new book code <br>
-	 * @param ISBN - book ISBN - ISBN = String, ISBN != null, ISBN != ""
+	 * Name: addBook
+	 * Method to add a new book  <br>
+	 * @param b -Book  , b != null
 	 */
-	public void addBookCode(String ISBN) {
-		booksCodes.add(ISBN);
+	public void addBook(Book b) {
+		booksCodes.add(b);
 	}
 	/**
 	 * Name: getName
@@ -87,11 +87,11 @@ public class Client {
 	
 	
 	
-	public ArrayList<String> getBooksCodes() {
+	public ArrayList<Book> getBooksCodes() {
 		return booksCodes;
 	}
-	public void setBooksCodes(ArrayList<String> booksCodes) {
-		this.booksCodes = booksCodes;
+	public void setBooksCodes(ArrayList<Book> books) {
+		this.booksCodes = books;
 	}
 	/**
 	 * Name: getStatus

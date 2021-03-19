@@ -28,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.Book;
+import model.Bookshelve;
 import model.Bookstore;
 import model.Client;
 
@@ -316,8 +317,7 @@ public class BookstoreGUI {
 			}catch(NumberFormatException nfe) {
 				alertTypeDataIncorrect();
 			}
-			txtFieldShelveName.setText("");
-			txtFieldNumBooks.setText("");
+			
 		}
 	}
 	/**
@@ -336,8 +336,11 @@ public class BookstoreGUI {
 			String author = txtFieldAuthor.getText();
 			String ISBN = txtFieldISBN.getText();
 			int quantity = Integer.parseInt(txtFieldStock.getText());
-			String sumary = "";
-			Book tempBook = new Book(title, price, author, sumary, quantity, ISBN);
+			int shelve= Integer.parseInt(txtCompShelves.getText()) - 1;
+			int posInShelve= Integer.parseInt(txtCompBooks.getText())-1;
+			System.out.println(shelve);
+			System.out.println(posInShelve);
+			Book tempBook = new Book(title, price, author, quantity, ISBN,shelve, posInShelve);
 			if(bookstore.addBook(ISBN, tempBook, Integer.parseInt(txtCompShelves.getText()) - 1)) {
 				if(Integer.parseInt(txtCompBooks.getText()) == Integer.parseInt(txtMaxBooks.getText())) {
 					btnAddBooks.setDisable(false);
@@ -349,6 +352,8 @@ public class BookstoreGUI {
 			    	txtFieldStock.setDisable(true);
 			    	txtFieldPrice.setDisable(true);
 			    	btnAddToShelve.setDisable(true);
+			    	txtFieldShelveName.setText("");
+					txtFieldNumBooks.setText("");
 			    	if(txtCompShelves.getText().equalsIgnoreCase(txtMaxShelves.getText())) {
 			    		loadClientEntering();
 			    	}
@@ -362,11 +367,13 @@ public class BookstoreGUI {
 				alertCantAddTheBook();
 			}
 		}
+		
 		txtFieldBookTitle.setText("");
 		txtFieldAuthor.setText("");
 		txtFieldISBN.setText("");
 		txtFieldStock.setText("");
 		txtFieldPrice.setText("");
+		
 	}
 	/**
 	 * Name: backToStoreSetup
@@ -567,7 +574,7 @@ public class BookstoreGUI {
     	if(!tvCatalog.getSelectionModel().isEmpty()) {
     		if(tvCatalog.getSelectionModel().getSelectedItem().getQuantity() > 0) {
     			Book bookToAdd = tvCatalog.getSelectionModel().getSelectedItem();
-    			getCurrentClientFillCatalog().addBookCode(bookToAdd.getISBN());
+    			getCurrentClientFillCatalog().addBook(bookToAdd);
     			getCurrentClientFillCatalog().setStatus("Pick-Up");
     			Alert alert = new Alert(AlertType.INFORMATION);
         		alert.setHeaderText("Success");
@@ -635,18 +642,7 @@ public class BookstoreGUI {
     
     @FXML
     void continuePickUp(ActionEvent event) {
-
-    	
-    }
-    
-    //Special Method *****
-    public void generateBooksToSort() {
-    	ArrayList<String> codes=currentClienttoSort.getBooksCodes();
-    	HashMap<String,String> hashMap= new HashMap<>();
-    	
-    	
-    	
-
+    	generateBooksToSort();
     	int sort = 0;
     	if(sortSelection.getSelectedToggle() != null) {
     		sort = numberSort();
@@ -667,6 +663,33 @@ public class BookstoreGUI {
     			
     		break;
     	}
+    	
+    }
+    
+    //Special Method *****
+    public void generateBooksToSort() {
+ 
+       /* ArrayList<String> codes=currentClienttoSort.getBooksCodes();
+        ArrayList<String> booksToSort= new ArrayList<>();
+        Bookshelve[] shelves= bookstore.getBookshelves();
+        int shelve=0;
+        String sortValue="";
+
+        for (int i = 0; i < codes.size(); i++) {
+            for (int j = 0; j <shelves.length; j++) {
+                shelve=0;
+                if(shelves[j].getBooksMap().getValue(codes.get(i))!=null) {
+                    shelve=j;
+                    sortValue= shelve+","+codes.get(i);
+                    booksToSort.add(sortValue);
+                }
+
+            }
+        }
+
+        for (int i = 0; i < booksToSort.size(); i++) {
+        	System.out.println(booksToSort.get(i));
+        }*/
     }
     
     public void bubbleSort() {

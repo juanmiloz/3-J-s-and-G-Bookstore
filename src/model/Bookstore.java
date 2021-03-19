@@ -127,8 +127,10 @@ public class Bookstore {
 	public ArrayList<Book> getSpecificShelve(int position) {
 		ArrayList<Book> observableList = new ArrayList<Book>();
 		Node<String, Book>[] bookshelve = bookshelves[position].getBooksMap().getHashTable();
+		System.out.println(bookshelve);
 		for(Node<String, Book> book : bookshelve) {
 			observableList.add(book.getValue());
+
 		}
 		return observableList;
 	}
