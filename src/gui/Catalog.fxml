@@ -19,7 +19,7 @@
                   <Image url="@../../data/screens/Catalog%20–%202.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnAddToBasket" layoutX="338.0" layoutY="572.0" onAction="#addToBasket" prefHeight="32.0" prefWidth="335.0" style="-fx-background-color: #000000;" text="Add to Basket" textFill="WHITE">
+            <JFXButton fx:id="btnAddToWishlist" layoutX="338.0" layoutY="572.0" onAction="#addToWishlist" prefHeight="32.0" prefWidth="335.0" style="-fx-background-color: #000000;" text="Add to Wishlist" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="13.0" />
                </font>
