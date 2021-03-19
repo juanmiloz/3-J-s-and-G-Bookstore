@@ -1,23 +1,30 @@
 package model;
 
+import java.util.ArrayList;
+
 import structures.stack.*;
 
 public class Client {
 
 	private String name;
 	private String id;
-	private Stack<String> booksCodes;
+	private ArrayList<String> booksCodes;
+	private Stack<String> sortedBookBasket;
+	private int time;
 	private String status;
 	/**
 	 * Name: client
 	 * Method constructor of client <br>
 	 * @param name - client name - name = String, name != null, name != ""
 	 * @param id - client id - id = String, id != null, id != ""
+	 * @param time - client time - time = int
 	 */
-	public Client(String name, String id) {
+	public Client(String name, String id, int time) {
 		this.name = name;
 		this.id = id;
-		setBooksCodes(new Stack<String>());
+		this.time= time;
+		booksCodes= new ArrayList<>();
+		setSortedBookBasket(new Stack<String>());
 		setStatus("Catalog");
 	}
 	/**
@@ -26,7 +33,7 @@ public class Client {
 	 * @param ISBN - book ISBN - ISBN = String, ISBN != null, ISBN != ""
 	 */
 	public void addBookCode(String ISBN) {
-		booksCodes.push(ISBN);
+		booksCodes.add(ISBN);
 	}
 	/**
 	 * Name: getName
@@ -62,19 +69,28 @@ public class Client {
 	}
 
 	/**
-	 * Name: getBooksCodes
+	 * Name: sortedBookBasket
 	 * Method used to get the title of the book. <br>
-	 * @return A Stack<String> representing stack whit books codes.
+	 * @return A Stack<String> representing stack whit sorted books.
 	*/
-	public Stack<String> getBooksCodes() {
-		return booksCodes;
+	public Stack<String> getSortedBookBaskets() {
+		return sortedBookBasket;
 	}
 	/**
-	 * Name: setBooksCodes
-	 * Method used to update the stack of books code.  <br>
-	 * @param booksCodes - books codes - booksCodes = Stack<String>
+	 * Name: sortedBookBasket
+	 * Method used to update the stack of sorted books.  <br>
+	 * @param SortedBookBasket - SortedBookBasket - SortedBookBasket = Stack<String>
 	*/
-	public void setBooksCodes(Stack<String> booksCodes) {
+	public void setSortedBookBasket(Stack<String> sortedBookBasket) {
+		this.sortedBookBasket = sortedBookBasket;
+	}
+	
+	
+	
+	public ArrayList<String> getBooksCodes() {
+		return booksCodes;
+	}
+	public void setBooksCodes(ArrayList<String> booksCodes) {
 		this.booksCodes = booksCodes;
 	}
 	/**
@@ -93,6 +109,18 @@ public class Client {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	
+	public int getTime() {
+		return time;
+	}
+	
+	public void setTime(int time) {
+		this.time = time;
+	}
+	
+	
 
 
 }
