@@ -8,5 +8,6 @@
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jfoenix-8.0.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
