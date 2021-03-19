@@ -1,18 +1,19 @@
 package gui;
 import java.io.IOException;
-<<<<<<< HEAD
+
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.HashMap;
+<<<<<<< HEAD
 =======
 
+>>>>>>> c326148f1d552a2f80991d8231d4dfb6b0e237c5
+
 import java.util.Iterator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
->>>>>>> 5a9fb855f6cbfedadefe2a415d9cda786bcea89a
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
@@ -267,12 +268,7 @@ public class BookstoreGUI {
 	 * Method to load information of store <br>
 	 * @throws IOException
 	 */
-<<<<<<< HEAD
-=======
 
-	
-
->>>>>>> 5a9fb855f6cbfedadefe2a415d9cda786bcea89a
 	public void loadStoreInformation() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoreInformation.fxml"));
     	
@@ -581,7 +577,7 @@ public class BookstoreGUI {
     void showNextShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() + 1;
     	setCurrentCatalogPosition(currentPosition);
-    	System.out.println(bookstore.getBookshelves().length);
+    	//System.out.println(bookstore.getBookshelves().length);
     	if(getCurrentCatalogPosition() >= bookstore.getBookshelves().length) {
     		setCurrentCatalogPosition(0);
     	}
@@ -636,7 +632,8 @@ public class BookstoreGUI {
     @FXML
     void showPreviousShelve(ActionEvent event) {
     	int currentPosition = getCurrentCatalogPosition() - 1;
-    	if(currentPosition < 0) {
+    	setCurrentCatalogPosition(currentPosition);
+    	if(getCurrentCatalogPosition() < 0) {
     		setCurrentCatalogPosition(bookstore.getBookshelves().length - 1);
     	}
     	loadCatalog();
@@ -683,22 +680,7 @@ public class BookstoreGUI {
     
     @FXML
     void continuePickUp(ActionEvent event) {
-<<<<<<< HEAD
 
-    	
-    }
-    
-    //Special Method *****
-    public void generateBooksToSort() {
-    	ArrayList<String> codes=currentClienttoSort.getBooksCodes();
-    	HashMap<String,String> hashMap= new HashMap<>();
-    	
-    	
-    	
-
-=======
-    	generateBooksToSort();
->>>>>>> 5a9fb855f6cbfedadefe2a415d9cda786bcea89a
     	int sort = 0;
     	if(sortSelection.getSelectedToggle() != null) {
     		sort = numberSort();
@@ -721,6 +703,8 @@ public class BookstoreGUI {
     	}
     	
     }
+    
+ 
     
     //Special Method *****
     public void generateBooksToSort() {
