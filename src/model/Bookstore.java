@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import structures.hashTable.HashTable;
 import structures.hashTable.Node;
 
 public class Bookstore {
@@ -129,12 +130,27 @@ public class Bookstore {
 	public ArrayList<Book> getSpecificShelve(int position) {
 		ArrayList<Book> observableList = new ArrayList<>();
 		Node<String, Book>[] bookshelve = bookshelves[position].getBooksMap().getHashTable();
-		System.out.println(bookshelve);
-		System.out.println(bookshelve.length);
-		for (int i = 0; i < bookshelve.length; i++) {
-			System.out.println(bookshelve[i].getValue().getISBN());
-			observableList.add(bookshelve[i].getValue());
-		}
+		//System.out.println(bookshelve);
+		
+		//Map.Entry mapElement : hm.entrySet()
+		
+		//bookshelveMap.getValue(isbn)
+		
+			for(int i=0; i<bookshelve.length;i++) {
+				Node<String, Book> current= bookshelve[i];
+				
+				while(current!=null) {
+					observableList.add(current.getValue());
+					current=current.getNext();
+				}
+				
+			}
+			
+			
+		
+		
+		
+		
 		
 		return observableList;
 	}

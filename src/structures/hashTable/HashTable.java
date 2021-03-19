@@ -126,6 +126,13 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 		return exist;
 	}
 	
+	public int getLengthHash() {
+		return lengthHash;
+	}
+	public void setLengthHash(int lengthHash) {
+		this.lengthHash = lengthHash;
+	}
+	
 	
 	
 }
