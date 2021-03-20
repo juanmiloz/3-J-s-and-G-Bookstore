@@ -27,7 +27,7 @@
             </JFXButton>
             <HBox layoutX="373.0" layoutY="409.0" prefHeight="100.0" prefWidth="621.0">
                <children>
-                  <JFXToggleButton fx:id="tglSort1" prefHeight="64.0" prefWidth="210.0" text="Bubble Sort">
+                  <JFXToggleButton fx:id="tglSort1" prefHeight="64.0" prefWidth="210.0" text="Bubble Sort" toggleColor="#dab314" toggleLineColor="BLACK">
                      <font>
                         <Font name="Montserrat SemiBold" size="19.0" />
                      </font>
@@ -35,12 +35,12 @@
                         <ToggleGroup fx:id="sortSelection" />
                      </toggleGroup>
                   </JFXToggleButton>
-                  <JFXToggleButton fx:id="tglSort2" prefHeight="64.0" prefWidth="228.0" text="Counting Sort" toggleGroup="$sortSelection">
+                  <JFXToggleButton fx:id="tglSort2" prefHeight="64.0" prefWidth="228.0" text="Counting Sort" toggleColor="#dab314" toggleGroup="$sortSelection" toggleLineColor="BLACK">
                      <font>
                         <Font name="Montserrat SemiBold" size="19.0" />
                      </font>
                   </JFXToggleButton>
-                  <JFXToggleButton fx:id="tglSort3" prefHeight="18.0" prefWidth="171.0" text="Sort 3" toggleGroup="$sortSelection">
+                  <JFXToggleButton fx:id="tglSort3" prefHeight="18.0" prefWidth="171.0" text="Sort 3" toggleColor="#dab314" toggleGroup="$sortSelection" toggleLineColor="BLACK">
                      <font>
                         <Font name="Montserrat SemiBold" size="19.0" />
                      </font>
