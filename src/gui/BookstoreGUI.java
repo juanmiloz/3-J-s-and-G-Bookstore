@@ -747,7 +747,7 @@ public class BookstoreGUI {
 
 		// Create a count array to store count of individual
 		// initialize count array as 0, max value is total shelves
-		int max=0;
+		int max=bookstore.getBookCount()+1;
 	
 		//max = count del ultimo elemento de la ultima estanteria
 		
