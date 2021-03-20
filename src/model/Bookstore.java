@@ -77,8 +77,12 @@ public class Bookstore {
 			for(int i=0; i< cashiers.length; i++){
 				if(!cashiers[i].getOccupied() & !checkoutLine.isEmpty()){
 					cashiers[i].begin(checkoutLine.dequeue());
-				}else{
+				}else if(!checkoutLine.isEmpty()){
 					cashiers[i].advance();
+				}else {
+					if(!cashiers[i].getCurrent().getSortedBookBaskets().isEmpty()) {
+						cashiers[i].advance();
+					}
 				}
 			}
 			if(checkoutLine.isEmpty()) {
