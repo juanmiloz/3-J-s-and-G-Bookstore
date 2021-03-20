@@ -676,11 +676,11 @@ public class BookstoreGUI {
 
 			switch(sort){
 			case 1:
-				bubbleSort(getCurrentClienttoSort().getBooksCodes());
+				bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 				break;
 
 			case 2:
-				countingSort(getCurrentClienttoSort().getBooksCodes());
+				countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 				break;
 
 			case 3:
@@ -696,6 +696,17 @@ public class BookstoreGUI {
 	}
 
 
+	public ArrayList<Book> removeOutOfStock(ArrayList<Book> booksToRemove) {
+		ArrayList<Book> removedArrayList= booksToRemove;
+		for (int i = 0; i < removedArrayList.size(); i++) {
+			if(removedArrayList.get(i).getQuantity()==0) {
+				removedArrayList.remove(i);
+			}
+		}
+		
+		return removedArrayList;
+		
+	}
 
 
 
