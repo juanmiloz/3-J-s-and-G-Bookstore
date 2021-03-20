@@ -639,7 +639,7 @@ public class BookstoreGUI {
 	}
 	/**
 	 * Name: viewPickUp
-	 * Method to showpick up<br>
+	 * Method to show pick up<br>
 	 * @param event
 	 * @throws IOException
 	 */
@@ -652,7 +652,11 @@ public class BookstoreGUI {
 			alertSelectetClient();
 		}
 	}
-
+	/**
+	 * Name: loadPickUp
+	 * Method to load pick up<br>
+	 * @throws IOException
+	 */
 	public void loadPickUp() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PickUp.fxml"));
 		fxmlLoader.setController(this);
@@ -662,12 +666,22 @@ public class BookstoreGUI {
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pickUp);
 	}
-
+	/**
+	 * Name: backToClientTable
+	 * Method to back to screen for show client table<br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void backToClientTable(ActionEvent event) throws IOException {
 		loadClientTable();
 	}
-
+	/**
+	 * Name: bucketSort
+	 * Method to sort books for bucket form<br>
+	 * @param books - books = ArrayList<Book>
+	 * @return a Book[] representing sort list of books
+	 */
 	private Book[] bucketSort(ArrayList<Book> books)
 	{
 		Book[] booksToSort = new Book[books.size()];
@@ -711,7 +725,11 @@ public class BookstoreGUI {
         }
 		return booksToSort;
 	}
-
+	/**
+	 * Name: numberSort
+	 * Method to select the desired sorting type <br>
+	 * @return a int representing an integer with the sort order you want to use.
+	 */
 	public int numberSort() {
 		int sort = 0;
 		if(sortSelection.getSelectedToggle().equals(tglSort1)) {
@@ -724,7 +742,12 @@ public class BookstoreGUI {
 		return sort;
 
 	}
-	
+	/**
+	 * Name: continuePickUp
+	 * Method to continue with the pick up process <br>
+	 * @param event - event = ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	void continuePickUp(ActionEvent event) throws IOException {
 
@@ -762,19 +785,36 @@ public class BookstoreGUI {
 		loadClientTable();
 		
 	}
-
+	/**
+	 * Name: addToBasketBubble
+	 * Method to sort the book arrangement by the selected method  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
 	public void addToBasketBubble(ArrayList<Book> books){
 		getCurrentClienttoSort().addBooksToBasketArrayList(books);
 	}
-
+	/**
+	 * Name: addToBasketCounting
+	 * Method to sort the book arrangement by the selected method  <br>
+	 * @param books - books = Book []
+	 */
 	public void addToBasketCounting(Book [] books){
 		getCurrentClienttoSort().addBooksToBasketArray(books);
 	}
-
+	/**
+	 * Name: addToBasketBucket
+	 * Method to sort the book arrangement by the selected method  <br>
+	 * @param books - books = Book []
+	 */
 	public void addToBasketBucket(Book [] books){
 		getCurrentClienttoSort().addBooksToBasketArray(books);
 	}
-
+	/**
+	 * Name: removeOutOfStock
+	 * Method used to remove out-of-print books  <br>
+	 * @param booksToRemove - booksToRemove = ArrayList<Book>
+	 * @return a ArrayList<Book> representing out-of-print books
+	 */ 
 	public ArrayList<Book> removeOutOfStock(ArrayList<Book> booksToRemove) {
 		ArrayList<Book> removedArrayList= booksToRemove;
 		ArrayList<String> booksRemove = new ArrayList<>();
@@ -789,7 +829,12 @@ public class BookstoreGUI {
 		}
 		return removedArrayList;
 	}
-
+	/**
+	 * Name: bubbleSort
+	 * Method sort by bubble   <br>
+	 * @param booksToSort - booksToSort = ArrayList<Book>
+	 * @return a ArrayList<Book> with the books ordered 
+	 */
 	public ArrayList<Book> bubbleSort( ArrayList<Book> booksToSort) {
 		/*
 		System.out.println("Bubble");
@@ -824,7 +869,12 @@ public class BookstoreGUI {
 		*/
 		return booksToSort;
 	}
-
+	/**
+	 * Name: countingSort
+	 * Method sort by counting    <br>
+	 * @param booksToSort - booksToSort = ArrayList<Book>
+	 * @return a Book[]  with the books ordered 
+	 */
 	public Book[] countingSort(ArrayList<Book> booksToSort) {
 		/*
 		System.out.println("Counting");
@@ -880,20 +930,32 @@ public class BookstoreGUI {
 		*/
 		return output;
 	}
-
+	/**
+	 * Name: viewPay
+	 * Method to go for checkout  <br>
+	 * @param event - event = ActionEvent
+	 */
 	@FXML
 	void viewPay(ActionEvent event) {
 		bookstore.initializeCheckOutLine();
 		bookstore.checkout();
 	}
-
+	/**
+	 * Name: endProgram 
+	 * Method for end program   <br>
+	 * @param event - event = ActionEvent
+	 */
 	@FXML
 	void endProgram(ActionEvent event) {
 		
 	}
 
 	//mainPane methods
-
+	/**
+	 * Name: showAbout 
+	 * Method for show Program information    <br>
+	 * @param event - event = ActionEvent
+	 */
 	@FXML
 	void showAbout(ActionEvent event) {
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -904,7 +966,10 @@ public class BookstoreGUI {
 	}
 
 	//Alerts
-
+	/**
+	 * Name: alertLoadProgram 
+	 * Method to inform the user that the program is loading <br>
+	 */
 	public void alertLoadProgram() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -912,7 +977,10 @@ public class BookstoreGUI {
 		alert.setContentText("Its imposible load the program, please contact your supplier");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertEmptyField 
+	 * Method to inform the user that he is leaving an empty field  <br>
+	 */
 	public void alertEmptyField() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -920,7 +988,10 @@ public class BookstoreGUI {
 		alert.setContentText("There are empty fields that do not allow you to continue, please fill in all the fields");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertTypeDataIncorrect 
+	 * Method to inform the user that have entered a wrong data   <br>
+	 */
 	public void alertTypeDataIncorrect() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -928,7 +999,10 @@ public class BookstoreGUI {
 		alert.setContentText("Enter a type of data that is not valid, please check all the fields");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertTypeDataIncorrect 
+	 * Method to inform the user that they cannot add a book   <br>
+	 */
 	public void alertCantAddTheBook() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -936,7 +1010,10 @@ public class BookstoreGUI {
 		alert.setContentText("There is a book with the same ISBN");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertInvalidValueException 
+	 * Method to inform the user that have entered a wrong data   <br>
+	 */
 	public void alertInvalidValueException() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -944,21 +1021,31 @@ public class BookstoreGUI {
 		alert.setContentText("The value that was entered is not valid, please verify your values");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertInvalidValueException 
+	 * Method to inform the user that have entered a wrong data   <br>
+	 */
 	public void alertSelectetClient() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one client from the table");
 		alert.showAndWait();
 	}
-
+	/**
+	 * Name: alertSelectetToggle 
+	 * Method of informing the user that more than one lever is selected<br>
+	 */
 	public void alertSelectetToggle() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one toggle");
 		alert.showAndWait();
 	}
-	
+	/**
+	 * Name: alertBookDontHaveStock 	 
+	 * Method to inform the user that a book has no values <br>
+	 * @param codes - codes = ArrayList<String> codes
+	 */
 	public void alertBookDontHaveStock(ArrayList<String> codes) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("Quantity not available");
@@ -969,7 +1056,11 @@ public class BookstoreGUI {
 		alert.setContentText(output);
 		alert.showAndWait();
 	}
-	
+	/**
+	 * Name: alertSortBubble 	 
+	 * Method to inform the user what type of sort they have selected  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
 	public void alertSortBubble(ArrayList<Book> books) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("The order to pick up the books is:");
@@ -980,7 +1071,11 @@ public class BookstoreGUI {
 		alert.setContentText(output);
 		alert.showAndWait();
 	}
-
+	/**
+	 * Name: alertSortCounting 	 
+	 * Method to inform the user what type of sort they have selected  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
 	public void alertSortCounting(Book[] books) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("The order to pick up the books is:");
@@ -991,7 +1086,11 @@ public class BookstoreGUI {
 		alert.setContentText(output);
 		alert.showAndWait();
 	}
-	
+	/**
+	 * Name: alertSortBucket 	 
+	 * Method to inform the user what type of sort they have selected  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
 	public void alertSortBucket(Book[] books) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("The order to pick up the books is:");
@@ -1002,33 +1101,61 @@ public class BookstoreGUI {
 		alert.setContentText(output);
 		alert.showAndWait();
 	}
-
+	/**
+	 * Name: alertBooksAdded 	 
+	 * Method to inform the user books addes <br>
+	 */
 	public void alertBooksAdded(){
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("Books added successfully");
 		alert.setContentText("Books were successfully added to the basket");
 		alert.showAndWait();
 	}
-
+	/**
+	 * Name: getCurrentClientFillCatalog 	 
+	 * Method to grab the current customer catalog <br>
+	 * @return a Client representing current client
+	 */
 	public Client getCurrentClientFillCatalog() {
 		return currentClientFillCatalog;
 	}
-
+	/**
+	 * Name: setCurrentClientFillCatalog 	 
+	 * Method to grab the current customer catalog <br>
+	 * @param currentClientFillCatalog - currentClientFillCatalog = Client
+	 */
 	public void setCurrentClientFillCatalog(Client currentClientFillCatalog) {
 		this.currentClientFillCatalog = currentClientFillCatalog;
 	}
-
+	/**
+	 * Name: getCurrentCatalogPosition 	 
+	 * Method to get current catalog position  <br>
+	 * @return a int whit position 
+	 */
 	public int getCurrentCatalogPosition() {
 		return currentCatalogPosition;
 	}
-
+	/**
+	 * Name: setCurrentCatalogPosition 	 
+	 * Method used to update current catalog position  <br>
+	 * @param currentCatalogPosition
+	 */
 	public void setCurrentCatalogPosition(int currentCatalogPosition) {
 		this.currentCatalogPosition = currentCatalogPosition;
 	}
-
+	/**
+	 * Name: getCurrentClienttoSort 	 
+	 * Method to get current client <br> 
+	 * @return
+	 */
 	public Client getCurrentClienttoSort() {
 		return currentClienttoSort;
 	}
+	/**
+	 * Name: setCurrentClienttoSort 	 
+	 * Method to update current client <br>
+	 * @param currentClienttoSort
+	 */
 	public void setCurrentClienttoSort(Client currentClienttoSort) {
 		this.currentClienttoSort = currentClienttoSort;
 	}
