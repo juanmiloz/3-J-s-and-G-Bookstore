@@ -329,7 +329,8 @@ public class BookstoreGUI {
 			int quantity = Integer.parseInt(txtFieldStock.getText());
 			int shelve= Integer.parseInt(txtCompShelves.getText()) - 1;
 			int posInShelve= Integer.parseInt(txtCompBooks.getText())-1;
-			Book tempBook = new Book(title, price, author, quantity, ISBN,shelve, posInShelve);
+			Book tempBook = new Book(title, price, author, quantity, ISBN,shelve, posInShelve, bookstore.getBookCount()+1);
+			
 			if(bookstore.addBook(ISBN, tempBook, Integer.parseInt(txtCompShelves.getText()) - 1)) {
 				if(Integer.parseInt(txtCompBooks.getText()) == Integer.parseInt(txtMaxBooks.getText())) {
 					btnAddBooks.setDisable(false);
@@ -746,24 +747,28 @@ public class BookstoreGUI {
 
 		// Create a count array to store count of individual
 		// initialize count array as 0, max value is total shelves
-		int count[] = new int[bookstore.getBookshelves().length];
-		for (int i = 0; i < bookstore.getBookshelves().length; ++i)
+		int max=0;
+	
+		//max = count del ultimo elemento de la ultima estanteria
+		
+		int count[] = new int[max];
+		for (int i = 0; i < max; ++i)
 			count[i] = 0;
 
 		// store count of each character
 		for (int i = 0; i < n; ++i)
-			++count[booksToSortArr[i].getShelve()];
+			++count[booksToSortArr[i].getBookCount()];
 
 		// Change count[i] so that count[i] now contains actual
 		// position of this book in output array
-		for (int i = 1; i <= bookstore.getBookshelves().length-1; ++i)
+		for (int i = 1; i <= max-1; ++i)
 			count[i] += count[i - 1];
 
 		// Build the output character array
 		// To make it stable we are operating in reverse order.
 		for (int i = n - 1; i >= 0; i--) {
-			output[count[booksToSortArr[i].getShelve()] - 1] = booksToSortArr[i];
-			--count[booksToSortArr[i].getShelve()];
+			output[count[booksToSortArr[i].getBookCount()] - 1] = booksToSortArr[i];
+			--count[booksToSortArr[i].getBookCount()];
 		}
 		
 		System.out.println("==============");

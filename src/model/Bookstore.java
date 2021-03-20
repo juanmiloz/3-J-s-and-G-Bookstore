@@ -6,6 +6,7 @@ import structures.hashTable.Node;
 public class Bookstore {
 
 	private int numberOfCashiers;
+	private int bookCount;
 	private Bookshelve[] bookshelves;
 	private ArrayList<Client> clients;
 	/**
@@ -14,6 +15,7 @@ public class Bookstore {
 	 */
 	public Bookstore() {
 		clients = new ArrayList<>();
+		bookCount=0;
 	}
 	/**
 	 * Name: initializateBookshelves
@@ -45,6 +47,7 @@ public class Bookstore {
 		}
 		if(canAdded) {
 			bookshelves[posShelve].addBook(ISBN, book);
+			bookCount++;
 		}
 		return canAdded;
 	}
@@ -173,6 +176,12 @@ public class Bookstore {
 	*/
 	public void setBookshelves(Bookshelve[] bookshelves) {
 		this.bookshelves = bookshelves;
+	}
+	public int getBookCount() {
+		return bookCount;
+	}
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
 	}
 
 }
