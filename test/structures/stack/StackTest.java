@@ -8,7 +8,6 @@ import model.Book;
 import structures.hashTable.HashTable;
 
 class StackTest {
-	private Book book;
 	public Stack<Book> setupScenary1() {
 		Stack<Book> stack = new Stack<Book>();
 		return stack;
