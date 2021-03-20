@@ -144,7 +144,24 @@ public class BookstoreGUI {
 
 	@FXML
 	private JFXButton nextShelve;
+	
+	@FXML
+	private TableView<Book> tvCatalog;
 
+	@FXML
+	private TableColumn<Book, String> tcBookTitle;
+
+	@FXML
+	private TableColumn<Book, Double> tcBookPrice;
+
+	@FXML
+	private TableColumn<Book, String> tcBookAuthor;
+
+	@FXML
+	private TableColumn<Book, Integer> tcBookQuantity;
+	
+	@FXML
+    private TableColumn<Book, String> tcBookISBN;
 
 	//Attributes PickUp.fxml
 
@@ -189,21 +206,6 @@ public class BookstoreGUI {
 	private Client currentClienttoSort;
 
 	private int currentCatalogPosition;
-
-	@FXML
-	private TableView<Book> tvCatalog;
-
-	@FXML
-	private TableColumn<Book, String> tcBookTitle;
-
-	@FXML
-	private TableColumn<Book, Double> tcBookPrice;
-
-	@FXML
-	private TableColumn<Book, String> tcBookAuthor;
-
-	@FXML
-	private TableColumn<Book, Integer> tcBookQuantity;
 
 	@FXML
 	private JFXButton btnViewSumary;
@@ -552,6 +554,7 @@ public class BookstoreGUI {
 		tcBookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
 		tcBookAuthor.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
 		tcBookQuantity.setCellValueFactory(new PropertyValueFactory<Book, Integer>("quantity"));
+		tcBookISBN.setCellValueFactory(new PropertyValueFactory<Book, String>("ISBN"));
 		lblCurrentShelve.setText("Bookshelve name: " + bookstore.getBookshelveName(getCurrentCatalogPosition()));
 	}
 	/**
