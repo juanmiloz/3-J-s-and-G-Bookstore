@@ -874,6 +874,15 @@ public class BookstoreGUI {
 		alert.setContentText("You must select one toggle");
 		alert.showAndWait();
 	}
+	
+	public void alertBookDontHaveStock(ArrayList<String> codes) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Quantity not available");
+		for(int i = 0; i < codes.size(); i++) {
+			alert.setContentText("The book whit " + codes.get(i) + " is out of stock\n");
+		}
+		alert.showAndWait();
+	}
 
 	public Client getCurrentClientFillCatalog() {
 		return currentClientFillCatalog;
