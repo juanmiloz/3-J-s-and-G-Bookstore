@@ -18,8 +18,9 @@ public class BookTest  extends TestCase{
 		String ISBN= "343234";
 		int shelve = 3;
 		int posInShelve = 2;
+		int bookCount=1;
 		book = new Book( title,  price,  author,  quantity,  ISBN,  shelve,
-			 posInShelve);
+			 posInShelve,bookCount);
 	}
 
 	public void test1() {

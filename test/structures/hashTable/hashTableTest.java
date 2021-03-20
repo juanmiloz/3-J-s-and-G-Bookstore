@@ -17,15 +17,15 @@ class hashTableTest {
 	public void testPutAndGetValue() {
 		HashTable<String, Book> hash = setupScenary1();
 		
-		Book book1 = new Book("HarryPotter1",40000,"margarita",20,"4243",0,1);
-		Book book2 = new Book("HarryPotter2",50000,"margarita",14,"5321",0,1);
-		Book book3 = new Book("HarryPotter3",60000,"margarita",15,"5433",0,1);
-		Book book4 = new Book("HarryPotter4",70000,"margarita",11,"6213",0,1);
-		Book book5 = new Book("HarryPotter5",80000,"margarita",11,"8723",0,1);
-		Book book6 = new Book("HarryPotter6",65000,"margarita",11,"7832",0,1);
-		Book book7 = new Book("HarryPotter7",55000,"margarita",11,"3847",0,1);
-		Book book8 = new Book("HarryPotter8",44000,"margarita",11,"2903",0,1);
-		Book book9 = new Book("HarryPotter9",66000,"margarita",11,"8923",0,1);
+		Book book1 = new Book("HarryPotter1",40000,"margarita",20,"4243",0,1,0);
+		Book book2 = new Book("HarryPotter2",50000,"margarita",14,"5321",0,1,1);
+		Book book3 = new Book("HarryPotter3",60000,"margarita",15,"5433",0,1,2);
+		Book book4 = new Book("HarryPotter4",70000,"margarita",11,"6213",0,1,3);
+		Book book5 = new Book("HarryPotter5",80000,"margarita",11,"8723",0,1,4);
+		Book book6 = new Book("HarryPotter6",65000,"margarita",11,"7832",0,1,5);
+		Book book7 = new Book("HarryPotter7",55000,"margarita",11,"3847",0,1,6);
+		Book book8 = new Book("HarryPotter8",44000,"margarita",11,"2903",0,1,7);
+		Book book9 = new Book("HarryPotter9",66000,"margarita",11,"8923",0,1,8);
 		
 		hash.put(book1.getISBN(), book1);
 		hash.put(book2.getISBN(), book2);

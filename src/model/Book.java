@@ -9,6 +9,7 @@ public class Book {
 	private String ISBN;
 	private int shelve;
 	private int posInShelve;
+	private int bookCount;
 	
 	/**
 	 * Name: book
@@ -22,8 +23,10 @@ public class Book {
 	 * @param shelve - shelve of the book - shelve = int, shelve!=null
 	 * @param posInShelve - shelve the book is in - posInShelve = int, posInShelve!=null
 	 */
-	public Book(String title, double price, String author, int quantity, String ISBN, int shelve,int posInShelve) {
-		
+	
+	public Book(String title, double price, String author, int quantity, String ISBN, int shelve, int posInShelve,
+			int bookCount) {
+	
 		this.title = title;
 		this.price = price;
 		this.author = author;
@@ -31,8 +34,8 @@ public class Book {
 		this.ISBN = ISBN;
 		this.shelve = shelve;
 		this.posInShelve = posInShelve;
+		this.bookCount=bookCount;
 	}
-	
 	
 	/**
 	 * Name: getTitle
@@ -42,6 +45,8 @@ public class Book {
 	public String getTitle() {
 		return title;
 	}
+
+
 
 	/**
 	 * Name: setTitle
@@ -142,6 +147,14 @@ public class Book {
 
 	public void setShelve(int shelve) {
 		this.shelve = shelve;
+	}
+
+	public int getBookCount() {
+		return bookCount;
+	}
+
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
 	}
 	
 }
