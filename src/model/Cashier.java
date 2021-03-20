@@ -25,17 +25,18 @@ public class Cashier {
 
     public void advance(){
         Book popped=current.getSortedBookBaskets().pop();
-        bag+= popped.getISBN()+" ";
+        bag += popped.getISBN()+" ";
         price+=popped.getPrice();
         if(current.getSortedBookBaskets().isEmpty()){
-            occupied=false; 
+            System.out.println(report());
+        	occupied=false; 
        }
     }
     
     public String report(){
         String info="";
-        info+= "Client ID: "+ current.getId() + "Final Price: "+ price + "\n";
-        info+= "Books in Bag: " +bag+  "\n";
+        info += "Client ID: "+ current.getId() + " Final Price: "+ price + "\n";
+        info += "Books in Bag: " +bag+  "\n";
         return info;
     }
 

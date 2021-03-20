@@ -12,7 +12,7 @@ public class Bookstore {
 	private int bookCount;
 	private Bookshelve[] bookshelves;
 	private ArrayList<Client> clients;
-	private  Queue<Client> checkoutLine;
+	private Queue<Client> checkoutLine;
 	private Cashier[] cashiers;
 
 	/**
@@ -65,26 +65,36 @@ public class Bookstore {
 		Collections.sort(clients);
 		
 		for(int i=0; i< clients.size(); i++){
-			System.out.println(clients.get(i).getTime());
+			System.out.println(clients.get(i).getName() + " " + clients.get(i).getTime());
 			checkoutLine.enqueue(clients.get(i));
 		}
 	}
 
 	public void checkout(){
 		String report="";
-		while(!checkoutLine.isEmpty()){
+		boolean exit = false;
+		while(!exit /*&& !checkoutLine.isEmpty()*/){
 			for(int i=0; i< cashiers.length; i++){
-				if(!cashiers[i].getOccupied()){
+				if(!cashiers[i].getOccupied() & !checkoutLine.isEmpty()){
 					cashiers[i].begin(checkoutLine.dequeue());
 				}else{
 					cashiers[i].advance();
-					if(!cashiers[i].getOccupied()){
-						report+=cashiers[i].report();
-					}
 				}
-			} 
+			}
+			if(checkoutLine.isEmpty()) {
+				exit = cashiersFree();
+			}
 		}
-		System.out.println(report);
+	}
+	
+	public boolean cashiersFree() {
+		Boolean free = true;
+		for(int i = 0; i < cashiers.length; i++) {
+			if(cashiers[i].getOccupied()) {
+				free = false;
+			}
+		}
+		return free;
 	}
 
 	/**
@@ -124,9 +134,9 @@ public class Bookstore {
 	/**
 	 * Name: setCashiers
 	 * Method used to update the cashiers.  <br>
-	 * @param cashiers - cashiers array - cashiers = int
+	 * @param cashiers - cashiers array - cashiers = Cashier[]
 	*/
-	public void setCashiers(Cashier[] Cashiers) {
+	public void setCashiers(Cashier[] cashiers) {
 		this.cashiers = cashiers;
 	}
 	/**
