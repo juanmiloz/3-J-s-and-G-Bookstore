@@ -698,14 +698,17 @@ public class BookstoreGUI {
 
 	public ArrayList<Book> removeOutOfStock(ArrayList<Book> booksToRemove) {
 		ArrayList<Book> removedArrayList= booksToRemove;
+		ArrayList<String> booksRemove = new ArrayList<>();
 		for (int i = 0; i < removedArrayList.size(); i++) {
 			if(removedArrayList.get(i).getQuantity()==0) {
 				removedArrayList.remove(i);
+				booksRemove.add(removedArrayList.get(i).getISBN());
 			}
 		}
-		
+		if(!booksRemove.isEmpty()) {
+			alertBookDontHaveStock(booksRemove);
+		}
 		return removedArrayList;
-		
 	}
 
 
