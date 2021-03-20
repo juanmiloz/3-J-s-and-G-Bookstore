@@ -1,6 +1,6 @@
 package model;
 
-public class Book {
+public class Book implements Comparable<Book> {
 	
 	private String title;
 	private double price;
@@ -155,6 +155,16 @@ public class Book {
 
 	public void setBookCount(int bookCount) {
 		this.bookCount = bookCount;
+	}
+
+	@Override
+	public int compareTo(Book o) {
+		if(getBookCount() > o.getBookCount()) {
+			return 1;
+		} else if(getBookCount() < o.getBookCount()) {
+			return -1;
+		}
+		return 0;
 	}
 	
 }
