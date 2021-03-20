@@ -1,6 +1,7 @@
 package model;
 
 import structures.hashTable.HashTable;
+import structures.hashTable.Node;
 
 public class Bookshelve {
 
@@ -56,4 +57,24 @@ public class Bookshelve {
 		this.name = name;
 	}
 	
+	public void getLastElement() {
+		Book last = null;
+		int pos = booksMap.getHashTable().length-1;
+		while(last==null) {
+			if(booksMap.getHashTable()[pos]!=null) {
+				Node<String, Book> currentNode = booksMap.getHashTable()[pos]; 
+				while(currentNode!=null) {
+					if(currentNode.getNext()==null) {
+						last = currentNode.getValue();
+						currentNode = currentNode.getNext();
+					}else {
+						currentNode = currentNode.getNext();
+					}
+				}
+			}else {
+				pos --;
+			}
+		}
+		
+	}
 }
