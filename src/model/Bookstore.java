@@ -1,8 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-
-import structures.hashTable.HashTable;
 import structures.hashTable.Node;
 
 public class Bookstore {
@@ -37,7 +35,6 @@ public class Bookstore {
 	 * @return a boolean informing if the book was added 
 	 */
 	public boolean addBook(String ISBN, Book book, int posShelve) {
-		System.out.println("Entro Agregado");
 		boolean canAdded = true;
 		for(int c = 0; c < bookshelves.length; c++) {
 			if(bookshelves[c] != null) {
@@ -48,7 +45,6 @@ public class Bookstore {
 		}
 		if(canAdded) {
 			bookshelves[posShelve].addBook(ISBN, book);
-			System.out.println("Agregado enserio");
 		}
 		return canAdded;
 	}

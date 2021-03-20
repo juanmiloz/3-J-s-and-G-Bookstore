@@ -37,10 +37,8 @@ public class HashTable<K,V> implements hashTableInterface<K,V>{
 		int position = key.hashCode()%lengthHash;
 		if(hashTable[position]==null) {
 			hashTable[position] = new Node<K,V>(key ,value);
-			System.out.println("new node");
 		}else {
 			setLatestNode(hashTable[position],key,value);
-			System.out.println("conflict");
 		}
 	}
 	/**
