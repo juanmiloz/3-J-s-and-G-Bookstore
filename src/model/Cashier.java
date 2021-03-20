@@ -34,7 +34,7 @@ public class Cashier {
 	 * method to advance to the next  . <br>
      */
     public void advance(){
-        Book popped=current.getSortedBookBaskets().pop();
+        Book popped = current.getSortedBookBaskets().pop();
         bag += popped.getISBN()+" ";
         price+=popped.getPrice();
         if(current.getSortedBookBaskets().isEmpty()){

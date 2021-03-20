@@ -22,7 +22,7 @@
                   <Font name="Montserrat Regular" size="12.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="btnContinueClients" layoutX="590.0" layoutY="524.0" onAction="#btnPressedContinueClients" prefHeight="27.0" prefWidth="188.0" style="-fx-background-color: #000000;" text="Continue" textFill="WHITE">
+            <JFXButton fx:id="btnContinueClients" defaultButton="true" layoutX="590.0" layoutY="524.0" onAction="#btnPressedContinueClients" prefHeight="27.0" prefWidth="188.0" style="-fx-background-color: #000000;" text="Continue" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font>
