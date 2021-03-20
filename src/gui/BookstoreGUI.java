@@ -675,24 +675,22 @@ public class BookstoreGUI {
 			sort = numberSort();
 
 			switch(sort){
-			case 1:
-				bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+				case 1:
+					bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 				break;
-
-			case 2:
-				countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+	
+				case 2:
+					countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 				break;
-
-			case 3:
-				System.out.println("3");
+	
+				case 3:
+					System.out.println("3");
 				break;
 			}
 		}else {
 			alertSelectetToggle();
 		}
-
-
-
+		
 	}
 
 
@@ -701,8 +699,8 @@ public class BookstoreGUI {
 		ArrayList<String> booksRemove = new ArrayList<>();
 		for (int i = 0; i < removedArrayList.size(); i++) {
 			if(removedArrayList.get(i).getQuantity()==0) {
-				removedArrayList.remove(i);
 				booksRemove.add(removedArrayList.get(i).getISBN());
+				removedArrayList.remove(i);
 			}
 		}
 		if(!booksRemove.isEmpty()) {
@@ -894,6 +892,15 @@ public class BookstoreGUI {
 		alert.setHeaderText("Quantity not available");
 		for(int i = 0; i < codes.size(); i++) {
 			alert.setContentText("The book whit " + codes.get(i) + " is out of stock\n");
+		}
+		alert.showAndWait();
+	}
+	
+	public void alertSort(ArrayList<Book> books) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("");
+		for(int i = 0; i < books.size();i++) {
+			alert.setContentText(books.get(i).getISBN()+"\n");
 		}
 		alert.showAndWait();
 	}
