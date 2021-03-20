@@ -33,10 +33,11 @@
             <JFXButton fx:id="nextShelve" layoutX="1068.0" layoutY="389.0" onAction="#showNextShelve" prefHeight="47.0" prefWidth="47.0" textFill="#ffffff00" />
             <TableView fx:id="tvCatalog" layoutX="338.0" layoutY="252.0" prefHeight="296.0" prefWidth="691.0">
               <columns>
-                <TableColumn fx:id="tcBookTitle" prefWidth="294.0" text="Title" />
-                <TableColumn fx:id="tcBookPrice" prefWidth="124.0" text="Price" />
-                  <TableColumn fx:id="tcBookAuthor" prefWidth="202.0" text="Author" />
-                  <TableColumn fx:id="tcBookQuantity" prefWidth="70.0" text="Quantity" />
+                <TableColumn fx:id="tcBookTitle" prefWidth="241.0" text="Title" />
+                <TableColumn fx:id="tcBookPrice" prefWidth="135.0" text="Price" />
+                  <TableColumn fx:id="tcBookAuthor" prefWidth="125.0" text="Author" />
+                  <TableColumn fx:id="tcBookQuantity" prefWidth="98.0" text="Quantity" />
+                  <TableColumn fx:id="tcBookISBN" prefWidth="91.0" text="ISBN" />
               </columns>
             </TableView>
             <Label fx:id="lblCurrentShelve" layoutX="916.0" layoutY="219.0" text="...">
