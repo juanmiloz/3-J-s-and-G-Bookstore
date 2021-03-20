@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 import structures.stack.*;
 
-public class Client {
+public class Client implements Comparable<Client>{
 
 	private String name;
 	private String id;
 	private ArrayList<Book> booksCodes;
-	private Stack<String> sortedBookBasket;
+	private Stack<Book> sortedBookBasket;
 	private int time;
 	private String status;
+	
 	/**
 	 * Name: client
 	 * Method constructor of client <br>
@@ -24,7 +25,7 @@ public class Client {
 		this.id = id;
 		this.time= time;
 		booksCodes= new ArrayList<>();
-		setSortedBookBasket(new Stack<String>());
+		sortedBookBasket=new Stack<Book>();
 		setStatus("Catalog");
 	}
 	/**
@@ -35,6 +36,29 @@ public class Client {
 	public void addBook(Book b) {
 		booksCodes.add(b);
 	}
+
+	public void addBooksToBasketArrayList(ArrayList<Book> sortedBooks){
+		for(int i=0; i<sortedBooks.size(); i++){
+			sortedBooks.get(i).setQuantity(sortedBooks.get(i).getQuantity()-1);
+			time++;
+			sortedBookBasket.push(sortedBooks.get(i));
+		}
+	}
+
+	public void addBooksToBasketArray(Book[] sortedBooks){
+		for(int i=0; i<sortedBooks.length; i++){
+			sortedBooks[i].setQuantity(sortedBooks[i].getQuantity()-1);
+			time++;
+			sortedBookBasket.push(sortedBooks[i]);
+		}
+	}
+
+	@Override
+	public int compareTo(Client c1) {
+		return this.time-c1.time;
+	}
+
+
 	/**
 	 * Name: getName
 	 * Method used to get client name <br>
@@ -71,17 +95,17 @@ public class Client {
 	/**
 	 * Name: sortedBookBasket
 	 * Method used to get the title of the book. <br>
-	 * @return A Stack<String> representing stack whit sorted books.
+	 * @return A Stack<Book> representing stack whit sorted books.
 	*/
-	public Stack<String> getSortedBookBaskets() {
+	public Stack<Book> getSortedBookBaskets() {
 		return sortedBookBasket;
 	}
 	/**
 	 * Name: sortedBookBasket
 	 * Method used to update the stack of sorted books.  <br>
-	 * @param SortedBookBasket - SortedBookBasket - SortedBookBasket = Stack<String>
+	 * @param SortedBookBasket - SortedBookBasket - SortedBookBasket = Stack<Book>
 	*/
-	public void setSortedBookBasket(Stack<String> sortedBookBasket) {
+	public void setSortedBookBasket(Stack<Book> sortedBookBasket) {
 		this.sortedBookBasket = sortedBookBasket;
 	}
 	
@@ -119,6 +143,7 @@ public class Client {
 	public void setTime(int time) {
 		this.time = time;
 	}
+	
 	
 	
 

@@ -2,7 +2,7 @@ package gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
+import java.util.*;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -26,7 +26,6 @@ import javafx.scene.text.Text;
 import model.Book;
 import model.Bookstore;
 import model.Client;
-
 public class BookstoreGUI {
 
 	private Bookstore bookstore;
@@ -669,7 +668,7 @@ public class BookstoreGUI {
 		loadClientTable();
 	}
 
-	private String bucketSort(ArrayList<Book> books)
+	private Book[] bucketSort(ArrayList<Book> books)
 	{
 		Book[] booksToSort = new Book[books.size()];
 		for(int c = 0; c < books.size(); c++) {
@@ -681,11 +680,6 @@ public class BookstoreGUI {
 		for(int c=0; c < booksToSort.length; c++) {
 			System.out.println(booksToSort[c].getISBN());
 		}
-		String message = "";
-		if(booksToSort.length <= 0) {
-			return message;
-		}
-		// Create n empty buckets
 		@SuppressWarnings("unchecked")
 		Vector<Book>[] buckets = new Vector[booksToSort.length];
 		for(int c = 0; c < booksToSort.length; c++) {
@@ -694,8 +688,13 @@ public class BookstoreGUI {
 		
 		// Put array elements in different buckets
 		for(int c = 0; c < booksToSort.length; c++) {
-			int idx = booksToSort[c].getBookCount() * booksToSort.length;
-			buckets[idx].add(booksToSort[c]);
+			System.out.println(booksToSort[c].getBookCount() - 1);
+			int idx = (booksToSort[c].getBookCount() - 1);
+			if(idx>=booksToSort.length) {
+				buckets[buckets.length - 1].add(booksToSort[c]);
+			} else {
+				buckets[idx].add(booksToSort[c]);
+			}
 		}
 		
 		//Sort individual buckets
@@ -710,17 +709,24 @@ public class BookstoreGUI {
             	booksToSort[index++] = buckets[c].get(j);
             }
         }
-		
-		// Print information
-		for(Book book : booksToSort) {
-			message += book.getISBN() + "," + book.getShelve() + "," + book.getPosInShelve();
+		return booksToSort;
+	}
+
+	public int numberSort() {
+		int sort = 0;
+		if(sortSelection.getSelectedToggle().equals(tglSort1)) {
+			sort = 1; 
+		}else if(sortSelection.getSelectedToggle().equals(tglSort2)) {
+			sort = 2;
+		}else if(sortSelection.getSelectedToggle().equals(tglSort3)) {
+			sort = 3;
 		}
-		
-		return message;
+		return sort;
+
 	}
 	
 	@FXML
-	void continuePickUp(ActionEvent event) {
+	void continuePickUp(ActionEvent event) throws IOException {
 
 		int sort = 0;
 		if(sortSelection.getSelectedToggle() != null) {
@@ -728,22 +734,46 @@ public class BookstoreGUI {
 
 			switch(sort){
 				case 1:
-					bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+					ArrayList<Book> books =bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+					alertSortBubble(books);
+					addToBasketBubble(books);
+					getCurrentClienttoSort().setStatus("Pay");
 				break;
 	
 				case 2:
-					countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+
+				Book[] arrayCounting=countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+					alertSortCounting(arrayCounting);
+					addToBasketCounting(arrayCounting);
+					getCurrentClienttoSort().setStatus("Pay");
 				break;
-			case 3:
-				System.out.println(bucketSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes())));
+				
+				case 3:
+				Book[] arrayBucket = bucketSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+				alertSortBucket(arrayBucket);
+				addToBasketBucket(arrayBucket);
+				getCurrentClienttoSort().setStatus("Pay");
 				break;
 			}
 		}else {
 			alertSelectetToggle();
 		}
 		
+		loadClientTable();
+		
 	}
 
+	public void addToBasketBubble(ArrayList<Book> books){
+		getCurrentClienttoSort().addBooksToBasketArrayList(books);
+	}
+
+	public void addToBasketCounting(Book [] books){
+		getCurrentClienttoSort().addBooksToBasketArray(books);
+	}
+
+	public void addToBasketBucket(Book [] books){
+		getCurrentClienttoSort().addBooksToBasketArray(books);
+	}
 
 	public ArrayList<Book> removeOutOfStock(ArrayList<Book> booksToRemove) {
 		ArrayList<Book> removedArrayList= booksToRemove;
@@ -760,15 +790,15 @@ public class BookstoreGUI {
 		return removedArrayList;
 	}
 
-
-
-	public void bubbleSort( ArrayList<Book> booksToSort) {
+	public ArrayList<Book> bubbleSort( ArrayList<Book> booksToSort) {
+		/*
 		System.out.println("Bubble");
 		System.out.println("==============");
 		System.out.println("Before");
 		for(int i=0; i<booksToSort.size();i++) {
 			System.out.println(booksToSort.get(i).getISBN());
 		}
+		*/
 		int n = booksToSort.size(); 
 		for (int i = 0; i < n-1; i++) 
 			for (int j = 0; j < n-i-1; j++) 
@@ -785,21 +815,25 @@ public class BookstoreGUI {
 					booksToSort.set(j+1,temp); 
 				} 
 
+		/*
 		System.out.println("==============");
 		System.out.println("After");
 		for(int i=0; i<booksToSort.size();i++) {
 			System.out.println(booksToSort.get(i).getISBN()+ ","+ booksToSort.get(i).getShelve()+ ","+ booksToSort.get(i).getPosInShelve());
 		}
-
+		*/
+		return booksToSort;
 	}
 
-	public void countingSort(ArrayList<Book> booksToSort) {
+	public Book[] countingSort(ArrayList<Book> booksToSort) {
+		/*
 		System.out.println("Counting");
 		System.out.println("==============");
 		System.out.println("Before");
 		for(int i=0; i<booksToSort.size();i++) {
 			System.out.println(booksToSort.get(i).getISBN());
 		}
+		*/
 
 		Book booksToSortArr[]= new Book[booksToSort.size()];
 		int n = booksToSortArr.length;
@@ -837,38 +871,25 @@ public class BookstoreGUI {
 			--count[booksToSortArr[i].getBookCount()];
 		}
 		
+		/*
 		System.out.println("==============");
 		System.out.println("After");
 		for(int i=0; i<output.length;i++) {
 			System.out.println(output[i].getISBN()+ ","+ output[i].getShelve()+ ","+ output[i].getPosInShelve());
 		}
-		
-
-	}
-
-
-
-	public int numberSort() {
-		int sort = 0;
-		if(sortSelection.getSelectedToggle().equals(tglSort1)) {
-			sort = 1; 
-		}else if(sortSelection.getSelectedToggle().equals(tglSort2)) {
-			sort = 2;
-		}else if(sortSelection.getSelectedToggle().equals(tglSort3)) {
-			sort = 3;
-		}
-		return sort;
-
+		*/
+		return output;
 	}
 
 	@FXML
 	void viewPay(ActionEvent event) {
-
+		bookstore.initializeCheckOutLine();
+		bookstore.checkout();
 	}
 
 	@FXML
 	void endProgram(ActionEvent event) {
-
+		
 	}
 
 	//mainPane methods
@@ -941,18 +962,51 @@ public class BookstoreGUI {
 	public void alertBookDontHaveStock(ArrayList<String> codes) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("Quantity not available");
+		String output = "";
 		for(int i = 0; i < codes.size(); i++) {
-			alert.setContentText("The book whit " + codes.get(i) + " is out of stock\n");
+			output += "The book with " + codes.get(i) + " is out of stock\n";
 		}
+		alert.setContentText(output);
 		alert.showAndWait();
 	}
 	
-	public void alertSort(ArrayList<Book> books) {
+	public void alertSortBubble(ArrayList<Book> books) {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText("");
+		alert.setHeaderText("The order to pick up the books is:");
+		String output = "";
 		for(int i = 0; i < books.size();i++) {
-			alert.setContentText(books.get(i).getISBN()+"\n");
+			output += "ISBN: " + books.get(i).getISBN() + "\n";
 		}
+		alert.setContentText(output);
+		alert.showAndWait();
+	}
+
+	public void alertSortCounting(Book[] books) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("The order to pick up the books is:");
+		String output = "";
+		for(int i = 0; i < books.length;i++) {
+			output += "ISBN: " + books[i].getISBN() + "\n";
+		}
+		alert.setContentText(output);
+		alert.showAndWait();
+	}
+	
+	public void alertSortBucket(Book[] books) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("The order to pick up the books is:");
+		String output = "";
+		for(int i = 0; i < books.length;i++) {
+			output += "ISBN: " + books[i].getISBN() + "\n";
+		}
+		alert.setContentText(output);
+		alert.showAndWait();
+	}
+
+	public void alertBooksAdded(){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Books added successfully");
+		alert.setContentText("Books were successfully added to the basket");
 		alert.showAndWait();
 	}
 
