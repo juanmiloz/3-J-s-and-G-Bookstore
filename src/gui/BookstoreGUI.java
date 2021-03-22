@@ -1,11 +1,10 @@
 package gui;
 import java.io.IOException;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
+
 import java.util.Collections;
 import java.util.*;
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -22,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
@@ -187,6 +187,9 @@ public class BookstoreGUI {
 	//Summary Attributes
 	@FXML
 	private JFXButton endButton;
+	
+    @FXML
+    private TextArea summaryTextArea;
 
 
 	//Generic attributes
@@ -213,6 +216,8 @@ public class BookstoreGUI {
 
 	@FXML
 	private JFXButton btnViewSumary;
+	
+	
 
 	@FXML
 	private Label lblCurrentShelve;
@@ -508,6 +513,7 @@ public class BookstoreGUI {
 				btnPay.setDisable(true);
 				setCurrentClientFillCatalog(null);
 			} else {
+				tvClients.setDisable(true);
 				btnPay.setDisable(false);
 				btnPickUp.setDisable(true);
 				btnCatalog.setDisable(true);
@@ -679,9 +685,7 @@ public class BookstoreGUI {
 	public void backToClientTable(ActionEvent event) throws IOException {
 		loadClientTable();
 	}
-<<<<<<< HEAD
 
-=======
 	/**
 	 * Name: bucketSort
 	 * Method to sort books for bucket form<br>
@@ -754,7 +758,7 @@ public class BookstoreGUI {
 	 * @param event - event = ActionEvent
 	 * @throws IOException
 	 */
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 	@FXML
 	void continuePickUp(ActionEvent event) throws IOException {
 
@@ -763,18 +767,6 @@ public class BookstoreGUI {
 			sort = numberSort();
 
 			switch(sort){
-<<<<<<< HEAD
-			case 1:
-				bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
-				break;
-
-			case 2:
-				countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
-				break;
-
-			case 3:
-				System.out.println("3");
-=======
 				case 1:
 					ArrayList<Book> books =bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 					alertSortBubble(books);
@@ -795,21 +787,21 @@ public class BookstoreGUI {
 				alertSortBucket(arrayBucket);
 				addToBasketBucket(arrayBucket);
 				getCurrentClienttoSort().setStatus("Pay");
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 				break;
 			}
 		}else {
 			alertSelectetToggle();
 		}
-<<<<<<< HEAD
 
 
 
-=======
+
+
 		
 		loadClientTable();
 		
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 	}
 	/**
 	 * Name: addToBasketBubble
@@ -957,15 +949,37 @@ public class BookstoreGUI {
 		*/
 		return output;
 	}
+	
+	
+	/**
+	 * Name: loadPaymentSummary
+	 * Method to load payment summary.<br>
+	 * @throws IOException
+	 */
+	public void loadPaymentSummary() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Summary.fxml"));
+		fxmlLoader.setController(this);
+
+		Parent summary = fxmlLoader.load();
+
+		mainPane.getChildren().clear();
+		mainPane.setCenter(summary);
+	}
+	
 	/**
 	 * Name: viewPay
 	 * Method to go for checkout  <br>
 	 * @param event - event = ActionEvent
+	 * @throws IOException 
 	 */
 	@FXML
-	void viewPay(ActionEvent event) {
+	void viewPay(ActionEvent event) throws IOException {
+		
 		bookstore.initializeCheckOutLine();
-		bookstore.checkout();
+		String report=bookstore.checkout();
+		System.out.println(report);
+		loadPaymentSummary();
+		summaryTextArea.setText(report);	
 	}
 	/**
 	 * Name: endProgram 
@@ -974,7 +988,7 @@ public class BookstoreGUI {
 	 */
 	@FXML
 	void endProgram(ActionEvent event) {
-		
+		System.exit(0);
 	}
 
 	//mainPane methods
@@ -1083,9 +1097,7 @@ public class BookstoreGUI {
 		alert.setContentText(output);
 		alert.showAndWait();
 	}
-<<<<<<< HEAD
 
-=======
 	/**
 	 * Name: alertSortBubble 	 
 	 * Method to inform the user what type of sort they have selected  <br>
@@ -1146,7 +1158,7 @@ public class BookstoreGUI {
 	 * Method to grab the current customer catalog <br>
 	 * @return a Client representing current client
 	 */
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 	public Client getCurrentClientFillCatalog() {
 		return currentClientFillCatalog;
 	}

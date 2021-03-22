@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,6 +23,14 @@
                   <Font name="Montserrat SemiBold" size="13.0" />
                </font>
             </JFXButton>
+            <ScrollPane layoutX="340.0" layoutY="279.0" prefHeight="261.0" prefWidth="686.0">
+               <content>
+                  <TextArea fx:id="summaryTextArea" prefHeight="256.0" prefWidth="686.0">
+                     <font>
+                        <Font name="Montserrat Regular" size="16.0" />
+                     </font></TextArea>
+               </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
    </center>

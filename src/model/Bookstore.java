@@ -70,7 +70,7 @@ public class Bookstore {
 		}
 	}
 
-	public void checkout(){
+	public String checkout(){
 		String report="";
 		boolean exit = false;
 		while(!exit /*&& !checkoutLine.isEmpty()*/){
@@ -78,10 +78,10 @@ public class Bookstore {
 				if(!cashiers[i].getOccupied() & !checkoutLine.isEmpty()){
 					cashiers[i].begin(checkoutLine.dequeue());
 				}else if(!checkoutLine.isEmpty()){
-					cashiers[i].advance();
+					report+=cashiers[i].advance();
 				}else {
 					if(!cashiers[i].getCurrent().getSortedBookBaskets().isEmpty()) {
-						cashiers[i].advance();
+						report+=cashiers[i].advance();
 					}
 				}
 			}
@@ -89,6 +89,7 @@ public class Bookstore {
 				exit = cashiersFree();
 			}
 		}
+		return report;
 	}
 	
 	public boolean cashiersFree() {

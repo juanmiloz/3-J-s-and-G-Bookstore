@@ -31,16 +31,21 @@ public class Cashier {
     } 
     /**
 	 * Name: advance
-	 * method to advance to the next  . <br>
+	 * method to advance to the next  .
+	 * @return String whit the sale report <br>
      */
-    public void advance(){
+    public String advance(){
+    	String report="";
         Book popped = current.getSortedBookBaskets().pop();
         bag += popped.getISBN()+" ";
         price+=popped.getPrice();
         if(current.getSortedBookBaskets().isEmpty()){
-            System.out.println(report());
+            report=report();
         	occupied=false; 
        }
+		return report;
+        
+        
     }
     /**
 	 * Name: report
