@@ -1,8 +1,6 @@
 package gui;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -669,56 +667,6 @@ public class BookstoreGUI {
 		loadClientTable();
 	}
 
-	private String bucketSort(ArrayList<Book> books)
-	{
-		Book[] booksToSort = new Book[books.size()];
-		for(int c = 0; c < books.size(); c++) {
-			booksToSort[c] = books.get(c);
-		}
-		System.out.println("Bucket-Sort");
-		System.out.println("==============");
-		System.out.println("Before");
-		for(int c=0; c < booksToSort.length; c++) {
-			System.out.println(booksToSort[c].getISBN());
-		}
-		String message = "";
-		if(booksToSort.length <= 0) {
-			return message;
-		}
-		// Create n empty buckets
-		@SuppressWarnings("unchecked")
-		Vector<Book>[] buckets = new Vector[booksToSort.length];
-		for(int c = 0; c < booksToSort.length; c++) {
-			buckets[c] = new Vector<Book>();
-		}
-		
-		// Put array elements in different buckets
-		for(int c = 0; c < booksToSort.length; c++) {
-			int idx = booksToSort[c].getBookCount() * booksToSort.length;
-			buckets[idx].add(booksToSort[c]);
-		}
-		
-		//Sort individual buckets
-		for(int c = 0; c < booksToSort.length; c++) {
-			Collections.sort(buckets[c]);
-		}
-		
-		// Concatenate information
-		int index = 0;
-		for (int c = 0; c < booksToSort.length; c++) {
-            for (int j = 0; j < buckets[c].size(); j++) {
-            	booksToSort[index++] = buckets[c].get(j);
-            }
-        }
-		
-		// Print information
-		for(Book book : booksToSort) {
-			message += book.getISBN() + "," + book.getShelve() + "," + book.getPosInShelve();
-		}
-		
-		return message;
-	}
-	
 	@FXML
 	void continuePickUp(ActionEvent event) {
 
@@ -727,21 +675,24 @@ public class BookstoreGUI {
 			sort = numberSort();
 
 			switch(sort){
-				case 1:
-					bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+			case 1:
+				bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 				break;
-	
-				case 2:
-					countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+
+			case 2:
+				countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 				break;
+
 			case 3:
-				System.out.println(bucketSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes())));
+				System.out.println("3");
 				break;
 			}
 		}else {
 			alertSelectetToggle();
 		}
-		
+
+
+
 	}
 
 
@@ -752,6 +703,7 @@ public class BookstoreGUI {
 			if(removedArrayList.get(i).getQuantity()==0) {
 				booksRemove.add(removedArrayList.get(i).getISBN());
 				removedArrayList.remove(i);
+				
 			}
 		}
 		if(!booksRemove.isEmpty()) {
@@ -943,15 +895,6 @@ public class BookstoreGUI {
 		alert.setHeaderText("Quantity not available");
 		for(int i = 0; i < codes.size(); i++) {
 			alert.setContentText("The book whit " + codes.get(i) + " is out of stock\n");
-		}
-		alert.showAndWait();
-	}
-	
-	public void alertSort(ArrayList<Book> books) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText("");
-		for(int i = 0; i < books.size();i++) {
-			alert.setContentText(books.get(i).getISBN()+"\n");
 		}
 		alert.showAndWait();
 	}
