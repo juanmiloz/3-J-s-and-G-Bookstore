@@ -3,11 +3,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
+
 import java.util.Collections;
 import java.util.*;
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -684,9 +683,7 @@ public class BookstoreGUI {
 	public void backToClientTable(ActionEvent event) throws IOException {
 		loadClientTable();
 	}
-<<<<<<< HEAD
 
-=======
 	/**
 	 * Name: bucketSort
 	 * Method to sort books for bucket form<br>
@@ -759,7 +756,7 @@ public class BookstoreGUI {
 	 * @param event - event = ActionEvent
 	 * @throws IOException
 	 */
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 	@FXML
 	void continuePickUp(ActionEvent event) throws IOException {
 
@@ -768,18 +765,6 @@ public class BookstoreGUI {
 			sort = numberSort();
 
 			switch(sort){
-<<<<<<< HEAD
-			case 1:
-				bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
-				break;
-
-			case 2:
-				countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
-				break;
-
-			case 3:
-				System.out.println("3");
-=======
 				case 1:
 					ArrayList<Book> books =bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 					alertSortBubble(books);
@@ -800,21 +785,21 @@ public class BookstoreGUI {
 				alertSortBucket(arrayBucket);
 				addToBasketBucket(arrayBucket);
 				getCurrentClienttoSort().setStatus("Pay");
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 				break;
 			}
 		}else {
 			alertSelectetToggle();
 		}
-<<<<<<< HEAD
 
 
 
-=======
+
+
 		
 		loadClientTable();
 		
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 	}
 	/**
 	 * Name: addToBasketBubble
@@ -1126,9 +1111,7 @@ public class BookstoreGUI {
 		alert.setContentText(output);
 		alert.showAndWait();
 	}
-<<<<<<< HEAD
 
-=======
 	/**
 	 * Name: alertSortBubble 	 
 	 * Method to inform the user what type of sort they have selected  <br>
@@ -1205,7 +1188,7 @@ public class BookstoreGUI {
 	 * Method to grab the current customer catalog <br>
 	 * @return a Client representing current client
 	 */
->>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
+
 	public Client getCurrentClientFillCatalog() {
 		return currentClientFillCatalog;
 	}
