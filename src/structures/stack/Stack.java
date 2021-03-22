@@ -1,6 +1,6 @@
 package structures.stack;
 
-public class Stack<T> implements StackInterface<T>{
+public class Stack<T> implements StackInterface<T>, Cloneable {
 
 	private Node<T> top; 
 	
@@ -44,10 +44,28 @@ public class Stack<T> implements StackInterface<T>{
 	/**
 	 * Name: pop
 	 * Method to update node <br>
+	 * @return A node of Type T
 	 */
 	@Override
-	public void pop() {
+	public T pop() {
+		T r = top.getElement();
 		top = top.getPrevItem();
+		return r;
 	}
+
+
+	/*	
+	public String toStringStack(Node<T> top){
+		String output = "";
+		Node<T> toPrint = top;
+
+		while(toPrint!=null){
+			output += top.getElement() + "\n";
+			
+		}
+
+		return output;
+	}
+	*/
 
 }

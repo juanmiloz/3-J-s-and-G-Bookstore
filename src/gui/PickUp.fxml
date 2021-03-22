@@ -40,7 +40,7 @@
                         <Font name="Montserrat SemiBold" size="19.0" />
                      </font>
                   </JFXToggleButton>
-                  <JFXToggleButton fx:id="tglSort3" prefHeight="18.0" prefWidth="171.0" text="Sort 3" toggleColor="#dab314" toggleGroup="$sortSelection" toggleLineColor="BLACK">
+                  <JFXToggleButton fx:id="tglSort3" prefHeight="18.0" prefWidth="171.0" text="Bucket Sort" toggleColor="#dab314" toggleGroup="$sortSelection" toggleLineColor="BLACK">
                      <font>
                         <Font name="Montserrat SemiBold" size="19.0" />
                      </font>

@@ -1,20 +1,27 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+import structures.queue.*;
 import structures.hashTable.Node;
 
 public class Bookstore {
 
-	private int numberOfCashiers;
+
 	private int bookCount;
 	private Bookshelve[] bookshelves;
 	private ArrayList<Client> clients;
+	private Queue<Client> checkoutLine;
+	private Cashier[] cashiers;
+
 	/**
 	 * Name : Bookstore
 	 * Constructor method of a bookstore. <br>
 	 */
 	public Bookstore() {
 		clients = new ArrayList<>();
+		checkoutLine=new Queue<>();
 		bookCount=0;
 	}
 	/**
@@ -51,14 +58,60 @@ public class Bookstore {
 		}
 		return canAdded;
 	}
+
+
+
+	public void initializeCheckOutLine(){
+		Collections.sort(clients);
+		
+		for(int i=0; i< clients.size(); i++){
+			System.out.println(clients.get(i).getName() + " " + clients.get(i).getTime());
+			checkoutLine.enqueue(clients.get(i));
+		}
+	}
+
+	public void checkout(){
+		String report="";
+		boolean exit = false;
+		while(!exit /*&& !checkoutLine.isEmpty()*/){
+			for(int i=0; i< cashiers.length; i++){
+				if(!cashiers[i].getOccupied() & !checkoutLine.isEmpty()){
+					cashiers[i].begin(checkoutLine.dequeue());
+				}else if(!checkoutLine.isEmpty()){
+					cashiers[i].advance();
+				}else {
+					if(!cashiers[i].getCurrent().getSortedBookBaskets().isEmpty()) {
+						cashiers[i].advance();
+					}
+				}
+			}
+			if(checkoutLine.isEmpty()) {
+				exit = cashiersFree();
+			}
+		}
+	}
+	
+	public boolean cashiersFree() {
+		Boolean free = true;
+		for(int i = 0; i < cashiers.length; i++) {
+			if(cashiers[i].getOccupied()) {
+				free = false;
+			}
+		}
+		return free;
+	}
+
 	/**
 	 * Name: addBook
 	 * Method to initialize the bookstore  <br>
-	 * @param cashiers - number of cashiers - cashiers = int
+	 * @param cash - number of cashiers - cashiers = int
 	 * @param shelves - quantity of shelves - shelves = int
 	 */
-	public void initializeStore(int cashiers, int shelves) {
-		numberOfCashiers=cashiers;
+	public void initializeStore(int cash, int shelves) {
+		cashiers= new Cashier[cash];
+		for(int i=0; i<cash;i++){
+			cashiers[i]= new Cashier();
+		}
 		bookshelves = new Bookshelve[shelves];
 	}
 	/**
@@ -74,21 +127,21 @@ public class Bookstore {
 		clients.add(newClient);
 	}
 	/**
-	 * Name: getNumberOfCashiers
-	 * Method used to get number of cashiers. <br>
-	 * @return A int representing number of cashiers.
+	 * Name: getCashiers
+	 * Method used to get  cashiers. <br>
+	 * @return An array representing cashiers.
 	 */
-	public int getNumberOfCashiers() {
-		return numberOfCashiers;
+	public Cashier[] getCashiers() {
+		return cashiers;
 	}
 
 	/**
-	 * Name: setNumberOfCashiers
-	 * Method used to update the numberOfCashiers.  <br>
-	 * @param numberOfCashiers - number Of Cashiers  - numberOfCashiers = int
+	 * Name: setCashiers
+	 * Method used to update the cashiers.  <br>
+	 * @param cashiers - cashiers array - cashiers = Cashier[]
 	*/
-	public void setNumberOfCashiers(int numberOfCashiers) {
-		this.numberOfCashiers = numberOfCashiers;
+	public void setCashiers(Cashier[] cashiers) {
+		this.cashiers = cashiers;
 	}
 	/**
 	 * Name: isClientsCatalog
@@ -182,6 +235,12 @@ public class Bookstore {
 	}
 	public void setBookCount(int bookCount) {
 		this.bookCount = bookCount;
+	}
+	public Queue<Client> getCheckoutLine() {
+		return checkoutLine;
+	}
+	public void setCheckoutLine(Queue<Client> checkoutLine) {
+		this.checkoutLine = checkoutLine;
 	}
 
 	

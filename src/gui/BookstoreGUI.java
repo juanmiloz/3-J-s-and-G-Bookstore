@@ -1,6 +1,11 @@
 package gui;
 import java.io.IOException;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.Collections;
+import java.util.*;
+>>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -24,7 +29,6 @@ import javafx.scene.text.Text;
 import model.Book;
 import model.Bookstore;
 import model.Client;
-
 public class BookstoreGUI {
 
 	private Bookstore bookstore;
@@ -638,7 +642,7 @@ public class BookstoreGUI {
 	}
 	/**
 	 * Name: viewPickUp
-	 * Method to showpick up<br>
+	 * Method to show pick up<br>
 	 * @param event
 	 * @throws IOException
 	 */
@@ -651,7 +655,11 @@ public class BookstoreGUI {
 			alertSelectetClient();
 		}
 	}
-
+	/**
+	 * Name: loadPickUp
+	 * Method to load pick up<br>
+	 * @throws IOException
+	 */
 	public void loadPickUp() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PickUp.fxml"));
 		fxmlLoader.setController(this);
@@ -661,20 +669,101 @@ public class BookstoreGUI {
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pickUp);
 	}
-
+	/**
+	 * Name: backToClientTable
+	 * Method to back to screen for show client table<br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void backToClientTable(ActionEvent event) throws IOException {
 		loadClientTable();
 	}
+<<<<<<< HEAD
 
+=======
+	/**
+	 * Name: bucketSort
+	 * Method to sort books for bucket form<br>
+	 * @param books - books = ArrayList<Book>
+	 * @return a Book[] representing sort list of books
+	 */
+	private Book[] bucketSort(ArrayList<Book> books)
+	{
+		Book[] booksToSort = new Book[books.size()];
+		for(int c = 0; c < books.size(); c++) {
+			booksToSort[c] = books.get(c);
+		}
+		System.out.println("Bucket-Sort");
+		System.out.println("==============");
+		System.out.println("Before");
+		for(int c=0; c < booksToSort.length; c++) {
+			System.out.println(booksToSort[c].getISBN());
+		}
+		@SuppressWarnings("unchecked")
+		Vector<Book>[] buckets = new Vector[booksToSort.length];
+		for(int c = 0; c < booksToSort.length; c++) {
+			buckets[c] = new Vector<Book>();
+		}
+		
+		// Put array elements in different buckets
+		for(int c = 0; c < booksToSort.length; c++) {
+			System.out.println(booksToSort[c].getBookCount() - 1);
+			int idx = (booksToSort[c].getBookCount() - 1);
+			if(idx>=booksToSort.length) {
+				buckets[buckets.length - 1].add(booksToSort[c]);
+			} else {
+				buckets[idx].add(booksToSort[c]);
+			}
+		}
+		
+		//Sort individual buckets
+		for(int c = 0; c < booksToSort.length; c++) {
+			Collections.sort(buckets[c]);
+		}
+		
+		// Concatenate information
+		int index = 0;
+		for (int c = 0; c < booksToSort.length; c++) {
+            for (int j = 0; j < buckets[c].size(); j++) {
+            	booksToSort[index++] = buckets[c].get(j);
+            }
+        }
+		return booksToSort;
+	}
+	/**
+	 * Name: numberSort
+	 * Method to select the desired sorting type <br>
+	 * @return a int representing an integer with the sort order you want to use.
+	 */
+	public int numberSort() {
+		int sort = 0;
+		if(sortSelection.getSelectedToggle().equals(tglSort1)) {
+			sort = 1; 
+		}else if(sortSelection.getSelectedToggle().equals(tglSort2)) {
+			sort = 2;
+		}else if(sortSelection.getSelectedToggle().equals(tglSort3)) {
+			sort = 3;
+		}
+		return sort;
+
+	}
+	/**
+	 * Name: continuePickUp
+	 * Method to continue with the pick up process <br>
+	 * @param event - event = ActionEvent
+	 * @throws IOException
+	 */
+>>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
 	@FXML
-	void continuePickUp(ActionEvent event) {
+	void continuePickUp(ActionEvent event) throws IOException {
 
 		int sort = 0;
 		if(sortSelection.getSelectedToggle() != null) {
 			sort = numberSort();
 
 			switch(sort){
+<<<<<<< HEAD
 			case 1:
 				bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
 				break;
@@ -685,17 +774,73 @@ public class BookstoreGUI {
 
 			case 3:
 				System.out.println("3");
+=======
+				case 1:
+					ArrayList<Book> books =bubbleSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+					alertSortBubble(books);
+					addToBasketBubble(books);
+					getCurrentClienttoSort().setStatus("Pay");
+				break;
+	
+				case 2:
+
+				Book[] arrayCounting=countingSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+					alertSortCounting(arrayCounting);
+					addToBasketCounting(arrayCounting);
+					getCurrentClienttoSort().setStatus("Pay");
+				break;
+				
+				case 3:
+				Book[] arrayBucket = bucketSort(removeOutOfStock(getCurrentClienttoSort().getBooksCodes()));
+				alertSortBucket(arrayBucket);
+				addToBasketBucket(arrayBucket);
+				getCurrentClienttoSort().setStatus("Pay");
+>>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
 				break;
 			}
 		}else {
 			alertSelectetToggle();
 		}
+<<<<<<< HEAD
 
 
 
+=======
+		
+		loadClientTable();
+		
+>>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
 	}
-
-
+	/**
+	 * Name: addToBasketBubble
+	 * Method to sort the book arrangement by the selected method  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
+	public void addToBasketBubble(ArrayList<Book> books){
+		getCurrentClienttoSort().addBooksToBasketArrayList(books);
+	}
+	/**
+	 * Name: addToBasketCounting
+	 * Method to sort the book arrangement by the selected method  <br>
+	 * @param books - books = Book []
+	 */
+	public void addToBasketCounting(Book [] books){
+		getCurrentClienttoSort().addBooksToBasketArray(books);
+	}
+	/**
+	 * Name: addToBasketBucket
+	 * Method to sort the book arrangement by the selected method  <br>
+	 * @param books - books = Book []
+	 */
+	public void addToBasketBucket(Book [] books){
+		getCurrentClienttoSort().addBooksToBasketArray(books);
+	}
+	/**
+	 * Name: removeOutOfStock
+	 * Method used to remove out-of-print books  <br>
+	 * @param booksToRemove - booksToRemove = ArrayList<Book>
+	 * @return a ArrayList<Book> representing out-of-print books
+	 */ 
 	public ArrayList<Book> removeOutOfStock(ArrayList<Book> booksToRemove) {
 		ArrayList<Book> removedArrayList= booksToRemove;
 		ArrayList<String> booksRemove = new ArrayList<>();
@@ -711,16 +856,21 @@ public class BookstoreGUI {
 		}
 		return removedArrayList;
 	}
-
-
-
-	public void bubbleSort( ArrayList<Book> booksToSort) {
+	/**
+	 * Name: bubbleSort
+	 * Method sort by bubble   <br>
+	 * @param booksToSort - booksToSort = ArrayList<Book>
+	 * @return a ArrayList<Book> with the books ordered 
+	 */
+	public ArrayList<Book> bubbleSort( ArrayList<Book> booksToSort) {
+		/*
 		System.out.println("Bubble");
 		System.out.println("==============");
 		System.out.println("Before");
 		for(int i=0; i<booksToSort.size();i++) {
 			System.out.println(booksToSort.get(i).getISBN());
 		}
+		*/
 		int n = booksToSort.size(); 
 		for (int i = 0; i < n-1; i++) 
 			for (int j = 0; j < n-i-1; j++) 
@@ -737,21 +887,30 @@ public class BookstoreGUI {
 					booksToSort.set(j+1,temp); 
 				} 
 
+		/*
 		System.out.println("==============");
 		System.out.println("After");
 		for(int i=0; i<booksToSort.size();i++) {
 			System.out.println(booksToSort.get(i).getISBN()+ ","+ booksToSort.get(i).getShelve()+ ","+ booksToSort.get(i).getPosInShelve());
 		}
-
+		*/
+		return booksToSort;
 	}
-
-	public void countingSort(ArrayList<Book> booksToSort) {
+	/**
+	 * Name: countingSort
+	 * Method sort by counting    <br>
+	 * @param booksToSort - booksToSort = ArrayList<Book>
+	 * @return a Book[]  with the books ordered 
+	 */
+	public Book[] countingSort(ArrayList<Book> booksToSort) {
+		/*
 		System.out.println("Counting");
 		System.out.println("==============");
 		System.out.println("Before");
 		for(int i=0; i<booksToSort.size();i++) {
 			System.out.println(booksToSort.get(i).getISBN());
 		}
+		*/
 
 		Book booksToSortArr[]= new Book[booksToSort.size()];
 		int n = booksToSortArr.length;
@@ -789,42 +948,41 @@ public class BookstoreGUI {
 			--count[booksToSortArr[i].getBookCount()];
 		}
 		
+		/*
 		System.out.println("==============");
 		System.out.println("After");
 		for(int i=0; i<output.length;i++) {
 			System.out.println(output[i].getISBN()+ ","+ output[i].getShelve()+ ","+ output[i].getPosInShelve());
 		}
-		
-
+		*/
+		return output;
 	}
-
-
-
-	public int numberSort() {
-		int sort = 0;
-		if(sortSelection.getSelectedToggle().equals(tglSort1)) {
-			sort = 1; 
-		}else if(sortSelection.getSelectedToggle().equals(tglSort2)) {
-			sort = 2;
-		}else if(sortSelection.getSelectedToggle().equals(tglSort3)) {
-			sort = 3;
-		}
-		return sort;
-
-	}
-
+	/**
+	 * Name: viewPay
+	 * Method to go for checkout  <br>
+	 * @param event - event = ActionEvent
+	 */
 	@FXML
 	void viewPay(ActionEvent event) {
-
+		bookstore.initializeCheckOutLine();
+		bookstore.checkout();
 	}
-
+	/**
+	 * Name: endProgram 
+	 * Method for end program   <br>
+	 * @param event - event = ActionEvent
+	 */
 	@FXML
 	void endProgram(ActionEvent event) {
-
+		
 	}
 
 	//mainPane methods
-
+	/**
+	 * Name: showAbout 
+	 * Method for show Program information    <br>
+	 * @param event - event = ActionEvent
+	 */
 	@FXML
 	void showAbout(ActionEvent event) {
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -835,7 +993,10 @@ public class BookstoreGUI {
 	}
 
 	//Alerts
-
+	/**
+	 * Name: alertLoadProgram 
+	 * Method to inform the user that the program is loading <br>
+	 */
 	public void alertLoadProgram() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -843,7 +1004,10 @@ public class BookstoreGUI {
 		alert.setContentText("Its imposible load the program, please contact your supplier");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertEmptyField 
+	 * Method to inform the user that he is leaving an empty field  <br>
+	 */
 	public void alertEmptyField() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -851,7 +1015,10 @@ public class BookstoreGUI {
 		alert.setContentText("There are empty fields that do not allow you to continue, please fill in all the fields");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertTypeDataIncorrect 
+	 * Method to inform the user that have entered a wrong data   <br>
+	 */
 	public void alertTypeDataIncorrect() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -859,7 +1026,10 @@ public class BookstoreGUI {
 		alert.setContentText("Enter a type of data that is not valid, please check all the fields");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertTypeDataIncorrect 
+	 * Method to inform the user that they cannot add a book   <br>
+	 */
 	public void alertCantAddTheBook() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -867,7 +1037,10 @@ public class BookstoreGUI {
 		alert.setContentText("There is a book with the same ISBN");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertInvalidValueException 
+	 * Method to inform the user that have entered a wrong data   <br>
+	 */
 	public void alertInvalidValueException() {
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -875,49 +1048,145 @@ public class BookstoreGUI {
 		alert.setContentText("The value that was entered is not valid, please verify your values");
 		alert.show();
 	}
-
+	/**
+	 * Name: alertInvalidValueException 
+	 * Method to inform the user that have entered a wrong data   <br>
+	 */
 	public void alertSelectetClient() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one client from the table");
 		alert.showAndWait();
 	}
-
+	/**
+	 * Name: alertSelectetToggle 
+	 * Method of informing the user that more than one lever is selected<br>
+	 */
 	public void alertSelectetToggle() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one toggle");
 		alert.showAndWait();
 	}
-	
+	/**
+	 * Name: alertBookDontHaveStock 	 
+	 * Method to inform the user that a book has no values <br>
+	 * @param codes - codes = ArrayList<String> codes
+	 */
 	public void alertBookDontHaveStock(ArrayList<String> codes) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("Quantity not available");
+		String output = "";
 		for(int i = 0; i < codes.size(); i++) {
-			alert.setContentText("The book whit " + codes.get(i) + " is out of stock\n");
+			output += "The book with " + codes.get(i) + " is out of stock\n";
 		}
+		alert.setContentText(output);
 		alert.showAndWait();
 	}
+<<<<<<< HEAD
 
+=======
+	/**
+	 * Name: alertSortBubble 	 
+	 * Method to inform the user what type of sort they have selected  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
+	public void alertSortBubble(ArrayList<Book> books) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("The order to pick up the books is:");
+		String output = "";
+		for(int i = 0; i < books.size();i++) {
+			output += "ISBN: " + books.get(i).getISBN() + "\n";
+		}
+		alert.setContentText(output);
+		alert.showAndWait();
+	}
+	/**
+	 * Name: alertSortCounting 	 
+	 * Method to inform the user what type of sort they have selected  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
+	public void alertSortCounting(Book[] books) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("The order to pick up the books is:");
+		String output = "";
+		for(int i = 0; i < books.length;i++) {
+			output += "ISBN: " + books[i].getISBN() + "\n";
+		}
+		alert.setContentText(output);
+		alert.showAndWait();
+	}
+	/**
+	 * Name: alertSortBucket 	 
+	 * Method to inform the user what type of sort they have selected  <br>
+	 * @param books - books = ArrayList<Book>
+	 */
+	public void alertSortBucket(Book[] books) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("The order to pick up the books is:");
+		String output = "";
+		for(int i = 0; i < books.length;i++) {
+			output += "ISBN: " + books[i].getISBN() + "\n";
+		}
+		alert.setContentText(output);
+		alert.showAndWait();
+	}
+	/**
+	 * Name: alertBooksAdded 	 
+	 * Method to inform the user books addes <br>
+	 */
+	public void alertBooksAdded(){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Books added successfully");
+		alert.setContentText("Books were successfully added to the basket");
+		alert.showAndWait();
+	}
+	/**
+	 * Name: getCurrentClientFillCatalog 	 
+	 * Method to grab the current customer catalog <br>
+	 * @return a Client representing current client
+	 */
+>>>>>>> 75dc486464bf34f6e1fa820b3b11407ec64accf8
 	public Client getCurrentClientFillCatalog() {
 		return currentClientFillCatalog;
 	}
-
+	/**
+	 * Name: setCurrentClientFillCatalog 	 
+	 * Method to grab the current customer catalog <br>
+	 * @param currentClientFillCatalog - currentClientFillCatalog = Client
+	 */
 	public void setCurrentClientFillCatalog(Client currentClientFillCatalog) {
 		this.currentClientFillCatalog = currentClientFillCatalog;
 	}
-
+	/**
+	 * Name: getCurrentCatalogPosition 	 
+	 * Method to get current catalog position  <br>
+	 * @return a int whit position 
+	 */
 	public int getCurrentCatalogPosition() {
 		return currentCatalogPosition;
 	}
-
+	/**
+	 * Name: setCurrentCatalogPosition 	 
+	 * Method used to update current catalog position  <br>
+	 * @param currentCatalogPosition
+	 */
 	public void setCurrentCatalogPosition(int currentCatalogPosition) {
 		this.currentCatalogPosition = currentCatalogPosition;
 	}
-
+	/**
+	 * Name: getCurrentClienttoSort 	 
+	 * Method to get current client <br> 
+	 * @return
+	 */
 	public Client getCurrentClienttoSort() {
 		return currentClienttoSort;
 	}
+	/**
+	 * Name: setCurrentClienttoSort 	 
+	 * Method to update current client <br>
+	 * @param currentClienttoSort
+	 */
 	public void setCurrentClienttoSort(Client currentClienttoSort) {
 		this.currentClienttoSort = currentClienttoSort;
 	}
