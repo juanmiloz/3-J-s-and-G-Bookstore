@@ -2,7 +2,6 @@ package model;
 import org.junit.Test;
 
 import junit.framework.TestCase;
-import model.*;
 
 public class ClientTest extends TestCase{
 	private Client client;

@@ -1,4 +1,6 @@
 package gui;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,8 +23,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Book;
 import model.Bookstore;
 import model.Client;
@@ -282,9 +286,10 @@ public class BookstoreGUI {
 	 * Name: loadStoreInformation
 	 * Method to load information of store <br>
 	 * @param event - event = ActionEvent
+	 * @throws FileNotFoundException 
 	 */
 	@FXML
-	void addBooks(ActionEvent event) {
+	void addBooks(ActionEvent event) throws FileNotFoundException {
 
 		if(txtFieldShelveName.getText().equals("") || txtFieldNumBooks.getText().equals("")) {
 			alertEmptyField();
@@ -814,8 +819,9 @@ public class BookstoreGUI {
 	 * Method used to remove out-of-print books  <br>
 	 * @param booksToRemove - booksToRemove = ArrayList<Book>
 	 * @return a ArrayList<Book> representing out-of-print books
+	 * @throws FileNotFoundException 
 	 */ 
-	public ArrayList<Book> removeOutOfStock(ArrayList<Book> booksToRemove) {
+	public ArrayList<Book> removeOutOfStock(ArrayList<Book> booksToRemove) throws FileNotFoundException {
 		ArrayList<Book> removedArrayList= booksToRemove;
 		ArrayList<String> booksRemove = new ArrayList<>();
 		for (int i = 0; i < removedArrayList.size(); i++) {
@@ -955,13 +961,17 @@ public class BookstoreGUI {
 	 * Name: showAbout 
 	 * Method for show Program information    <br>
 	 * @param event - event = ActionEvent
+	 * @throws FileNotFoundException 
 	 */
 	@FXML
-	void showAbout(ActionEvent event) {
+	void showAbout(ActionEvent event) throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("Credits");
 		alert.setContentText("Juan Pablo Sanin\nJuan Camilo Zorrilla \nGiovanni Mosquera\nJuan Sebastian Rodriguez\nData Structures");
-
+		
 		alert.showAndWait();
 	}
 
@@ -969,21 +979,28 @@ public class BookstoreGUI {
 	/**
 	 * Name: alertLoadProgram 
 	 * Method to inform the user that the program is loading <br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertLoadProgram() {
+	public void alertLoadProgram() throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.ERROR);
-
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("Imposible load the program");
 		alert.setContentText("Its imposible load the program, please contact your supplier");
+		
 		alert.show();
 	}
 	/**
 	 * Name: alertEmptyField 
 	 * Method to inform the user that he is leaving an empty field  <br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertEmptyField() {
+	public void alertEmptyField() throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.ERROR);
-
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("There are empty fields");
 		alert.setContentText("There are empty fields that do not allow you to continue, please fill in all the fields");
 		alert.show();
@@ -991,63 +1008,89 @@ public class BookstoreGUI {
 	/**
 	 * Name: alertTypeDataIncorrect 
 	 * Method to inform the user that have entered a wrong data   <br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertTypeDataIncorrect() {
+	public void alertTypeDataIncorrect() throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.ERROR);
-
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("type of data entered invalid");
 		alert.setContentText("Enter a type of data that is not valid, please check all the fields");
+		
 		alert.show();
 	}
 	/**
 	 * Name: alertTypeDataIncorrect 
 	 * Method to inform the user that they cannot add a book   <br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertCantAddTheBook() {
+	public void alertCantAddTheBook() throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.ERROR);
-
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("The book can't be entered");
 		alert.setContentText("There is a book with the same ISBN");
+		
 		alert.show();
 	}
 	/**
 	 * Name: alertInvalidValueException 
 	 * Method to inform the user that have entered a wrong data   <br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertInvalidValueException() {
+	public void alertInvalidValueException() throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.ERROR);
-
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("The value entered is not valid");
 		alert.setContentText("The value that was entered is not valid, please verify your values");
+		
 		alert.show();
 	}
 	/**
 	 * Name: alertInvalidValueException 
 	 * Method to inform the user that have entered a wrong data   <br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertSelectetClient() {
+	public void alertSelectetClient() throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.ERROR);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one client from the table");
+		
 		alert.showAndWait();
 	}
 	/**
 	 * Name: alertSelectetToggle 
 	 * Method of informing the user that more than one lever is selected<br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertSelectetToggle() {
+	public void alertSelectetToggle() throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.ERROR);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("Error");
 		alert.setContentText("You must select one toggle");
+		
 		alert.showAndWait();
 	}
 	/**
 	 * Name: alertBookDontHaveStock 	 
 	 * Method to inform the user that a book has no values <br>
 	 * @param codes - codes = ArrayList<String> codes
+	 * @throws FileNotFoundException 
 	 */
-	public void alertBookDontHaveStock(ArrayList<String> codes) {
+	public void alertBookDontHaveStock(ArrayList<String> codes) throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("Quantity not available");
 		String output = "";
 		for(int i = 0; i < codes.size(); i++) {
@@ -1060,9 +1103,13 @@ public class BookstoreGUI {
 	 * Name: alertSortBubble 	 
 	 * Method to inform the user what type of sort they have selected  <br>
 	 * @param books - books = ArrayList<Book>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertSortBubble(ArrayList<Book> books) {
+	public void alertSortBubble(ArrayList<Book> books) throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("The order to pick up the books is:");
 		String output = "";
 		for(int i = 0; i < books.size();i++) {
@@ -1075,9 +1122,13 @@ public class BookstoreGUI {
 	 * Name: alertSortCounting 	 
 	 * Method to inform the user what type of sort they have selected  <br>
 	 * @param books - books = ArrayList<Book>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertSortCounting(Book[] books) {
+	public void alertSortCounting(Book[] books) throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("The order to pick up the books is:");
 		String output = "";
 		for(int i = 0; i < books.length;i++) {
@@ -1090,9 +1141,13 @@ public class BookstoreGUI {
 	 * Name: alertSortBucket 	 
 	 * Method to inform the user what type of sort they have selected  <br>
 	 * @param books - books = ArrayList<Book>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertSortBucket(Book[] books) {
+	public void alertSortBucket(Book[] books) throws FileNotFoundException {
 		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("The order to pick up the books is:");
 		String output = "";
 		for(int i = 0; i < books.length;i++) {
@@ -1104,9 +1159,13 @@ public class BookstoreGUI {
 	/**
 	 * Name: alertBooksAdded 	 
 	 * Method to inform the user books addes <br>
+	 * @throws FileNotFoundException 
 	 */
-	public void alertBooksAdded(){
+	public void alertBooksAdded() throws FileNotFoundException{
 		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(new FileInputStream("data/icon/icon2.png")));
+		alert.setTitle("Alert");
 		alert.setHeaderText("Books added successfully");
 		alert.setContentText("Books were successfully added to the basket");
 		alert.showAndWait();

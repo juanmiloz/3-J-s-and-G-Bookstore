@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import model.Book;
-import structures.hashTable.HashTable;
 
 class StackTest {
 	public Stack<Book> setupScenary1() {
