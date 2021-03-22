@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import model.Book;
-import structures.stack.Stack;
 
 class QueueTest {
 	public Queue<Book> setupScenary1() {

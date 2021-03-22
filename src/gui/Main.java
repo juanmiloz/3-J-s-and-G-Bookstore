@@ -35,8 +35,6 @@ public class Main extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Bookstore");
 		
-		primaryStage.show(); 
-		//hola como vamos
-
+		primaryStage.show();
 	}
 }

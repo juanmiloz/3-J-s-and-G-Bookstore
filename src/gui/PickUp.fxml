@@ -26,6 +26,7 @@
                </font>
             </JFXButton>
             <HBox layoutX="353.0" layoutY="406.0" prefHeight="100.0" prefWidth="661.0">
+            <HBox layoutX="392.0" layoutY="420.0" prefHeight="100.0" prefWidth="582.0">
                <children>
                   <JFXToggleButton fx:id="tglSort1" prefHeight="64.0" prefWidth="210.0" text="Bubble Sort" toggleColor="#dab314" toggleLineColor="BLACK">
                      <font>
@@ -41,6 +42,7 @@
                      </font>
                   </JFXToggleButton>
                   <JFXToggleButton fx:id="tglSort3" prefHeight="64.0" prefWidth="201.0" text="Bucket Sort" toggleColor="#dab314" toggleGroup="$sortSelection" toggleLineColor="BLACK">
+                  <JFXToggleButton fx:id="tglSort3" prefHeight="64.0" prefWidth="199.0" text="Bucket Sort" toggleColor="#dab314" toggleGroup="$sortSelection" toggleLineColor="BLACK">
                      <font>
                         <Font name="Montserrat SemiBold" size="19.0" />
                      </font>
