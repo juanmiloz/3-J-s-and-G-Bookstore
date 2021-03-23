@@ -46,9 +46,6 @@ _Founders_
 
 ## Acknowledgements 🎁
 
-* Thanks to the founding development team because it was thanks 
-* to them that the program could have a start, I also want to thank 
-* Andres Aristizabal who was our tutor throughout the learning process 
-* to develop this app
+_Thanks to the founding development team because it was thanks to them that the program could have a start, We also want to thank Andres Aristizabal who was our tutor throughout the learning process to develop this app_
 
 ---
