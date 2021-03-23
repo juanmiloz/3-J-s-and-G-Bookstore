@@ -52,20 +52,4 @@ public class Stack<T> implements StackInterface<T>, Cloneable {
 		top = top.getPrevItem();
 		return r;
 	}
-
-
-	/*	
-	public String toStringStack(Node<T> top){
-		String output = "";
-		Node<T> toPrint = top;
-
-		while(toPrint!=null){
-			output += top.getElement() + "\n";
-			
-		}
-
-		return output;
-	}
-	*/
-
 }
