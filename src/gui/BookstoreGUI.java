@@ -703,12 +703,8 @@ public class BookstoreGUI {
 		for(int c = 0; c < books.size(); c++) {
 			booksToSort[c] = books.get(c);
 		}
-		System.out.println("Bucket-Sort");
-		System.out.println("==============");
-		System.out.println("Before");
-		for(int c=0; c < booksToSort.length; c++) {
-			System.out.println(booksToSort[c].getISBN());
-		}
+		
+		
 		@SuppressWarnings("unchecked")
 		Vector<Book>[] buckets = new Vector[booksToSort.length];
 		for(int c = 0; c < booksToSort.length; c++) {
@@ -717,7 +713,6 @@ public class BookstoreGUI {
 		
 		// Put array elements in different buckets
 		for(int c = 0; c < booksToSort.length; c++) {
-			System.out.println(booksToSort[c].getBookCount() - 1);
 			int idx = (booksToSort[c].getBookCount() - 1);
 			if(idx>=booksToSort.length) {
 				buckets[buckets.length - 1].add(booksToSort[c]);
@@ -799,11 +794,6 @@ public class BookstoreGUI {
 			alertSelectetToggle();
 		}
 
-
-
-
-
-		
 		loadClientTable();
 		
 
@@ -861,14 +851,7 @@ public class BookstoreGUI {
 	 * @return a ArrayList<Book> with the books ordered 
 	 */
 	public ArrayList<Book> bubbleSort( ArrayList<Book> booksToSort) {
-		/*
-		System.out.println("Bubble");
-		System.out.println("==============");
-		System.out.println("Before");
-		for(int i=0; i<booksToSort.size();i++) {
-			System.out.println(booksToSort.get(i).getISBN());
-		}
-		*/
+		
 		int n = booksToSort.size(); 
 		for (int i = 0; i < n-1; i++) 
 			for (int j = 0; j < n-i-1; j++) 
@@ -885,13 +868,6 @@ public class BookstoreGUI {
 					booksToSort.set(j+1,temp); 
 				} 
 
-		/*
-		System.out.println("==============");
-		System.out.println("After");
-		for(int i=0; i<booksToSort.size();i++) {
-			System.out.println(booksToSort.get(i).getISBN()+ ","+ booksToSort.get(i).getShelve()+ ","+ booksToSort.get(i).getPosInShelve());
-		}
-		*/
 		return booksToSort;
 	}
 	/**
@@ -901,14 +877,7 @@ public class BookstoreGUI {
 	 * @return a Book[]  with the books ordered 
 	 */
 	public Book[] countingSort(ArrayList<Book> booksToSort) {
-		/*
-		System.out.println("Counting");
-		System.out.println("==============");
-		System.out.println("Before");
-		for(int i=0; i<booksToSort.size();i++) {
-			System.out.println(booksToSort.get(i).getISBN());
-		}
-		*/
+		
 
 		Book booksToSortArr[]= new Book[booksToSort.size()];
 		int n = booksToSortArr.length;
@@ -946,13 +915,6 @@ public class BookstoreGUI {
 			--count[booksToSortArr[i].getBookCount()];
 		}
 		
-		/*
-		System.out.println("==============");
-		System.out.println("After");
-		for(int i=0; i<output.length;i++) {
-			System.out.println(output[i].getISBN()+ ","+ output[i].getShelve()+ ","+ output[i].getPosInShelve());
-		}
-		*/
 		return output;
 	}
 	
