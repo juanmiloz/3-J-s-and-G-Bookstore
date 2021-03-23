@@ -25,7 +25,7 @@ _To run the unit tests from a development IDE, in this case Eclipse IDE was used
 
 _It is a simple program, therefore, its deployment was fully explained in the section "Installation"_
 
-## Builded with 🛠️
+## Built with 🛠️
 
 _Tools._
 
