@@ -1,12 +1,10 @@
 # 3-J-s-and-G-Bookstore
 
-_Basic system about selling and buying created in the Java language implementing GUI interfaces created in SceneBuilder_
+_Bookstore program implementing abstract data types like, hash tables, queues and stacks to function. The program is a prototype that simulates how this bookstore is supposed to function, allowing to add shelves, books and clients. Such clients can add books to a wishlist, sort them and finally see a purchase summary_
 
 ## Starting 🚀
 
 _To create a copy of the project in case of tests or improvements you need to fork this project and respect the rights._
-
-Mira **Deployment** para conocer como desplegar el proyecto.
 
 
 ### Pre-requirements 📋
@@ -23,7 +21,7 @@ _To use and obtain the data of this project, you can find the serialized files i
 
 _To run the unit tests from a development IDE, in this case Eclipse IDE was used, right click on the project and click "Run as JUnit Tests"_
 
-## Desploy 📦
+## Deploy 📦
 
 _It is a simple program, therefore, its deployment was fully explained in the section "Installation"_
 
