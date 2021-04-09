@@ -1,4 +1,4 @@
-# 3-J-s-and-G-Bookstore
+# 3-J-s-and-G-Bookstore TI
 
 _Bookstore program implementing abstract data types like, hash tables, queues and stacks to function. The program is a prototype that simulates how this bookstore is supposed to function, allowing to add shelves, books and clients. Such clients can add books to a wishlist, sort them and finally see a purchase summary_
 
